@@ -85,7 +85,7 @@ body[data-theme=light] .date-group input[type=month]{color-scheme:light}
 .month-picker-footer{font-size:10px;color:var(--subtle);padding-top:12px;line-height:1.5;text-align:center}
 
 /* Every title is displayed, including long model names, using calculated line breaks. */
-.event-card.compact-card,.event-card.compact-card.model-level{min-height:0;min-width:0;padding:3px 4px 3px 7px;overflow:hidden;border-radius:5px;box-shadow:none}
+.event-card.compact-card,.event-card.compact-card.model-level{min-height:0;min-width:0;padding:2px 4px 2px 7px;overflow:hidden;border-radius:5px;box-shadow:none}
 .event-card.compact-card .event-name,.event-card.compact-card.model-level .event-name{
  display:block;white-space:normal;overflow:visible;text-overflow:clip;
  -webkit-line-clamp:unset;line-clamp:unset;-webkit-box-orient:unset;
