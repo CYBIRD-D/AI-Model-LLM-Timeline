@@ -44,7 +44,7 @@ A data entry has the following structure:
 
 ## 2026 source-backed update
 
-This refresh uses the [companion API pricing repository](https://github.com/CYBIRD-D/LLM-API-Official-Pricing-Tracker) **as a discovery aid**, not as a publication-date authority. Final dates and Open / Closed labels are checked against first-party announcements, model cards, API release notes and officially linked downloadable model weights. Providers with no pricing record are covered separately.
+This refresh uses the [companion API pricing repository](https://github.com/CYBIRD-D/LLM-API-Official-Pricing-Tracker) **as a discovery aid**, not as a publication-date authority. Release dates and Open / Closed labels are checked against first-party announcements, model cards, API release notes and officially linked downloadable model weights where possible. If only a dated API snapshot identifier is known (for example Qwen3.7 Flash's July 15 version), the record is explicitly marked `provisional`, not a verified first-public release date. Providers with no pricing record are covered separately.
 
 | Company | Newly added events | Primary sources |
 | --- | ---: | --- |
