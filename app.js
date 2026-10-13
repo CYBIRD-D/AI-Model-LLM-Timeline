@@ -249,8 +249,8 @@ function setupEvents(){
  $("zoomOut").addEventListener("click",()=>applyZoom(state.zoom-.2));
  $("zoomIn").addEventListener("click",()=>applyZoom(state.zoom+.2));
  $("todayBtn").addEventListener("click",jumpToToday);
- $("fromMonth").addEventListener("change",e=>{if(!validMonth(e.target.value))return;state.fromMonth=e.target.value;if(state.fromMonth>state.toMonth){state.toMonth=state.fromMonth;$("toMonth").value=state.toMonth;}draw({keepScroll:false});});
- $("toMonth").addEventListener("change",e=>{if(!validMonth(e.target.value))return;state.toMonth=e.target.value;if(state.toMonth<state.fromMonth){state.fromMonth=state.toMonth;$("fromMonth").value=state.fromMonth;}draw({keepScroll:false});});
+ $("fromMonth").addEventListener("change",e=>{if(!validMonth(e.target.value))return;state.fromMonth=e.target.value<firstDataMonth?firstDataMonth:e.target.value>lastDataMonth?lastDataMonth:e.target.value;e.target.value=state.fromMonth;if(state.fromMonth>state.toMonth){state.toMonth=state.fromMonth;$("toMonth").value=state.toMonth;}draw({keepScroll:false});});
+ $("toMonth").addEventListener("change",e=>{if(!validMonth(e.target.value))return;state.toMonth=e.target.value<firstDataMonth?firstDataMonth:e.target.value>lastDataMonth?lastDataMonth:e.target.value;e.target.value=state.toMonth;if(state.toMonth<state.fromMonth){state.fromMonth=state.toMonth;$("fromMonth").value=state.fromMonth;}draw({keepScroll:false});});
  $("filterToggle").addEventListener("click",()=>{setCollapsed(!state.filtersCollapsed);draw();});
  $("expandBtn").addEventListener("click",()=>setExpanded(!state.expanded));
  $("timelineCanvas").addEventListener("click",e=>{const btn=e.target.closest(".event-card");if(btn)openDetails(btn.dataset.id,btn.dataset.group,btn.dataset.model);});
