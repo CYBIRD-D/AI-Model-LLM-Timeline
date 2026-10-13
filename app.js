@@ -17,7 +17,64 @@ const MAX_ZOOM=2.8;
 const validMonth=value=>/^\d{4}-(0[1-9]|1[0-2])$/.test(value);
 const state={data:[],query:"",companies:new Set(COMPANY_ORDER),availability:new Set(["open","closed"]),capabilities:new Set(CAPS),fromMonth:"2025-01",toMonth:"2026-05",mode:"timeline",density:"detail",zoom:1.3,filtersCollapsed:false,expanded:false,drawer:null,listLimit:120};
 let datasetMeta={},toastTimeout,previousFocus=null,resizeTimer,firstDataMonth,lastDataMonth;
+let activeMonthField=null,calendarYear=0;
 function tell(message){const el=$("toast");el.textContent=message;el.classList.add("show");clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>el.classList.remove("show"),2800);}
+function prettyMonth(value){
+ if(!validMonth(value))return "Select month";
+ return MONTHS[Number(value.slice(5))-1]+" "+value.slice(0,4);
+}
+function syncMonthButtons(){
+ for(const field of ["fromMonth","toMonth"]){
+  $(field+"Text").textContent=prettyMonth(state[field]);
+  $(field).dataset.month=state[field];
+  $(field).setAttribute("aria-expanded",String(activeMonthField===field&&!$("monthPickerPopup").hidden));
+ }
+}
+function renderMonthPicker(){
+ if(!activeMonthField)return;
+ const firstYear=yearFromMonth(firstDataMonth),lastYear=yearFromMonth(lastDataMonth);
+ calendarYear=Math.max(firstYear,Math.min(lastYear,calendarYear));
+ $("calYear").innerHTML=Array.from({length:lastYear-firstYear+1},(_,i)=>firstYear+i).map(y=>'<option value="'+y+'"'+(y===calendarYear?' selected':'')+'>'+y+'</option>').join("");
+ $("calYear").value=String(calendarYear);
+ $("calPrevYear").disabled=calendarYear<=firstYear;
+ $("calNextYear").disabled=calendarYear>=lastYear;
+ $("monthPickerPopup").setAttribute("aria-label","Choose "+(activeMonthField==="fromMonth"?"starting":"ending")+" month");
+ $("calMonthGrid").innerHTML=MONTHS.map((name,i)=>{
+  const key=String(calendarYear)+"-"+String(i+1).padStart(2,"0");
+  const selected=key===state[activeMonthField],unavailable=key<firstDataMonth||key>lastDataMonth;
+  return '<button type="button" class="calendar-month'+(selected?' is-selected':'')+'" data-month="'+key+'"'+(unavailable?' disabled':'')+' aria-pressed="'+selected+'" aria-label="'+name+" "+calendarYear+'">'+name+'</button>';
+ }).join("");
+ syncMonthButtons();
+}
+function closeMonthPicker(restoreFocus=false){
+ if(!activeMonthField)return;
+ const trigger=$(activeMonthField);
+ $("monthPickerPopup").hidden=true;
+ $("dateGroup").classList.remove("date-picker-open");
+ activeMonthField=null;
+ syncMonthButtons();
+ if(restoreFocus)trigger.focus();
+}
+function openMonthPicker(field){
+ if(activeMonthField===field&&!$("monthPickerPopup").hidden){closeMonthPicker(true);return;}
+ activeMonthField=field;
+ calendarYear=yearFromMonth(state[field]);
+ $("monthPickerPopup").hidden=false;
+ $("dateGroup").classList.add("date-picker-open");
+ renderMonthPicker();
+ const current=$("calMonthGrid").querySelector('.calendar-month.is-selected:not([disabled])');
+ if(current)current.focus();else $("calYear").focus();
+}
+function chooseMonth(value){
+ if(!activeMonthField||!validMonth(value)||value<firstDataMonth||value>lastDataMonth)return;
+ const field=activeMonthField;
+ state[field]=value;
+ if(state.fromMonth>state.toMonth){
+  state[field==="fromMonth"?"toMonth":"fromMonth"]=value;
+ }
+ closeMonthPicker(true);
+ draw({keepScroll:false});
+}
 function paramsRead(){
  const url=new URL(location.href),q=url.searchParams;
  state.query=q.get("q")||"";
@@ -56,13 +113,13 @@ function syncButtons(){
  $("timelineView").hidden=state.mode!=="timeline";$("listView").hidden=state.mode!=="list";
  $("resultsTitle").textContent=state.mode==="list"?"Release directory":"Timeline overview";
  $("overviewBtn").classList.toggle("active",state.density==="overview");$("detailBtn").classList.toggle("active",state.density==="detail");$("modelsBtn").classList.toggle("active",state.density==="models");
- $("densityLabel").textContent=state.density==="overview"?"Nearby releases grouped":state.density==="models"?"Every named model shown separately":"Individual release groups";
+ $("densityLabel").textContent=state.density==="overview"?"Nearby releases grouped":state.density==="models"?"Every named model shown separately":"Same-day model families grouped";
  $("zoomRange").value=String(state.zoom);
- $("groupingNote").textContent=state.density==="overview"?"Click a group to inspect every release.":state.density==="models"?"Every individually named model appears as its own card; source-only family labels remain as recorded.":"Choose All models or move zoom to maximum to split release families.";
+ $("groupingNote").textContent=state.density==="overview"?"Click a group to inspect every release.":state.density==="models"?"Every named variant is shown without family aggregation.":"Same-day variants share a family card when supported by the available model names; All models expands them.";
 }
 function draw({keepScroll=true}={}){
  const scroll=$("timelineScroll"),left=scroll.scrollLeft,top=scroll.scrollTop;
- buildFilters();syncButtons();
+ buildFilters();syncButtons();syncMonthButtons();
  const entries=filtered();
  $("resultsCount").textContent=entries.length.toLocaleString()+" release groups · "+new Set(entries.map(e=>e.company)).size+" companies";
  if(state.mode==="timeline")drawTimeline(entries);else drawList(entries);
@@ -242,15 +299,19 @@ function setupEvents(){
  $("capabilityFilters").addEventListener("click",e=>{const id=e.target.closest("[data-cap]")?.dataset.cap;if(!id)return;state.capabilities.has(id)?state.capabilities.delete(id):state.capabilities.add(id);draw();});
  $("allCompanies").addEventListener("click",()=>{state.companies=new Set(COMPANY_ORDER);draw();});
  $("allCategories").addEventListener("click",()=>{state.capabilities=new Set(CAPS);draw();});
- $("resetBtn").addEventListener("click",()=>{state.query="";state.companies=new Set(COMPANY_ORDER);state.availability=new Set(["open","closed"]);state.capabilities=new Set(CAPS);state.fromMonth=Math.max(firstDataMonth,(yearFromMonth(lastDataMonth)-1)+"-01");state.toMonth=lastDataMonth;state.zoom=1.3;state.density="detail";state.listLimit=120;$("searchInput").value="";$("fromMonth").value=state.fromMonth;$("toMonth").value=state.toMonth;draw({keepScroll:false});});
+ $("resetBtn").addEventListener("click",()=>{state.query="";state.companies=new Set(COMPANY_ORDER);state.availability=new Set(["open","closed"]);state.capabilities=new Set(CAPS);state.fromMonth=Math.max(firstDataMonth,(yearFromMonth(lastDataMonth)-1)+"-01");state.toMonth=lastDataMonth;state.zoom=1.3;state.density="detail";state.listLimit=120;$("searchInput").value="";closeMonthPicker();draw({keepScroll:false});});
  for(const [id,value] of [["timelineTab","timeline"],["listTab","list"]])$(id).addEventListener("click",()=>{state.mode=value;draw();});
  for(const [id,value] of [["overviewBtn","overview"],["detailBtn","detail"],["modelsBtn","models"]])$(id).addEventListener("click",()=>{state.density=value;draw({keepScroll:false});});
  $("zoomRange").addEventListener("input",e=>applyZoom(Number(e.target.value)));
  $("zoomOut").addEventListener("click",()=>applyZoom(state.zoom-.2));
  $("zoomIn").addEventListener("click",()=>applyZoom(state.zoom+.2));
  $("todayBtn").addEventListener("click",jumpToToday);
- $("fromMonth").addEventListener("change",e=>{if(!validMonth(e.target.value))return;state.fromMonth=e.target.value<firstDataMonth?firstDataMonth:e.target.value>lastDataMonth?lastDataMonth:e.target.value;e.target.value=state.fromMonth;if(state.fromMonth>state.toMonth){state.toMonth=state.fromMonth;$("toMonth").value=state.toMonth;}draw({keepScroll:false});});
- $("toMonth").addEventListener("change",e=>{if(!validMonth(e.target.value))return;state.toMonth=e.target.value<firstDataMonth?firstDataMonth:e.target.value>lastDataMonth?lastDataMonth:e.target.value;e.target.value=state.toMonth;if(state.toMonth<state.fromMonth){state.fromMonth=state.toMonth;$("fromMonth").value=state.fromMonth;}draw({keepScroll:false});});
+ for(const field of ["fromMonth","toMonth"])$(field).addEventListener("click",()=>openMonthPicker(field));
+ $("calPrevYear").addEventListener("click",()=>{calendarYear--;renderMonthPicker();});
+ $("calNextYear").addEventListener("click",()=>{calendarYear++;renderMonthPicker();});
+ $("calYear").addEventListener("change",e=>{calendarYear=Number(e.target.value);renderMonthPicker();});
+ $("calMonthGrid").addEventListener("click",e=>{const button=e.target.closest("button[data-month]");if(button&&!button.disabled)chooseMonth(button.dataset.month);});
+ document.addEventListener("pointerdown",e=>{if(activeMonthField&&!$("dateGroup").contains(e.target))closeMonthPicker();});
  $("filterToggle").addEventListener("click",()=>{setCollapsed(!state.filtersCollapsed);draw();});
  $("expandBtn").addEventListener("click",()=>setExpanded(!state.expanded));
  $("timelineCanvas").addEventListener("click",e=>{const btn=e.target.closest(".event-card");if(btn)openDetails(btn.dataset.id,btn.dataset.group,btn.dataset.model);});
@@ -258,6 +319,7 @@ function setupEvents(){
  $("showMore").addEventListener("click",()=>{state.listLimit+=150;draw();});
  $("closeDrawer").addEventListener("click",closeDetails);$("drawerOverlay").addEventListener("click",closeDetails);
  document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"&&activeMonthField){e.preventDefault();closeMonthPicker(true);return;}
   if(e.key==="Escape"&&$("detailDrawer").classList.contains("is-open")){closeDetails();return;}
   if(e.key==="Escape"&&state.expanded){setExpanded(false);return;}
   if(e.key==="/"&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName)&&!$("detailDrawer").classList.contains("is-open")){e.preventDefault();$("searchInput").focus();}
@@ -287,7 +349,7 @@ async function init(){
  if(from)state.fromMonth=from<firstDataMonth?firstDataMonth:from>lastDataMonth?lastDataMonth:from;
  if(to)state.toMonth=to<firstDataMonth?firstDataMonth:to>lastDataMonth?lastDataMonth:to;
  if(state.fromMonth>state.toMonth)state.fromMonth=state.toMonth;
- for(const id of ["fromMonth","toMonth"]){$(id).min=firstDataMonth;$(id).max=lastDataMonth;$(id).value=state[id];}
+ syncMonthButtons();
  $("searchInput").value=state.query;
  $("metricEvents").textContent=state.data.length.toLocaleString();
  $("metricModels").textContent=state.data.reduce((n,e)=>n+expandModelNames(e.models).length,0).toLocaleString();
