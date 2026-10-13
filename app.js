@@ -16,7 +16,7 @@ const yearFromMonth=key=>Number(key.slice(0,4));
 const MAX_ZOOM=2.8;
 const validMonth=value=>/^\d{4}-(0[1-9]|1[0-2])$/.test(value);
 const state={data:[],query:"",companies:new Set(COMPANY_ORDER),availability:new Set(["open","closed"]),capabilities:new Set(CAPS),fromMonth:"2025-01",toMonth:"2026-05",mode:"timeline",density:"detail",zoom:1.3,filtersCollapsed:false,expanded:false,drawer:null,listLimit:120};
-let datasetMeta={},toastTimeout,previousFocus=null,resizeTimer,firstDataMonth,lastDataMonth;
+let datasetMeta={},toastTimeout,previousFocus=null,resizeTimer,firstDataMonth,lastDataMonth,lastSelectableMonth;
 let activeMonthField=null,calendarYear=0;
 function tell(message){const el=$("toast");el.textContent=message;el.classList.add("show");clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>el.classList.remove("show"),2800);}
 function prettyMonth(value){
@@ -32,7 +32,7 @@ function syncMonthButtons(){
 }
 function renderMonthPicker(){
  if(!activeMonthField)return;
- const firstYear=yearFromMonth(firstDataMonth),lastYear=yearFromMonth(lastDataMonth);
+ const firstYear=yearFromMonth(firstDataMonth),lastYear=yearFromMonth(lastSelectableMonth);
  calendarYear=Math.max(firstYear,Math.min(lastYear,calendarYear));
  $("calYear").innerHTML=Array.from({length:lastYear-firstYear+1},(_,i)=>firstYear+i).map(y=>'<option value="'+y+'"'+(y===calendarYear?' selected':'')+'>'+y+'</option>').join("");
  $("calYear").value=String(calendarYear);
@@ -41,7 +41,7 @@ function renderMonthPicker(){
  $("monthPickerPopup").setAttribute("aria-label","Choose "+(activeMonthField==="fromMonth"?"starting":"ending")+" month");
  $("calMonthGrid").innerHTML=MONTHS.map((name,i)=>{
   const key=String(calendarYear)+"-"+String(i+1).padStart(2,"0");
-  const selected=key===state[activeMonthField],unavailable=key<firstDataMonth||key>lastDataMonth;
+  const selected=key===state[activeMonthField],unavailable=key<firstDataMonth||key>lastSelectableMonth;
   return '<button type="button" class="calendar-month'+(selected?' is-selected':'')+'" data-month="'+key+'"'+(unavailable?' disabled':'')+' aria-pressed="'+selected+'" aria-label="'+name+" "+calendarYear+'">'+name+'</button>';
  }).join("");
  syncMonthButtons();
@@ -66,7 +66,7 @@ function openMonthPicker(field){
  if(current)current.focus();else $("calYear").focus();
 }
 function chooseMonth(value){
- if(!activeMonthField||!validMonth(value)||value<firstDataMonth||value>lastDataMonth)return;
+ if(!activeMonthField||!validMonth(value)||value<firstDataMonth||value>lastSelectableMonth)return;
  const field=activeMonthField;
  state[field]=value;
  if(state.fromMonth>state.toMonth){
@@ -419,6 +419,7 @@ async function init(){
  state.data=datasetMeta.events.filter(e=>COMPANIES[e.company]&&/^\d{4}-\d{2}-\d{2}$/.test(e.date)&&["open","closed"].includes(e.availability)&&Array.isArray(e.models)&&Array.isArray(e.capabilities));
  const months=state.data.map(e=>e.date.slice(0,7)).sort();
  firstDataMonth=months[0];lastDataMonth=months.at(-1);
+ lastSelectableMonth=lastDataMonth>new Date().toISOString().slice(0,7)?lastDataMonth:new Date().toISOString().slice(0,7);
  if(!firstDataMonth)throw new Error("No release data");
  paramsRead();
  const previousYear=(yearFromMonth(lastDataMonth)-1)+"-01";
@@ -426,8 +427,8 @@ async function init(){
  state.toMonth=lastDataMonth;
  function parseMonthParam(v,from){if(validMonth(v))return v;if(/^\d{4}$/.test(v||""))return v+(from?"-01":"-12");return null;}
  const from=parseMonthParam(state._from,true),to=parseMonthParam(state._to,false);
- if(from)state.fromMonth=from<firstDataMonth?firstDataMonth:from>lastDataMonth?lastDataMonth:from;
- if(to)state.toMonth=to<firstDataMonth?firstDataMonth:to>lastDataMonth?lastDataMonth:to;
+ if(from)state.fromMonth=from<firstDataMonth?firstDataMonth:from>lastSelectableMonth?lastSelectableMonth:from;
+ if(to)state.toMonth=to<firstDataMonth?firstDataMonth:to>lastSelectableMonth?lastSelectableMonth:to;
  if(state.fromMonth>state.toMonth)state.fromMonth=state.toMonth;
  syncMonthButtons();
  $("searchInput").value=state.query;
