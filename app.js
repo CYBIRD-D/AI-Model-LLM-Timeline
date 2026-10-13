@@ -165,8 +165,79 @@ function expandModelName(raw){
 function expandModelNames(names){
  return [...new Set(names.flatMap(expandModelName).filter(Boolean))];
 }
+
+function familyNameForEvent(event){
+ const title=String(event.title||"").trim();
+ if(!/\s+family$/i.test(title))return null;
+ const family=title.replace(/\s+family$/i,"").trim();
+ const names=expandModelNames(event.models);
+ if(names.length<2)return null;
+ const escaped=family.replace(/[-/\\^$*+?.()|[\]{}]/g,"\\$&");
+ let match;
+ if(/^Claude\s+\d+(?:\.\d+)?$/i.test(family)){
+  const version=family.slice("Claude ".length).replaceAll(".","\\.");
+  match=name=>new RegExp("^Claude\\s+(?:(?:Opus|Sonnet|Haiku|Instant)\\s+)?"+version+"(?=$|[-\\s])","i").test(name);
+ }else if(/^(?:GPT-\d+(?:\.\d+)*|Qwen\d+(?:\.\d+)*|Gemma\s+\d+(?:\.\d+)*|Gemini\s+\d+(?:\.\d+)*|Llama\s+\d+(?:\.\d+)*|DeepSeek-[A-Z]\d+(?:\.\d+)*|GLM-\d+(?:\.\d+)*)$/i.test(family)){
+  match=name=>new RegExp("^"+escaped+"(?=$|[\\s-])","i").test(name);
+ }else return null;
+ return names.every(match)?family+" Family":null;
+}
+function groupSameDayFamilies(entries){
+ const grouped=new Map(),standalone=[];
+ for(const e of entries){
+  const family=familyNameForEvent(e);
+  if(!family){standalone.push({events:[e],date:e.date,name:e.title,grouped:false});continue;}
+  const key=[e.date,e.company,e.availability,e.capabilities.slice().sort().join(";"),family.toLowerCase()].join("|");
+  if(!grouped.has(key))grouped.set(key,{events:[],date:e.date,name:family,grouped:true,family:true});
+  grouped.get(key).events.push(e);
+ }
+ return [...standalone,...grouped.values()];
+}
+function textWidthApprox(text){
+ let width=0;
+ for(const char of text){
+  if(/[il1.,': ]/.test(char))width+=3.2;
+  else if(/[WMW@]/.test(char))width+=8.2;
+  else if(/[A-Z]/.test(char))width+=6.5;
+  else if(/[^\u0000-\u00ff]/.test(char))width+=10.5;
+  else width+=5.6;
+ }
+ return width;
+}
+function wrapCardTitle(label,maxWidth){
+ const lines=[];let current="";
+ const fits=value=>textWidthApprox(value)<=maxWidth;
+ for(const char of Array.from(label)){
+  if(current&&!fits(current+char)){
+   let split=-1;
+   for(let i=2;i<current.length;i++){
+    if(" -/".includes(current[i-1])&&fits(current.slice(0,i)))split=i;
+   }
+   if(split>0){
+    lines.push(current.slice(0,split).trimEnd());
+    current=current.slice(split).trimStart()+char;
+   }else{
+    lines.push(current);
+    current=char;
+   }
+  }else current+=char;
+ }
+ if(current)lines.push(current);
+ return lines.length?lines:[""];
+}
+function compactCardMetrics(name){
+ const choices=[92,104,116,128,140,152,166,180,194];
+ let best=null;
+ for(const width of choices){
+  const lines=wrapCardTitle(name,width-17);
+  const height=Math.ceil(17+lines.length*12.5);
+  const score=(width+5)*(height+4)+(lines.length>3?400*(lines.length-3):0);
+  if(!best||score<best.score)best={width,height,lines,score};
+ }
+ return best;
+}
 function layoutEvents(entries,scale){
- const gap=7,rowH=state.density==="models"?56:43;
+ const gap=6,rowGap=4;
  let items=[];
  if(state.density==="overview"){
    const buckets=new Map(),windowDays=Math.max(28,Math.min(115,Math.round(105/Math.max(.4,state.zoom))));
@@ -178,23 +249,32 @@ function layoutEvents(entries,scale){
    items=[...buckets.values()].map(list=>({events:list,date:list[0].date,name:list.length===1?list[0].title:list.length+" releases",grouped:list.length>1}));
  }else if(state.density==="models"){
    for(const e of entries){
-    for(const name of expandModelNames(e.models.length?e.models:[e.title])){
-     items.push({events:[e],date:e.date,name,model:name,grouped:false});
-    }
+     for(const name of expandModelNames(e.models.length?e.models:[e.title])){
+       items.push({events:[e],date:e.date,name,model:name,grouped:false});
+     }
    }
- }else items=entries.map(e=>({events:[e],date:e.date,name:e.title,grouped:false}));
+ }else items=groupSameDayFamilies(entries);
  items.sort((a,b)=>a.date.localeCompare(b.date)||a.name.localeCompare(b.name));
- const occupied=[],cards=[];
+ const occupied=[],rowHeights=[],cards=[];
  for(const item of items){
-  const cardW=state.density==="models"?Math.min(330,Math.max(172,Math.ceil(item.name.length*6.3+27))):128;
+  const metrics=compactCardMetrics(item.name);
   const x=days(monthStart(state.fromMonth),item.date)*scale;
   let row=occupied.findIndex(end=>end+gap<=x);
-  if(row<0){row=occupied.length;occupied.push(x+cardW);}else occupied[row]=x+cardW;
-  const c=COMPANIES[item.events[0].company];
-  const card='<button type="button" class="event-card '+(item.grouped?"grouped ":"")+(item.model?"model-level":"")+'" data-id="'+escapeHTML(item.events[0].id)+'" data-group="'+(item.grouped?"true":"false")+'" data-model="'+escapeHTML(item.model||"")+'" style="left:'+x.toFixed(1)+'px;top:'+(8+row*rowH)+'px;width:'+cardW+'px;--event-color:'+c.color+'" title="'+escapeHTML(item.name+" — "+item.date)+'"><span class="event-name">'+escapeHTML(item.name)+'</span><span class="event-date">'+escapeHTML(item.date)+(item.grouped?" · grouped":"")+'</span></button>';
-  cards.push({html:card,events:item.events});
+  if(row<0){row=occupied.length;occupied.push(x+metrics.width);rowHeights.push(metrics.height);}
+  else{occupied[row]=x+metrics.width;rowHeights[row]=Math.max(rowHeights[row],metrics.height);}
+  cards.push({item,row,x,metrics});
  }
- return {height:Math.max(67,16+occupied.length*rowH),cards};
+ const rowTops=[];let offset=6;
+ for(let i=0;i<rowHeights.length;i++){rowTops.push(offset);offset+=rowHeights[i]+rowGap;}
+ const html=cards.map(({item,row,x,metrics})=>{
+  const company=COMPANIES[item.events[0].company];
+  const fullName=escapeHTML(item.name);
+  const nameLines=metrics.lines.map(escapeHTML).join("<br>");
+  const family=item.family?" family-card":"";
+  const card='<button type="button" aria-label="'+fullName+' — '+escapeHTML(item.date)+'" class="event-card compact-card'+family+' '+(item.grouped&&!item.family?"grouped ":"")+(item.model?"model-level":"")+'" data-id="'+escapeHTML(item.events[0].id)+'" data-group="'+(item.grouped?"true":"false")+'" data-model="'+escapeHTML(item.model||"")+'" style="left:'+x.toFixed(1)+'px;top:'+rowTops[row]+'px;width:'+metrics.width+'px;height:'+metrics.height+'px;--event-color:'+company.color+'" title="'+fullName+' — '+escapeHTML(item.date)+'"><span class="event-name">'+nameLines+'</span><span class="event-date">'+escapeHTML(item.date)+'</span></button>';
+  return {html:card,events:item.events};
+ });
+ return {height:Math.max(57,offset+3),cards:html};
 }
 const groupRecords=new Map();
 function drawTimeline(entries){
