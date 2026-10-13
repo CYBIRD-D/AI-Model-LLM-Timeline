@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
   "datasetUpdated": "2026-10-14",
-  "coverageThrough": "2026-05-07",
-  "notes": "Migrated from previous release data. Four originally grouped GLM and DeepSeek entries were expanded/corrected using official release documentation. All other historical records remain provisional until source verification.",
+  "coverageThrough": "2026-10-13",
+  "notes": "Historical release groups, supplemented through 2026-10-13 with official-source-backed model announcements and model-weight releases. Open/Closed is evaluated for each recorded event/date, not inferred from the company or the model's current state. In particular, Kimi K3 and MiniMax M3 had API announcements before weight publication. Older migrated records are not yet comprehensively verified; this update is not an exhaustive census of all specialized models.",
   "events": [
     {
       "id": "oai-2022-11-30-1",
@@ -50,15 +50,12 @@
       "verification": "unverified"
     },
     {
-      "id": "anth-2023-03-14-4",
-      "company": "anth",
+      "id": "oai-2023-03-14-5",
+      "company": "oai",
       "date": "2023-03-14",
-      "title": "Claude 1.0 family",
+      "title": "GPT-4",
       "models": [
-        "Claude 1.0",
-        "Claude 1.1",
-        "Claude 1.2",
-        "Claude Instant 1.0"
+        "GPT-4"
       ],
       "availability": "closed",
       "capabilities": [
@@ -68,12 +65,15 @@
       "verification": "unverified"
     },
     {
-      "id": "oai-2023-03-14-5",
-      "company": "oai",
+      "id": "anth-2023-03-14-4",
+      "company": "anth",
       "date": "2023-03-14",
-      "title": "GPT-4",
+      "title": "Claude 1.0 family",
       "models": [
-        "GPT-4"
+        "Claude 1.0",
+        "Claude 1.1",
+        "Claude 1.2",
+        "Claude Instant 1.0"
       ],
       "availability": "closed",
       "capabilities": [
@@ -265,21 +265,6 @@
       "verification": "unverified"
     },
     {
-      "id": "qwen-2023-09-25-18",
-      "company": "qwen",
-      "date": "2023-09-25",
-      "title": "Qwen-14B",
-      "models": [
-        "Qwen-14B"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "General"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "oai-2023-09-25-19",
       "company": "oai",
       "date": "2023-09-25",
@@ -290,6 +275,21 @@
       "availability": "closed",
       "capabilities": [
         "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2023-09-25-18",
+      "company": "qwen",
+      "date": "2023-09-25",
+      "title": "Qwen-14B",
+      "models": [
+        "Qwen-14B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
       ],
       "source": null,
       "verification": "unverified"
@@ -447,6 +447,21 @@
       "verification": "unverified"
     },
     {
+      "id": "mis-2023-12-11-31",
+      "company": "mis",
+      "date": "2023-12-11",
+      "title": "Mistral Medium 1.0",
+      "models": [
+        "Mistral Medium 1.0"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
       "id": "mis-2023-12-11-30",
       "company": "mis",
       "date": "2023-12-11",
@@ -456,21 +471,6 @@
         "Mixtral 8x7B"
       ],
       "availability": "open",
-      "capabilities": [
-        "General"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
-      "id": "mis-2023-12-11-31",
-      "company": "mis",
-      "date": "2023-12-11",
-      "title": "Mistral Medium 1.0",
-      "models": [
-        "Mistral Medium 1.0"
-      ],
-      "availability": "closed",
       "capabilities": [
         "General"
       ],
@@ -493,12 +493,12 @@
       "verification": "unverified"
     },
     {
-      "id": "mini-2024-01-16-33",
-      "company": "mini",
+      "id": "glm-2024-01-16-34",
+      "company": "glm",
       "date": "2024-01-16",
-      "title": "abab6/abab6-chat",
+      "title": "GLM-4",
       "models": [
-        "abab6 / abab6-chat"
+        "GLM-4"
       ],
       "availability": "closed",
       "capabilities": [
@@ -508,12 +508,12 @@
       "verification": "unverified"
     },
     {
-      "id": "glm-2024-01-16-34",
-      "company": "glm",
+      "id": "mini-2024-01-16-33",
+      "company": "mini",
       "date": "2024-01-16",
-      "title": "GLM-4",
+      "title": "abab6/abab6-chat",
       "models": [
-        "GLM-4"
+        "abab6 / abab6-chat"
       ],
       "availability": "closed",
       "capabilities": [
@@ -766,6 +766,21 @@
       "verification": "unverified"
     },
     {
+      "id": "oai-2024-04-09-53",
+      "company": "oai",
+      "date": "2024-04-09",
+      "title": "GPT-4 Turbo GA",
+      "models": [
+        "GPT-4 Turbo GA"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
       "id": "goog-2024-04-09-51",
       "company": "goog",
       "date": "2024-04-09",
@@ -791,21 +806,6 @@
       "availability": "closed",
       "capabilities": [
         "Multimodal"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
-      "id": "oai-2024-04-09-53",
-      "company": "oai",
-      "date": "2024-04-09",
-      "title": "GPT-4 Turbo GA",
-      "models": [
-        "GPT-4 Turbo GA"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "General"
       ],
       "source": null,
       "verification": "unverified"
@@ -841,21 +841,6 @@
       "verification": "unverified"
     },
     {
-      "id": "mini-2024-04-17-56",
-      "company": "mini",
-      "date": "2024-04-17",
-      "title": "abab6.5/abab6.5s",
-      "models": [
-        "abab6.5 / abab6.5s"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "General"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "mis-2024-04-17-57",
       "company": "mis",
       "date": "2024-04-17",
@@ -864,6 +849,21 @@
         "Mixtral 8x22B"
       ],
       "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mini-2024-04-17-56",
+      "company": "mini",
+      "date": "2024-04-17",
+      "title": "abab6.5/abab6.5s",
+      "models": [
+        "abab6.5 / abab6.5s"
+      ],
+      "availability": "closed",
       "capabilities": [
         "General"
       ],
@@ -1177,21 +1177,6 @@
       "verification": "unverified"
     },
     {
-      "id": "mis-2024-07-18-78",
-      "company": "mis",
-      "date": "2024-07-18",
-      "title": "Mistral NeMo 12B",
-      "models": [
-        "Mistral NeMo 12B"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "General"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "oai-2024-07-18-79",
       "company": "oai",
       "date": "2024-07-18",
@@ -1200,6 +1185,21 @@
         "GPT-4o mini"
       ],
       "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2024-07-18-78",
+      "company": "mis",
+      "date": "2024-07-18",
+      "title": "Mistral NeMo 12B",
+      "models": [
+        "Mistral NeMo 12B"
+      ],
+      "availability": "open",
       "capabilities": [
         "General"
       ],
@@ -1373,21 +1373,6 @@
       "verification": "unverified"
     },
     {
-      "id": "goog-2024-09-12-91",
-      "company": "goog",
-      "date": "2024-09-12",
-      "title": "DataGemma",
-      "models": [
-        "DataGemma (2B)"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "Multimodal"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "oai-2024-09-12-92",
       "company": "oai",
       "date": "2024-09-12",
@@ -1399,6 +1384,21 @@
       "availability": "closed",
       "capabilities": [
         "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-09-12-91",
+      "company": "goog",
+      "date": "2024-09-12",
+      "title": "DataGemma",
+      "models": [
+        "DataGemma (2B)"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
       ],
       "source": null,
       "verification": "unverified"
@@ -1495,21 +1495,6 @@
       "verification": "unverified"
     },
     {
-      "id": "goog-2024-10-03-99",
-      "company": "goog",
-      "date": "2024-10-03",
-      "title": "Gemma 2 family",
-      "models": [
-        "Gemma 2 JPN (2B)"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "Multimodal"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "goog-2024-10-03-100",
       "company": "goog",
       "date": "2024-10-03",
@@ -1518,6 +1503,21 @@
         "Gemini 1.5 Flash-8B GA"
       ],
       "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-10-03-99",
+      "company": "goog",
+      "date": "2024-10-03",
+      "title": "Gemma 2 family",
+      "models": [
+        "Gemma 2 JPN (2B)"
+      ],
+      "availability": "open",
       "capabilities": [
         "Multimodal"
       ],
@@ -1619,21 +1619,6 @@
       "verification": "unverified"
     },
     {
-      "id": "deep-2024-11-20-107",
-      "company": "deep",
-      "date": "2024-11-20",
-      "title": "DeepSeek-R1 family",
-      "models": [
-        "DeepSeek-R1-Lite-Preview"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "Reasoning"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "oai-2024-11-20-108",
       "company": "oai",
       "date": "2024-11-20",
@@ -1644,6 +1629,21 @@
       "availability": "closed",
       "capabilities": [
         "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "deep-2024-11-20-107",
+      "company": "deep",
+      "date": "2024-11-20",
+      "title": "DeepSeek-R1 family",
+      "models": [
+        "DeepSeek-R1-Lite-Preview"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
       ],
       "source": null,
       "verification": "unverified"
@@ -1664,21 +1664,6 @@
       "verification": "unverified"
     },
     {
-      "id": "goog-2024-12-05-110",
-      "company": "goog",
-      "date": "2024-12-05",
-      "title": "Gemma 2 family",
-      "models": [
-        "PaliGemma 2 (3B, 10B, 28B)"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "Multimodal"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "oai-2024-12-05-111",
       "company": "oai",
       "date": "2024-12-05",
@@ -1690,6 +1675,21 @@
       "availability": "closed",
       "capabilities": [
         "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-12-05-110",
+      "company": "goog",
+      "date": "2024-12-05",
+      "title": "Gemma 2 family",
+      "models": [
+        "PaliGemma 2 (3B, 10B, 28B)"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
       ],
       "source": null,
       "verification": "unverified"
@@ -2141,14 +2141,14 @@
       "verification": "unverified"
     },
     {
-      "id": "qwen-2025-03-25-141",
-      "company": "qwen",
+      "id": "goog-2025-03-25-143",
+      "company": "goog",
       "date": "2025-03-25",
-      "title": "Qwen2.5 family",
+      "title": "Gemini 2.5 family",
       "models": [
-        "Qwen2.5-VL-32B-Instruct"
+        "Gemini 2.5 Pro Experimental"
       ],
-      "availability": "open",
+      "availability": "closed",
       "capabilities": [
         "Multimodal"
       ],
@@ -2171,14 +2171,14 @@
       "verification": "unverified"
     },
     {
-      "id": "goog-2025-03-25-143",
-      "company": "goog",
+      "id": "qwen-2025-03-25-141",
+      "company": "qwen",
       "date": "2025-03-25",
-      "title": "Gemini 2.5 family",
+      "title": "Qwen2.5 family",
       "models": [
-        "Gemini 2.5 Pro Experimental"
+        "Qwen2.5-VL-32B-Instruct"
       ],
-      "availability": "closed",
+      "availability": "open",
       "capabilities": [
         "Multimodal"
       ],
@@ -2468,14 +2468,14 @@
       "verification": "unverified"
     },
     {
-      "id": "mis-2025-06-10-162",
-      "company": "mis",
+      "id": "oai-2025-06-10-164",
+      "company": "oai",
       "date": "2025-06-10",
-      "title": "Magistral Small 1.0",
+      "title": "o3-pro",
       "models": [
-        "Magistral Small 1.0"
+        "o3-pro"
       ],
-      "availability": "open",
+      "availability": "closed",
       "capabilities": [
         "Reasoning"
       ],
@@ -2498,14 +2498,14 @@
       "verification": "unverified"
     },
     {
-      "id": "oai-2025-06-10-164",
-      "company": "oai",
+      "id": "mis-2025-06-10-162",
+      "company": "mis",
       "date": "2025-06-10",
-      "title": "o3-pro",
+      "title": "Magistral Small 1.0",
       "models": [
-        "o3-pro"
+        "Magistral Small 1.0"
       ],
-      "availability": "closed",
+      "availability": "open",
       "capabilities": [
         "Reasoning"
       ],
@@ -2714,21 +2714,6 @@
       "verification": "unverified"
     },
     {
-      "id": "qwen-2025-07-22-178",
-      "company": "qwen",
-      "date": "2025-07-22",
-      "title": "Qwen3 family",
-      "models": [
-        "Qwen3-Coder-480B-A35B-Instruct"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "Coding"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "goog-2025-07-22-179",
       "company": "goog",
       "date": "2025-07-22",
@@ -2744,16 +2729,16 @@
       "verification": "unverified"
     },
     {
-      "id": "mis-2025-07-24-180",
-      "company": "mis",
-      "date": "2025-07-24",
-      "title": "Magistral Small 1.1",
+      "id": "qwen-2025-07-22-178",
+      "company": "qwen",
+      "date": "2025-07-22",
+      "title": "Qwen3 family",
       "models": [
-        "Magistral Small 1.1"
+        "Qwen3-Coder-480B-A35B-Instruct"
       ],
       "availability": "open",
       "capabilities": [
-        "Reasoning"
+        "Coding"
       ],
       "source": null,
       "verification": "unverified"
@@ -2767,6 +2752,21 @@
         "Magistral Medium 1.1"
       ],
       "availability": "closed",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-07-24-180",
+      "company": "mis",
+      "date": "2025-07-24",
+      "title": "Magistral Small 1.1",
+      "models": [
+        "Magistral Small 1.1"
+      ],
+      "availability": "open",
       "capabilities": [
         "Reasoning"
       ],
@@ -2790,21 +2790,6 @@
       "verification": "verified"
     },
     {
-      "id": "qwen-2025-07-30-183",
-      "company": "qwen",
-      "date": "2025-07-30",
-      "title": "Qwen3-30B-A3B-2507",
-      "models": [
-        "Qwen3-30B-A3B-2507"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "General"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "mis-2025-07-30-184",
       "company": "mis",
       "date": "2025-07-30",
@@ -2815,6 +2800,21 @@
       "availability": "open",
       "capabilities": [
         "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-07-30-183",
+      "company": "qwen",
+      "date": "2025-07-30",
+      "title": "Qwen3-30B-A3B-2507",
+      "models": [
+        "Qwen3-30B-A3B-2507"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
       ],
       "source": null,
       "verification": "unverified"
@@ -2850,21 +2850,6 @@
       "verification": "unverified"
     },
     {
-      "id": "anth-2025-08-05-187",
-      "company": "anth",
-      "date": "2025-08-05",
-      "title": "Claude Opus 4.1",
-      "models": [
-        "Claude Opus 4.1"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "General"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "oai-2025-08-05-188",
       "company": "oai",
       "date": "2025-08-05",
@@ -2874,6 +2859,21 @@
         "gpt-oss-20b"
       ],
       "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2025-08-05-187",
+      "company": "anth",
+      "date": "2025-08-05",
+      "title": "Claude Opus 4.1",
+      "models": [
+        "Claude Opus 4.1"
+      ],
+      "availability": "closed",
       "capabilities": [
         "General"
       ],
@@ -3049,21 +3049,6 @@
       "verification": "unverified"
     },
     {
-      "id": "mis-2025-09-18-200",
-      "company": "mis",
-      "date": "2025-09-18",
-      "title": "Magistral Small 1.2",
-      "models": [
-        "Magistral Small 1.2"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "Reasoning"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "mis-2025-09-18-201",
       "company": "mis",
       "date": "2025-09-18",
@@ -3072,6 +3057,21 @@
         "Magistral Medium 1.2"
       ],
       "availability": "closed",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-09-18-200",
+      "company": "mis",
+      "date": "2025-09-18",
+      "title": "Magistral Small 1.2",
+      "models": [
+        "Magistral Small 1.2"
+      ],
+      "availability": "open",
       "capabilities": [
         "Reasoning"
       ],
@@ -3214,21 +3214,6 @@
       "verification": "unverified"
     },
     {
-      "id": "qwen-2025-10-15-211",
-      "company": "qwen",
-      "date": "2025-10-15",
-      "title": "Qwen3 family",
-      "models": [
-        "Qwen3-VL-4B / 8B"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "Multimodal"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "anth-2025-10-15-212",
       "company": "anth",
       "date": "2025-10-15",
@@ -3239,6 +3224,21 @@
       "availability": "closed",
       "capabilities": [
         "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-10-15-211",
+      "company": "qwen",
+      "date": "2025-10-15",
+      "title": "Qwen3 family",
+      "models": [
+        "Qwen3-VL-4B / 8B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
       ],
       "source": null,
       "verification": "unverified"
@@ -3506,6 +3506,21 @@
       "verification": "unverified"
     },
     {
+      "id": "oai-2025-12-18-231",
+      "company": "oai",
+      "date": "2025-12-18",
+      "title": "GPT-5.2-Codex",
+      "models": [
+        "GPT-5.2-Codex"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
       "id": "goog-2025-12-18-230",
       "company": "goog",
       "date": "2025-12-18",
@@ -3522,16 +3537,16 @@
       "verification": "unverified"
     },
     {
-      "id": "oai-2025-12-18-231",
-      "company": "oai",
-      "date": "2025-12-18",
-      "title": "GPT-5.2-Codex",
+      "id": "glm-2025-12-22-233",
+      "company": "glm",
+      "date": "2025-12-22",
+      "title": "GLM-4.7",
       "models": [
-        "GPT-5.2-Codex"
+        "GLM-4.7"
       ],
       "availability": "closed",
       "capabilities": [
-        "Coding"
+        "General"
       ],
       "source": null,
       "verification": "unverified"
@@ -3545,21 +3560,6 @@
         "MiniMax-M2.1"
       ],
       "availability": "open",
-      "capabilities": [
-        "General"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
-      "id": "glm-2025-12-22-233",
-      "company": "glm",
-      "date": "2025-12-22",
-      "title": "GLM-4.7",
-      "models": [
-        "GLM-4.7"
-      ],
-      "availability": "closed",
       "capabilities": [
         "General"
       ],
@@ -3612,12 +3612,12 @@
       "verification": "unverified"
     },
     {
-      "id": "mini-2026-01-27-237",
-      "company": "mini",
+      "id": "moon-2026-01-27-238",
+      "company": "moon",
       "date": "2026-01-27",
-      "title": "MiniMax-M2-Her",
+      "title": "kimi-k2.5",
       "models": [
-        "MiniMax-M2-Her"
+        "kimi-k2.5"
       ],
       "availability": "open",
       "capabilities": [
@@ -3627,12 +3627,12 @@
       "verification": "unverified"
     },
     {
-      "id": "moon-2026-01-27-238",
-      "company": "moon",
+      "id": "mini-2026-01-27-237",
+      "company": "mini",
       "date": "2026-01-27",
-      "title": "kimi-k2.5",
+      "title": "MiniMax-M2-Her",
       "models": [
-        "kimi-k2.5"
+        "MiniMax-M2-Her"
       ],
       "availability": "open",
       "capabilities": [
@@ -3657,21 +3657,6 @@
       "verification": "unverified"
     },
     {
-      "id": "anth-2026-02-05-240",
-      "company": "anth",
-      "date": "2026-02-05",
-      "title": "Claude Opus 4.6",
-      "models": [
-        "Claude Opus 4.6"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "General"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "oai-2026-02-05-241",
       "company": "oai",
       "date": "2026-02-05",
@@ -3687,14 +3672,14 @@
       "verification": "unverified"
     },
     {
-      "id": "mini-2026-02-12-242",
-      "company": "mini",
-      "date": "2026-02-12",
-      "title": "MiniMax-M2.5",
+      "id": "anth-2026-02-05-240",
+      "company": "anth",
+      "date": "2026-02-05",
+      "title": "Claude Opus 4.6",
       "models": [
-        "MiniMax-M2.5"
+        "Claude Opus 4.6"
       ],
-      "availability": "open",
+      "availability": "closed",
       "capabilities": [
         "General"
       ],
@@ -3723,6 +3708,21 @@
       "title": "GLM-5",
       "models": [
         "GLM-5"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mini-2026-02-12-242",
+      "company": "mini",
+      "date": "2026-02-12",
+      "title": "MiniMax-M2.5",
+      "models": [
+        "MiniMax-M2.5"
       ],
       "availability": "open",
       "capabilities": [
@@ -3838,21 +3838,6 @@
       "verification": "unverified"
     },
     {
-      "id": "goog-2026-03-03-252",
-      "company": "goog",
-      "date": "2026-03-03",
-      "title": "Gemini 3.1 family",
-      "models": [
-        "Gemini 3.1 Flash-Lite Preview"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "Multimodal"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "oai-2026-03-03-253",
       "company": "oai",
       "date": "2026-03-03",
@@ -3863,6 +3848,21 @@
       "availability": "closed",
       "capabilities": [
         "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2026-03-03-252",
+      "company": "goog",
+      "date": "2026-03-03",
+      "title": "Gemini 3.1 family",
+      "models": [
+        "Gemini 3.1 Flash-Lite Preview"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
       ],
       "source": null,
       "verification": "unverified"
@@ -4036,21 +4036,6 @@
       "verification": "unverified"
     },
     {
-      "id": "qwen-2026-04-16-265",
-      "company": "qwen",
-      "date": "2026-04-16",
-      "title": "Qwen3.6-35B-A3B",
-      "models": [
-        "Qwen3.6-35B-A3B"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "General"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "anth-2026-04-16-266",
       "company": "anth",
       "date": "2026-04-16",
@@ -4059,6 +4044,21 @@
         "Claude Opus 4.7"
       ],
       "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2026-04-16-265",
+      "company": "qwen",
+      "date": "2026-04-16",
+      "title": "Qwen3.6-35B-A3B",
+      "models": [
+        "Qwen3.6-35B-A3B"
+      ],
+      "availability": "open",
       "capabilities": [
         "General"
       ],
@@ -4201,6 +4201,822 @@
       ],
       "source": null,
       "verification": "unverified"
+    },
+    {
+      "id": "goog-2026-05-19-gemini-3-5-flash",
+      "company": "goog",
+      "date": "2026-05-19",
+      "title": "Gemini 3.5 Flash",
+      "models": [
+        "Gemini 3.5 Flash"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "Coding"
+      ],
+      "source": "https://ai.google.dev/gemini-api/docs/changelog",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "qwen-2026-05-20-qwen3-7-max",
+      "company": "qwen",
+      "date": "2026-05-20",
+      "title": "Qwen3.7-Max",
+      "models": [
+        "Qwen3.7-Max"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://www.alibabacloud.com/help/en/model-studio/newly-released-models",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "anth-2026-05-28-claude-opus-4-8",
+      "company": "anth",
+      "date": "2026-05-28",
+      "title": "Claude Opus 4.8",
+      "models": [
+        "Claude Opus 4.8"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://www.anthropic.com/news/claude-opus-4-8",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "xai-2026-05-29-grok-build-0-1",
+      "company": "xai",
+      "date": "2026-05-29",
+      "title": "Grok Build 0.1",
+      "models": [
+        "Grok Build 0.1"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": "https://x.ai/news/grok-build-0-1",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "qwen-2026-06-01-qwen3-7-plus",
+      "company": "qwen",
+      "date": "2026-06-01",
+      "title": "Qwen3.7-Plus",
+      "models": [
+        "Qwen3.7-Plus"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning"
+      ],
+      "source": "https://www.alibabacloud.com/help/en/model-studio/newly-released-models",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "mini-2026-06-01-minimax-m3",
+      "company": "mini",
+      "date": "2026-06-01",
+      "title": "MiniMax M3",
+      "models": [
+        "MiniMax M3"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Coding",
+        "Reasoning",
+        "Multimodal"
+      ],
+      "source": "https://www.minimax.io/blog/minimax-m3",
+      "verification": "verified",
+      "event_type": "api_release",
+      "notes": "Announcement explicitly said downloadable weights would follow in about ten days."
+    },
+    {
+      "id": "anth-2026-06-09-claude-fable-5-and-mythos-5",
+      "company": "anth",
+      "date": "2026-06-09",
+      "title": "Claude Fable 5 and Mythos 5",
+      "models": [
+        "Claude Fable 5",
+        "Claude Mythos 5"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "moon-2026-06-12-kimi-k2-7-code",
+      "company": "moon",
+      "date": "2026-06-12",
+      "title": "Kimi K2.7 Code",
+      "models": [
+        "Kimi K2.7 Code"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding",
+        "Reasoning"
+      ],
+      "source": "https://www.kimi.com/code/docs/en/kimi-code/whats-new.html",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "mini-2026-06-12-minimax-m3-open-release",
+      "company": "mini",
+      "date": "2026-06-12",
+      "title": "MiniMax M3 open release",
+      "models": [
+        "MiniMax M3"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding",
+        "Reasoning",
+        "Multimodal"
+      ],
+      "source": "https://github.com/MiniMax-AI/MiniMax-M3",
+      "verification": "verified",
+      "event_type": "weights_release",
+      "notes": "Weights published June 12; corroborated by same-day vLLM and MiniMax ecosystem releases."
+    },
+    {
+      "id": "glm-2026-06-16-glm-5-2",
+      "company": "glm",
+      "date": "2026-06-16",
+      "title": "GLM-5.2",
+      "models": [
+        "GLM-5.2"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://z.ai/blog/glm-5.2",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "mis-2026-06-23-mistral-ocr-4",
+      "company": "mis",
+      "date": "2026-06-23",
+      "title": "Mistral OCR 4",
+      "models": [
+        "Mistral OCR 4"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": "https://mistral.ai/news/ocr-4/",
+      "verification": "verified",
+      "event_type": "model_release",
+      "notes": "Self-hosted container option; downloadable checkpoint not verified."
+    },
+    {
+      "id": "oai-2026-06-26-gpt-5-6-sol-preview",
+      "company": "oai",
+      "date": "2026-06-26",
+      "title": "GPT-5.6 Sol Preview",
+      "models": [
+        "GPT-5.6 Sol Preview"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://openai.com/index/previewing-gpt-5-6-sol/",
+      "verification": "verified",
+      "event_type": "limited_preview"
+    },
+    {
+      "id": "anth-2026-06-30-claude-sonnet-5",
+      "company": "anth",
+      "date": "2026-06-30",
+      "title": "Claude Sonnet 5",
+      "models": [
+        "Claude Sonnet 5"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General",
+        "Coding"
+      ],
+      "source": "https://www.anthropic.com/news/claude-sonnet-5",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "mis-2026-07-02-leanstral-1-5",
+      "company": "mis",
+      "date": "2026-07-02",
+      "title": "Leanstral 1.5",
+      "models": [
+        "Leanstral 1.5"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://docs.mistral.ai/models/leanstral-1-5",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "oai-2026-07-09-gpt-5-6-family",
+      "company": "oai",
+      "date": "2026-07-09",
+      "title": "GPT-5.6 family",
+      "models": [
+        "GPT-5.6 Sol",
+        "GPT-5.6 Terra",
+        "GPT-5.6 Luna"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://openai.com/index/gpt-5-6/",
+      "verification": "verified",
+      "event_type": "general_availability"
+    },
+    {
+      "id": "meta-2026-07-09-muse-spark-1-1",
+      "company": "meta",
+      "date": "2026-07-09",
+      "title": "Muse Spark 1.1",
+      "models": [
+        "Muse Spark 1.1"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning"
+      ],
+      "source": "https://research.meta.ai/blog/introducing-muse-spark-meta-model-api",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "qwen-2026-07-15-qwen3-7-flash",
+      "company": "qwen",
+      "date": "2026-07-15",
+      "title": "Qwen3.7-Flash",
+      "models": [
+        "Qwen3.7-Flash"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "General"
+      ],
+      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+      "verification": "verified",
+      "event_type": "model_release",
+      "notes": "Dated 2026-07-15 API snapshot; public availability may have differed."
+    },
+    {
+      "id": "xai-2026-07-16-grok-4-5",
+      "company": "xai",
+      "date": "2026-07-16",
+      "title": "Grok 4.5",
+      "models": [
+        "Grok 4.5"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://x.ai/news/grok-4-5",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "moon-2026-07-16-kimi-k3",
+      "company": "moon",
+      "date": "2026-07-16",
+      "title": "Kimi K3",
+      "models": [
+        "Kimi K3"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://www.kimi.com/en/blog/kimi-k3",
+      "verification": "verified",
+      "event_type": "api_release",
+      "notes": "API release; full downloadable weights were announced for July 27."
+    },
+    {
+      "id": "goog-2026-07-21-gemini-3-5-flash-lite",
+      "company": "goog",
+      "date": "2026-07-21",
+      "title": "Gemini 3.5 Flash-Lite",
+      "models": [
+        "Gemini 3.5 Flash-Lite"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": "https://ai.google.dev/gemini-api/docs/changelog",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "goog-2026-07-21-gemini-3-6-flash",
+      "company": "goog",
+      "date": "2026-07-21",
+      "title": "Gemini 3.6 Flash",
+      "models": [
+        "Gemini 3.6 Flash"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "Coding"
+      ],
+      "source": "https://ai.google.dev/gemini-api/docs/changelog",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "anth-2026-07-24-claude-opus-5",
+      "company": "anth",
+      "date": "2026-07-24",
+      "title": "Claude Opus 5",
+      "models": [
+        "Claude Opus 5"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://www.anthropic.com/news/claude-opus-5",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "moon-2026-07-27-kimi-k3-open-release",
+      "company": "moon",
+      "date": "2026-07-27",
+      "title": "Kimi K3 open release",
+      "models": [
+        "Kimi K3"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://www.kimi.com/news/kimi-k3-open-source",
+      "verification": "verified",
+      "event_type": "weights_release"
+    },
+    {
+      "id": "meta-2026-08-05-muse-spark-1-2",
+      "company": "meta",
+      "date": "2026-08-05",
+      "title": "Muse Spark 1.2",
+      "models": [
+        "Muse Spark 1.2"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "Coding"
+      ],
+      "source": "https://research.meta.ai/blog/introducing-muse-code-and-muse-spark-1-2",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "meta-2026-08-10-muse-glimmer-30b",
+      "company": "meta",
+      "date": "2026-08-10",
+      "title": "Muse Glimmer 30B",
+      "models": [
+        "Muse Glimmer 30B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General",
+        "Coding"
+      ],
+      "source": "https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "qwen-2026-08-12-qwen3-8-2-4t-a95b",
+      "company": "qwen",
+      "date": "2026-08-12",
+      "title": "Qwen3.8-2.4T-A95B",
+      "models": [
+        "Qwen3.8-2.4T-A95B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning",
+        "Multimodal"
+      ],
+      "source": "https://github.com/QwenLM/Qwen3.8",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "xai-2026-08-12-grok-4-6",
+      "company": "xai",
+      "date": "2026-08-12",
+      "title": "Grok 4.6",
+      "models": [
+        "Grok 4.6"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://docs.x.ai/developers/release-notes",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "goog-2026-08-13-gemini-3-7-flash",
+      "company": "goog",
+      "date": "2026-08-13",
+      "title": "Gemini 3.7 Flash",
+      "models": [
+        "Gemini 3.7 Flash"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning"
+      ],
+      "source": "https://ai.google.dev/gemini-api/docs/changelog",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "qwen-2026-08-14-qwen3-8-27b",
+      "company": "qwen",
+      "date": "2026-08-14",
+      "title": "Qwen3.8-27B",
+      "models": [
+        "Qwen3.8-27B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning",
+        "Multimodal"
+      ],
+      "source": "https://github.com/QwenLM/Qwen3.8",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "glm-2026-08-14-glm-5-3",
+      "company": "glm",
+      "date": "2026-08-14",
+      "title": "GLM-5.3",
+      "models": [
+        "GLM-5.3"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://z.ai/blog/glm-5.3",
+      "verification": "verified",
+      "event_type": "api_release",
+      "notes": "Model weight publication occurred after the API announcement; this event reflects initial API availability."
+    },
+    {
+      "id": "glm-2026-08-26-glm-5-3-flash",
+      "company": "glm",
+      "date": "2026-08-26",
+      "title": "GLM-5.3-Flash",
+      "models": [
+        "GLM-5.3-Flash"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal",
+        "Coding"
+      ],
+      "source": "https://z.ai/blog/glm-5.3-flash",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "anth-2026-09-01-claude-fable-mythos-5-1",
+      "company": "anth",
+      "date": "2026-09-01",
+      "title": "Claude Fable / Mythos 5.1",
+      "models": [
+        "Claude Fable 5.1",
+        "Claude Mythos 5.1"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "goog-2026-09-02-gemini-3-8-flash",
+      "company": "goog",
+      "date": "2026-09-02",
+      "title": "Gemini 3.8 Flash",
+      "models": [
+        "Gemini 3.8 Flash"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning"
+      ],
+      "source": "https://ai.google.dev/gemini-api/docs/changelog",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "meta-2026-09-02-muse-spark-1-3",
+      "company": "meta",
+      "date": "2026-09-02",
+      "title": "Muse Spark 1.3",
+      "models": [
+        "Muse Spark 1.3"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Coding",
+        "Reasoning"
+      ],
+      "source": "https://research.meta.ai/blog/introducing-muse-spark-1-3",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "qwen-2026-09-02-qwen3-8-max-0902",
+      "company": "qwen",
+      "date": "2026-09-02",
+      "title": "Qwen3.8-Max-0902",
+      "models": [
+        "Qwen3.8-Max-0902"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning"
+      ],
+      "source": "https://www.alibabacloud.com/help/en/model-studio/newly-released-models",
+      "verification": "verified",
+      "event_type": "model_release",
+      "notes": "API snapshot; no exact publicly downloadable checkpoint verified."
+    },
+    {
+      "id": "oai-2026-09-03-gpt-6-astra",
+      "company": "oai",
+      "date": "2026-09-03",
+      "title": "GPT-6 Astra",
+      "models": [
+        "GPT-6 Astra"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://openai.com/index/gpt-6-astra/",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "deep-2026-09-10-deepseek-v4-1-flash",
+      "company": "deep",
+      "date": "2026-09-10",
+      "title": "DeepSeek-V4.1-Flash",
+      "models": [
+        "DeepSeek-V4.1-Flash"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning"
+      ],
+      "source": "https://api-docs.deepseek.com/news/news260910/",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "moon-2026-09-11-kimi-k2-8-preview",
+      "company": "moon",
+      "date": "2026-09-11",
+      "title": "Kimi K2.8 Preview",
+      "models": [
+        "Kimi K2.8 Preview"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Coding",
+        "Reasoning"
+      ],
+      "source": "https://www.kimi.com/code/docs/en/kimi-code/whats-new.html",
+      "verification": "verified",
+      "event_type": "limited_preview"
+    },
+    {
+      "id": "xai-2026-09-21-grok-4-7",
+      "company": "xai",
+      "date": "2026-09-21",
+      "title": "Grok 4.7",
+      "models": [
+        "Grok 4.7"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://x.ai/news/grok-4-7",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "oai-2026-09-22-gpt-6-family",
+      "company": "oai",
+      "date": "2026-09-22",
+      "title": "GPT-6 family",
+      "models": [
+        "GPT-6 Sol",
+        "GPT-6 Luna"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "anth-2026-09-22-claude-opus-5-5",
+      "company": "anth",
+      "date": "2026-09-22",
+      "title": "Claude Opus 5.5",
+      "models": [
+        "Claude Opus 5.5"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://www.anthropic.com/claude-opus-5-5",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "anth-2026-09-28-claude-sonnet-5-5",
+      "company": "anth",
+      "date": "2026-09-28",
+      "title": "Claude Sonnet 5.5",
+      "models": [
+        "Claude Sonnet 5.5"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General",
+        "Coding"
+      ],
+      "source": "https://www.anthropic.com/claude-sonnet-5-5",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "oai-2026-09-29-gpt-6-1-sol",
+      "company": "oai",
+      "date": "2026-09-29",
+      "title": "GPT-6.1 Sol",
+      "models": [
+        "GPT-6.1 Sol"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://openai.com/index/introducing-gpt-6-1-sol/",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "mis-2026-10-06-mistral-large-4-preview",
+      "company": "mis",
+      "date": "2026-10-06",
+      "title": "Mistral Large 4 Preview",
+      "models": [
+        "Mistral Large 4"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://mistral.ai/news/mistral-large-4/",
+      "verification": "verified",
+      "event_type": "limited_preview",
+      "notes": "API preview; weights were announced for later in October, not downloadable at launch."
+    },
+    {
+      "id": "anth-2026-10-07-claude-haiku-5-5",
+      "company": "anth",
+      "date": "2026-10-07",
+      "title": "Claude Haiku 5.5",
+      "models": [
+        "Claude Haiku 5.5"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": "https://www.anthropic.com/claude-haiku-5-5",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "meta-2026-10-12-muse-wonder-family",
+      "company": "meta",
+      "date": "2026-10-12",
+      "title": "Muse Wonder family",
+      "models": [
+        "Muse Wonder",
+        "Muse Wonder Full"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding",
+        "Multimodal"
+      ],
+      "source": "https://about.fb.com/news/2026/10/introducing-muse-wonder-models/",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "goog-2026-10-13-gemini-4-argon",
+      "company": "goog",
+      "date": "2026-10-13",
+      "title": "Gemini 4 Argon",
+      "models": [
+        "Gemini 4 Argon"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://ai.google.dev/gemini-api/docs/changelog",
+      "verification": "verified",
+      "event_type": "model_release"
     }
   ]
 }
