@@ -64,3 +64,41 @@ body[data-theme=light] .date-group input[type=month]{color-scheme:light}
  .expand-btn{font-size:10px}
  .timeline-controlbar-left,.timeline-controlbar-right{flex-wrap:wrap}
 }
+
+
+/* v2.2 — explicit, browser-independent month dropdown */
+.toolbar{position:relative;z-index:14}
+.date-group{position:relative;flex-wrap:nowrap}
+.month-trigger{height:36px;min-width:112px;border:1px solid var(--stroke);border-radius:6px;background:var(--bg);color:var(--text);font-size:11px;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:7px 9px;white-space:nowrap}
+.month-trigger:hover,.month-trigger[aria-expanded=true]{border-color:var(--brand);background:var(--panel2)}
+.month-chevron{color:var(--brand);font-size:10px;line-height:1}
+.month-picker-popup{position:absolute;top:calc(100% + 10px);right:0;z-index:40;width:263px;padding:13px;border:1px solid var(--stroke);border-radius:10px;background:var(--panel);box-shadow:0 22px 60px rgba(0,0,0,.36);color:var(--text)}
+.month-picker-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:13px}
+.month-picker-head select{flex:1;text-align:center;height:35px;min-width:0;background:var(--panel2);border:1px solid var(--stroke);border-radius:6px;color:var(--text);font-size:13px;font-weight:720}
+.calendar-arrow{height:35px;width:35px;background:var(--panel2);border:1px solid var(--stroke);border-radius:6px;font-size:21px;line-height:1}
+.calendar-arrow:hover{border-color:var(--brand)}
+.month-picker-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.calendar-month{height:38px;border:1px solid transparent;border-radius:6px;background:var(--panel2);color:var(--text);font-size:11px;font-weight:580}
+.calendar-month:hover:not(:disabled){border-color:var(--brand);background:var(--panel3)}
+.calendar-month.is-selected{color:var(--brand);border-color:var(--brand);background:var(--soft);font-weight:800}
+.calendar-month:disabled{color:var(--subtle);opacity:.3}
+.month-picker-footer{font-size:10px;color:var(--subtle);padding-top:12px;line-height:1.5;text-align:center}
+
+/* Every title is displayed, including long model names, using calculated line breaks. */
+.event-card.compact-card,.event-card.compact-card.model-level{min-height:0;min-width:0;padding:3px 4px 3px 7px;overflow:hidden;border-radius:5px;box-shadow:none}
+.event-card.compact-card .event-name,.event-card.compact-card.model-level .event-name{
+ display:block;white-space:normal;overflow:visible;text-overflow:clip;
+ -webkit-line-clamp:unset;line-clamp:unset;-webkit-box-orient:unset;
+ max-height:none;line-height:12.5px;font-size:10.1px;font-weight:710;
+ word-break:normal;overflow-wrap:anywhere;
+}
+.event-card.compact-card .event-date,.event-card.compact-card.model-level .event-date{display:block;line-height:9px;margin-top:2px;font-size:8.5px}
+.event-card.compact-card.family-card{background:color-mix(in srgb,var(--panel2) 87%,var(--event-color) 13%);border-left-width:3px}
+.event-card.compact-card.family-card:hover{background:var(--panel3)}
+@media(max-width:1130px){.date-group .month-trigger{min-width:110px}}
+@media(max-width:490px){
+ .date-group{width:100%;justify-content:space-between;gap:6px}
+ .date-group .month-trigger{flex:1;min-width:0;width:auto}
+ .month-picker-popup{right:0;max-width:calc(100vw - 40px)}
+ .date-group-label{flex:none}
+}
