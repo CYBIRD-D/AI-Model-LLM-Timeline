@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "datasetUpdated": "2026-10-14",
   "coverageThrough": "2026-10-13",
-  "notes": "Historical release groups, supplemented through 2026-10-13 with official-source-backed model announcements and model-weight releases. Open/Closed is evaluated for each recorded event/date, not inferred from the company or the model's current state. In particular, Kimi K3 and MiniMax M3 had API announcements before weight publication. Older migrated records are not yet comprehensively verified; this update is not an exhaustive census of all specialized models.",
+  "notes": "Historical release groups, supplemented through 2026-10-13 with official-source-backed model announcements and model-weight releases. Open/Closed is evaluated for each recorded event/date, not inferred from the company or the model's current state. In particular, Kimi K3 and MiniMax M3 had API announcements before weight publication. Older migrated records are not yet comprehensively verified; this update is not an exhaustive census of all specialized models. Mistral Medium 3.5 was also corrected to Open on the original 2026-04-29 model lifecycle date using Mistral's documentation.",
   "events": [
     {
       "id": "oai-2022-11-30-1",
@@ -4165,12 +4165,16 @@
       "models": [
         "Mistral Medium 3.5"
       ],
-      "availability": "closed",
+      "availability": "open",
       "capabilities": [
-        "General"
+        "General",
+        "Reasoning",
+        "Coding",
+        "Multimodal"
       ],
-      "source": null,
-      "verification": "unverified"
+      "source": "https://docs.mistral.ai/models/mistral-medium-3-5-26-04",
+      "verification": "verified",
+      "notes": "Mistral legal model lifecycle records first release 2026-04-29; official model docs identify Modified MIT public weights; company news post is dated May 22."
     },
     {
       "id": "oai-2026-05-05-274",
