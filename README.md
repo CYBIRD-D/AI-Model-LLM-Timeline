@@ -8,14 +8,18 @@ An interactive release-history explorer for text-generating AI models, hosted on
 
 - Company swimlanes with **separate Open and Closed subtracks**. Companies with only one matching status do not show an empty subtrack.
 - Chronologically positioned release cards, with automatic **vertical collision avoidance** and dynamic track height.
-- **Detailed** release events and **Overview** aggregation of nearby release events. Grouped cards retain the original individual dates in their detail drawer.
+- **Overview** aggregates nearby releases; **Releases** shows original dated events; **All models** expands explicitly named variants into individual cards (automatically selected when zoom reaches maximum). Cards remain in their original date positions.
+- Existing dataset labels that cannot be unambiguously split (for example a family label without specific model names) remain intact rather than fabricating IDs.
 - Search across companies, titles, model names, dates and capabilities.
-- Company, availability, capability, year-range and zoom controls.
+- Company, availability, capability, precise **month-to-month** range and zoom controls.
+- **Collapsible filters** on the left, a taller timeline window, and optional **Expand** workspace mode.
 - Scrollable timeline on desktop, responsive filters and list mode for mobile.
-- Details drawer, CSV export, and shareable filter URLs.
+- Details drawer and shareable filter URLs.
 - Light/dark themes and keyboard support (press `/` to search; `Escape` closes the drawer).
 
 ## Dataset and verification
+
+The timeline "Named models" counter counts expanded display labels derived from explicitly specified variants. Because some legacy source labels are ambiguous, it is not a definitive count of all published models.
 
 The site loads its release records from [`data/releases.json`](./data/releases.json). This file contains **275 release entries** migrated from the previous version's embedded release history. Migration is **not** independent historical validation.
 
