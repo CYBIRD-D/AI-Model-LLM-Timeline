@@ -43,15 +43,16 @@
 
       <section class="explorer" aria-label="Release explorer">
         <div class="toolbar">
+          <button id="filterToggle" class="filter-toggle" type="button" aria-controls="filtersPanel" aria-expanded="true" title="Hide filters"><span class="filter-toggle-icon" aria-hidden="true">☰</span><span id="filterToggleText">Filters</span><span class="filter-toggle-arrow" aria-hidden="true">‹</span></button>
           <label class="search-field" for="searchInput">
             <span class="search-icon" aria-hidden="true">⌕</span>
             <input id="searchInput" type="search" autocomplete="off" placeholder="Search models, families, labs..." aria-label="Search model releases">
             <kbd>/</kbd>
           </label>
           <div class="toolbar-group date-group">
-            <label for="fromYear">From</label><select id="fromYear" aria-label="Start year"></select>
+            <label for="fromMonth">From</label><input type="month" id="fromMonth" aria-label="Starting month">
             <span class="range-divider">—</span>
-            <label class="sr-only" for="toYear">To year</label><select id="toYear" aria-label="End year"></select>
+            <label class="sr-only" for="toMonth">Ending month</label><input type="month" id="toMonth" aria-label="Ending month">
           </div>
           <div class="toolbar-spacer"></div>
           <div class="segmented" role="group" aria-label="Display mode">
@@ -62,7 +63,7 @@
         </div>
 
         <div class="explorer-body">
-          <aside class="sidebar" aria-label="Filters">
+          <aside class="sidebar" id="filtersPanel" aria-label="Filters">
             <div class="sidebar-top">
               <div class="sidebar-title"><span>FILTERS</span><button id="resetBtn" class="text-button" type="button">Reset all</button></div>
               <p class="sidebar-caption">Select companies and release types.</p>
@@ -87,7 +88,6 @@
             <div class="results-header">
               <div class="results-heading"><span class="results-eyebrow">EXPLORE RELEASES</span><h2 id="resultsTitle">Timeline overview</h2><p id="resultsCount" aria-live="polite">Loading release data…</p></div>
               <div class="results-actions">
-                <button id="exportBtn" type="button" class="action-btn" title="Export filtered releases to CSV">Export CSV ↓</button>
                 <button id="shareBtn" type="button" class="action-btn" title="Copy a link with your current filters">Share ↗</button>
               </div>
             </div>
@@ -96,7 +96,8 @@
               <div class="timeline-controlbar">
                 <div class="timeline-controlbar-left">
                   <button class="mode-btn" id="overviewBtn" type="button">Overview</button>
-                  <button class="mode-btn active" id="detailBtn" type="button">Detailed</button>
+                  <button class="mode-btn active" id="detailBtn" type="button">Releases</button>
+                  <button class="mode-btn" id="modelsBtn" type="button">All models</button>
                   <span id="densityLabel" class="density-label">Individual releases</span>
                 </div>
                 <div class="timeline-controlbar-right">
@@ -105,12 +106,13 @@
                   <input type="range" id="zoomRange" min="0.4" max="2.8" step="0.1" value="1.3" aria-label="Timeline zoom level">
                   <button id="zoomIn" class="zoom-btn" type="button" title="Zoom in" aria-label="Zoom in">+</button>
                   <button id="todayBtn" class="today-btn" type="button">Today ↦</button>
+                  <button id="expandBtn" class="expand-btn" type="button" aria-pressed="false" title="Expand timeline workspace">Expand ⤢</button>
                 </div>
               </div>
-              <div class="timeline-scroll" id="timelineScroll" tabindex="0" aria-label="Scrollable release timeline. Scroll horizontally to navigate dates.">
+              <div class="timeline-scroll" id="timelineScroll" tabindex="0" aria-label="Scrollable release timeline. Scroll horizontally to navigate dates; scroll vertically to see additional release tracks.">
                 <div id="timelineCanvas" class="timeline-canvas"></div>
               </div>
-              <div class="timeline-foot"><div class="timeline-explain"><span class="color-key"></span>Event colors identify the company; tracks separate Open and Closed. <span id="groupingNote">Zoom out to group nearby releases.</span></div><span id="visibleRange" class="range-text"></span></div>
+              <div class="timeline-foot"><div class="timeline-explain"><span class="color-key"></span>Event colors identify the company; tracks separate Open and Closed. <span id="groupingNote">Use All models or maximum zoom to reveal model variants.</span></div><span id="visibleRange" class="range-text"></span></div>
             </div>
 
             <div id="listView" class="list-view" hidden>
