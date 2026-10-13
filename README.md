@@ -8,7 +8,7 @@ An interactive release-history explorer for text-generating AI models, hosted on
 
 - Company swimlanes with **separate Open and Closed subtracks**. Companies with only one matching status do not show an empty subtrack.
 - Chronologically positioned release cards, with automatic **vertical collision avoidance** and dynamic track height.
-- **Overview** aggregates nearby releases; **Releases** automatically uses concise **Family** cards for compatible variants from the same date, company and availability (e.g. `GPT-4.1 Family`); **All models** expands explicitly named variants into separate cards (automatically selected at maximum zoom). Opening a Family card displays every source model name and release date.
+- **Overview** aggregates nearby releases; **Releases** uses concise **Family** cards for compatible same-day variants (e.g. `GPT-4.1 Family`); **All models** displays individual models where appropriate **but preserves those same-day Family cards** (also when zoom is at maximum). Clicking a Family card shows its original model names and release date.
 - Compact cards use content-based widths and wrapped, non-ellipsized model names. Vertical tracks still avoid collisions.
 - Existing dataset labels that cannot be unambiguously split (for example a family label without specific model names) remain intact rather than fabricating IDs.
 - Search across companies, titles, model names, dates and capabilities.
