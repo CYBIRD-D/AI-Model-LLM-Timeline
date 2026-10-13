@@ -49,10 +49,22 @@
             <input id="searchInput" type="search" autocomplete="off" placeholder="Search models, families, labs..." aria-label="Search model releases">
             <kbd>/</kbd>
           </label>
-          <div class="toolbar-group date-group">
-            <label for="fromMonth">From</label><input type="month" id="fromMonth" aria-label="Starting month">
+          <div class="toolbar-group date-group" id="dateGroup">
+            <span class="date-group-label">From</span>
+            <button id="fromMonth" type="button" class="month-trigger" aria-label="Choose starting month" aria-haspopup="dialog" aria-expanded="false" aria-controls="monthPickerPopup"><span id="fromMonthText">Select month</span><span class="month-chevron" aria-hidden="true">▾</span></button>
             <span class="range-divider">—</span>
-            <label class="sr-only" for="toMonth">Ending month</label><input type="month" id="toMonth" aria-label="Ending month">
+            <span class="sr-only">To</span>
+            <button id="toMonth" type="button" class="month-trigger" aria-label="Choose ending month" aria-haspopup="dialog" aria-expanded="false" aria-controls="monthPickerPopup"><span id="toMonthText">Select month</span><span class="month-chevron" aria-hidden="true">▾</span></button>
+            <div id="monthPickerPopup" class="month-picker-popup" role="dialog" aria-label="Select month" hidden>
+              <div class="month-picker-head">
+                <button type="button" id="calPrevYear" class="calendar-arrow" aria-label="Previous year">‹</button>
+                <label class="sr-only" for="calYear">Calendar year</label>
+                <select id="calYear" aria-label="Calendar year"></select>
+                <button type="button" id="calNextYear" class="calendar-arrow" aria-label="Next year">›</button>
+              </div>
+              <div id="calMonthGrid" class="month-picker-grid" aria-label="Months"></div>
+              <div class="month-picker-footer">Choose a month to update the timeline.</div>
+            </div>
           </div>
           <div class="toolbar-spacer"></div>
           <div class="segmented" role="group" aria-label="Display mode">
