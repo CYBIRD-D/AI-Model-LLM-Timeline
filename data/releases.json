@@ -1,0 +1,4191 @@
+{
+  "schemaVersion": 2,
+  "datasetUpdated": "2026-10-14",
+  "coverageThrough": "2026-05-07",
+  "notes": "Migrated from the repository's existing release entries; dates and availability classifications have not been independently reverified. Dataset update date describes migration, not coverage. Some classifications remain provisional.",
+  "events": [
+    {
+      "id": "oai-2022-11-30-1",
+      "company": "oai",
+      "date": "2022-11-30",
+      "title": "ChatGPT/GPT-3.5 series",
+      "models": [
+        "ChatGPT / GPT-3.5 series"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "meta-2023-02-24-2",
+      "company": "meta",
+      "date": "2023-02-24",
+      "title": "LLaMA",
+      "models": [
+        "LLaMA"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2023-03-01-3",
+      "company": "oai",
+      "date": "2023-03-01",
+      "title": "GPT-3.5 Turbo",
+      "models": [
+        "GPT-3.5 Turbo"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2023-03-14-4",
+      "company": "anth",
+      "date": "2023-03-14",
+      "title": "Claude 1.0 family",
+      "models": [
+        "Claude 1.0",
+        "Claude 1.1",
+        "Claude 1.2",
+        "Claude Instant 1.0"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2023-03-14-5",
+      "company": "oai",
+      "date": "2023-03-14",
+      "title": "GPT-4",
+      "models": [
+        "GPT-4"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "glm-2023-03-14-6",
+      "company": "glm",
+      "date": "2023-03-14",
+      "title": "ChatGLM family",
+      "models": [
+        "ChatGLM-6B/130B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2023-03-31-7",
+      "company": "anth",
+      "date": "2023-03-31",
+      "title": "Claude Instant 1.1",
+      "models": [
+        "Claude Instant 1.1"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2023-04-18-8",
+      "company": "anth",
+      "date": "2023-04-18",
+      "title": "Claude 1.3",
+      "models": [
+        "Claude 1.3"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2023-06-13-9",
+      "company": "oai",
+      "date": "2023-06-13",
+      "title": "GPT-4 0613 family",
+      "models": [
+        "GPT-4 0613",
+        "GPT-3.5 Turbo 0613",
+        "GPT-3.5 Turbo 16K"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "glm-2023-06-25-10",
+      "company": "glm",
+      "date": "2023-06-25",
+      "title": "ChatGLM2-6B",
+      "models": [
+        "ChatGLM2-6B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2023-07-11-11",
+      "company": "anth",
+      "date": "2023-07-11",
+      "title": "Claude 2.0",
+      "models": [
+        "Claude 2.0"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "meta-2023-07-18-12",
+      "company": "meta",
+      "date": "2023-07-18",
+      "title": "Llama 2",
+      "models": [
+        "Llama 2"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "glm-2023-08-01-13",
+      "company": "glm",
+      "date": "2023-08-01",
+      "title": "CharacterGLM",
+      "models": [
+        "CharacterGLM"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2023-08-03-14",
+      "company": "qwen",
+      "date": "2023-08-03",
+      "title": "Qwen-7B",
+      "models": [
+        "Qwen-7B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2023-08-09-15",
+      "company": "anth",
+      "date": "2023-08-09",
+      "title": "Claude Instant 1.2",
+      "models": [
+        "Claude Instant 1.2"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2023-08-22-16",
+      "company": "qwen",
+      "date": "2023-08-22",
+      "title": "Qwen-VL",
+      "models": [
+        "Qwen-VL"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "meta-2023-08-24-17",
+      "company": "meta",
+      "date": "2023-08-24",
+      "title": "Code Llama",
+      "models": [
+        "Code Llama"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2023-09-25-18",
+      "company": "qwen",
+      "date": "2023-09-25",
+      "title": "Qwen-14B",
+      "models": [
+        "Qwen-14B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2023-09-25-19",
+      "company": "oai",
+      "date": "2023-09-25",
+      "title": "GPT-4V/GPT-4 with Vision",
+      "models": [
+        "GPT-4V / GPT-4 with Vision"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2023-09-27-20",
+      "company": "mis",
+      "date": "2023-09-27",
+      "title": "Mistral 7B 0.1",
+      "models": [
+        "Mistral 7B 0.1"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "glm-2023-10-27-21",
+      "company": "glm",
+      "date": "2023-10-27",
+      "title": "ChatGLM3-6B",
+      "models": [
+        "ChatGLM3-6B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "deep-2023-11-02-22",
+      "company": "deep",
+      "date": "2023-11-02",
+      "title": "DeepSeek-Coder",
+      "models": [
+        "DeepSeek-Coder"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "xai-2023-11-03-23",
+      "company": "xai",
+      "date": "2023-11-03",
+      "title": "Grok-1 family",
+      "models": [
+        "Grok / Grok-1"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2023-11-06-24",
+      "company": "oai",
+      "date": "2023-11-06",
+      "title": "GPT-4 Turbo Preview family",
+      "models": [
+        "GPT-4 Turbo Preview",
+        "GPT-3.5 Turbo 1106"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2023-11-21-25",
+      "company": "anth",
+      "date": "2023-11-21",
+      "title": "Claude 2.1",
+      "models": [
+        "Claude 2.1"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2023-11-28-26",
+      "company": "qwen",
+      "date": "2023-11-28",
+      "title": "Qwen-VL-Plus",
+      "models": [
+        "Qwen-VL-Plus"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "deep-2023-11-29-27",
+      "company": "deep",
+      "date": "2023-11-29",
+      "title": "DeepSeek-LLM",
+      "models": [
+        "DeepSeek-LLM"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2023-11-30-28",
+      "company": "qwen",
+      "date": "2023-11-30",
+      "title": "Qwen-1.8B family",
+      "models": [
+        "Qwen-1.8B",
+        "Qwen-72B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2023-12-06-29",
+      "company": "goog",
+      "date": "2023-12-06",
+      "title": "Gemini 1.0 family",
+      "models": [
+        "Gemini 1.0(Ultra / Pro / Nano)"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2023-12-11-30",
+      "company": "mis",
+      "date": "2023-12-11",
+      "title": "Mixtral family",
+      "models": [
+        "Mistral 7B 0.2",
+        "Mixtral 8x7B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2023-12-11-31",
+      "company": "mis",
+      "date": "2023-12-11",
+      "title": "Mistral Medium 1.0",
+      "models": [
+        "Mistral Medium 1.0"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2023-12-13-32",
+      "company": "goog",
+      "date": "2023-12-13",
+      "title": "Gemini 1.0 Pro",
+      "models": [
+        "Gemini 1.0 Pro"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mini-2024-01-16-33",
+      "company": "mini",
+      "date": "2024-01-16",
+      "title": "abab6/abab6-chat",
+      "models": [
+        "abab6 / abab6-chat"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "glm-2024-01-16-34",
+      "company": "glm",
+      "date": "2024-01-16",
+      "title": "GLM-4",
+      "models": [
+        "GLM-4"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2024-01-18-35",
+      "company": "qwen",
+      "date": "2024-01-18",
+      "title": "Qwen-VL-Max",
+      "models": [
+        "Qwen-VL-Max"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2024-01-25-36",
+      "company": "oai",
+      "date": "2024-01-25",
+      "title": "GPT-4 Turbo Preview 0125",
+      "models": [
+        "GPT-4 Turbo Preview 0125"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "meta-2024-01-29-37",
+      "company": "meta",
+      "date": "2024-01-29",
+      "title": "Code Llama 70B",
+      "models": [
+        "Code Llama 70B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "moon-2024-01-31-38",
+      "company": "moon",
+      "date": "2024-01-31",
+      "title": "moonshot-v1",
+      "models": [
+        "moonshot-v1"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2024-02-01-39",
+      "company": "oai",
+      "date": "2024-02-01",
+      "title": "GPT-3.5 Turbo 0125",
+      "models": [
+        "GPT-3.5 Turbo 0125"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2024-02-04-40",
+      "company": "qwen",
+      "date": "2024-02-04",
+      "title": "Qwen1.5 family",
+      "models": [
+        "Qwen1.5-0.5B / 1.8B / 4B / 7B / 14B / 72B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-02-08-41",
+      "company": "goog",
+      "date": "2024-02-08",
+      "title": "Gemini Ultra 1.0",
+      "models": [
+        "Gemini Ultra 1.0"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-02-21-42",
+      "company": "goog",
+      "date": "2024-02-21",
+      "title": "Gemma 1 family",
+      "models": [
+        "Gemma 1 (2B, 7B)"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2024-02-26-43",
+      "company": "mis",
+      "date": "2024-02-26",
+      "title": "Mistral Large",
+      "models": [
+        "Mistral Large 1.0",
+        "Mistral Small 1.0",
+        "Mistral Next"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2024-03-04-44",
+      "company": "anth",
+      "date": "2024-03-04",
+      "title": "Claude 3 family",
+      "models": [
+        "Claude 3 Opus",
+        "Claude 3 Sonnet"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2024-03-13-45",
+      "company": "anth",
+      "date": "2024-03-13",
+      "title": "Claude 3 Haiku",
+      "models": [
+        "Claude 3 Haiku"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "xai-2024-03-17-46",
+      "company": "xai",
+      "date": "2024-03-17",
+      "title": "Grok-1 open weights",
+      "models": [
+        "Grok-1 open weights"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2024-03-28-47",
+      "company": "qwen",
+      "date": "2024-03-28",
+      "title": "Qwen1.5-MoE-A2.7B",
+      "models": [
+        "Qwen1.5-MoE-A2.7B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "xai-2024-03-28-48",
+      "company": "xai",
+      "date": "2024-03-28",
+      "title": "Grok-1.5",
+      "models": [
+        "Grok-1.5"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2024-04-02-49",
+      "company": "qwen",
+      "date": "2024-04-02",
+      "title": "Qwen1.5-32B",
+      "models": [
+        "Qwen1.5-32B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-04-05-50",
+      "company": "goog",
+      "date": "2024-04-05",
+      "title": "Gemma 1.1",
+      "models": [
+        "Gemma 1.1"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-04-09-51",
+      "company": "goog",
+      "date": "2024-04-09",
+      "title": "CodeGemma",
+      "models": [
+        "CodeGemma"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-04-09-52",
+      "company": "goog",
+      "date": "2024-04-09",
+      "title": "Gemini 1.5 Pro",
+      "models": [
+        "Gemini 1.5 Pro"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2024-04-09-53",
+      "company": "oai",
+      "date": "2024-04-09",
+      "title": "GPT-4 Turbo GA",
+      "models": [
+        "GPT-4 Turbo GA"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "xai-2024-04-12-54",
+      "company": "xai",
+      "date": "2024-04-12",
+      "title": "Grok-1.5V",
+      "models": [
+        "Grok-1.5V"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2024-04-16-55",
+      "company": "qwen",
+      "date": "2024-04-16",
+      "title": "CodeQwen1.5-7B",
+      "models": [
+        "CodeQwen1.5-7B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mini-2024-04-17-56",
+      "company": "mini",
+      "date": "2024-04-17",
+      "title": "abab6.5/abab6.5s",
+      "models": [
+        "abab6.5 / abab6.5s"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2024-04-17-57",
+      "company": "mis",
+      "date": "2024-04-17",
+      "title": "Mixtral 8x22B",
+      "models": [
+        "Mixtral 8x22B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "meta-2024-04-18-58",
+      "company": "meta",
+      "date": "2024-04-18",
+      "title": "Llama 3",
+      "models": [
+        "Llama 3"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2024-04-25-59",
+      "company": "qwen",
+      "date": "2024-04-25",
+      "title": "Qwen1.5-110B",
+      "models": [
+        "Qwen1.5-110B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-05-03-60",
+      "company": "goog",
+      "date": "2024-05-03",
+      "title": "CodeGemma v1.1",
+      "models": [
+        "CodeGemma v1.1"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "deep-2024-05-06-61",
+      "company": "deep",
+      "date": "2024-05-06",
+      "title": "DeepSeek-V2",
+      "models": [
+        "DeepSeek-V2"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-05-10-62",
+      "company": "goog",
+      "date": "2024-05-10",
+      "title": "Gemini 1.5 Flash",
+      "models": [
+        "Gemini 1.5 Flash"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2024-05-13-63",
+      "company": "oai",
+      "date": "2024-05-13",
+      "title": "GPT-4o",
+      "models": [
+        "GPT-4o"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-05-14-64",
+      "company": "goog",
+      "date": "2024-05-14",
+      "title": "PaliGemma",
+      "models": [
+        "PaliGemma"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "deep-2024-05-16-65",
+      "company": "deep",
+      "date": "2024-05-16",
+      "title": "DeepSeek-V2-Lite",
+      "models": [
+        "DeepSeek-V2-Lite"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "glm-2024-05-20-66",
+      "company": "glm",
+      "date": "2024-05-20",
+      "title": "GLM-4-0520",
+      "models": [
+        "GLM-4-0520"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2024-05-22-67",
+      "company": "mis",
+      "date": "2024-05-22",
+      "title": "Mistral 7B 0.3",
+      "models": [
+        "Mistral 7B 0.3"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-05-23-68",
+      "company": "goog",
+      "date": "2024-05-23",
+      "title": "Gemini 1.5 family",
+      "models": [
+        "Gemini 1.5 Pro",
+        "Gemini 1.5 Flash"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2024-05-29-69",
+      "company": "mis",
+      "date": "2024-05-29",
+      "title": "Codestral 2405",
+      "models": [
+        "Codestral 2405"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "glm-2024-06-05-70",
+      "company": "glm",
+      "date": "2024-06-05",
+      "title": "GLM-4 family",
+      "models": [
+        "GLM-4-9B/Air/Flash"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2024-06-06-71",
+      "company": "qwen",
+      "date": "2024-06-06",
+      "title": "Qwen2 family",
+      "models": [
+        "Qwen2-0.5B / 1.5B / 7B / 57B-A14B / 72B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-06-11-72",
+      "company": "goog",
+      "date": "2024-06-11",
+      "title": "RecurrentGemma 9B",
+      "models": [
+        "RecurrentGemma 9B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "deep-2024-06-17-73",
+      "company": "deep",
+      "date": "2024-06-17",
+      "title": "DeepSeek-Coder-V2",
+      "models": [
+        "DeepSeek-Coder-V2"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "meta-2024-06-18-74",
+      "company": "meta",
+      "date": "2024-06-18",
+      "title": "Meta Chameleon 7B/34B",
+      "models": [
+        "Meta Chameleon 7B / 34B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2024-06-21-75",
+      "company": "anth",
+      "date": "2024-06-21",
+      "title": "Claude 3.5 family",
+      "models": [
+        "Claude 3.5 Sonnet (20240620)"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-06-27-76",
+      "company": "goog",
+      "date": "2024-06-27",
+      "title": "Gemma 2 family",
+      "models": [
+        "Gemma 2 (9B, 27B)"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2024-07-16-77",
+      "company": "mis",
+      "date": "2024-07-16",
+      "title": "Codestral family",
+      "models": [
+        "Mathstral 7B",
+        "Codestral Mamba 7B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2024-07-18-78",
+      "company": "mis",
+      "date": "2024-07-18",
+      "title": "Mistral NeMo 12B",
+      "models": [
+        "Mistral NeMo 12B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2024-07-18-79",
+      "company": "oai",
+      "date": "2024-07-18",
+      "title": "GPT-4o mini",
+      "models": [
+        "GPT-4o mini"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "meta-2024-07-23-80",
+      "company": "meta",
+      "date": "2024-07-23",
+      "title": "Llama 3.1",
+      "models": [
+        "Llama 3.1"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2024-07-24-81",
+      "company": "mis",
+      "date": "2024-07-24",
+      "title": "Mistral Large 2.0",
+      "models": [
+        "Mistral Large 2.0"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-07-31-82",
+      "company": "goog",
+      "date": "2024-07-31",
+      "title": "Gemma 2 family",
+      "models": [
+        "Gemma 2 (2B)"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2024-08-08-83",
+      "company": "qwen",
+      "date": "2024-08-08",
+      "title": "Qwen2 family",
+      "models": [
+        "Qwen2-Math-1.5B / 7B / 72B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "xai-2024-08-13-84",
+      "company": "xai",
+      "date": "2024-08-13",
+      "title": "Grok-2 family",
+      "models": [
+        "Grok-2",
+        "Grok-2 mini"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-08-27-85",
+      "company": "goog",
+      "date": "2024-08-27",
+      "title": "Gemini 1.5 Flash-8B",
+      "models": [
+        "Gemini 1.5 Flash-8B"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "moon-2024-08-28-86",
+      "company": "moon",
+      "date": "2024-08-28",
+      "title": "moonshot-v1-auto",
+      "models": [
+        "moonshot-v1-auto"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2024-08-30-87",
+      "company": "qwen",
+      "date": "2024-08-30",
+      "title": "Qwen2 family",
+      "models": [
+        "Qwen2-VL-2B/72B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "glm-2024-08-30-88",
+      "company": "glm",
+      "date": "2024-08-30",
+      "title": "GLM-4-Plus",
+      "models": [
+        "GLM-4-Plus"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "deep-2024-09-05-89",
+      "company": "deep",
+      "date": "2024-09-05",
+      "title": "DeepSeek-V2.5",
+      "models": [
+        "DeepSeek-V2.5"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2024-09-11-90",
+      "company": "mis",
+      "date": "2024-09-11",
+      "title": "Pixtral 12B",
+      "models": [
+        "Pixtral 12B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-09-12-91",
+      "company": "goog",
+      "date": "2024-09-12",
+      "title": "DataGemma",
+      "models": [
+        "DataGemma (2B)"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2024-09-12-92",
+      "company": "oai",
+      "date": "2024-09-12",
+      "title": "o1 family",
+      "models": [
+        "o1-preview",
+        "o1-mini"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2024-09-17-93",
+      "company": "mis",
+      "date": "2024-09-17",
+      "title": "Mistral Small 2.0",
+      "models": [
+        "Mistral Small 2.0"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2024-09-19-94",
+      "company": "qwen",
+      "date": "2024-09-19",
+      "title": "Qwen2.5 family",
+      "models": [
+        "Qwen2.5-0.5B / 1.5B / 3B / 7B / 14B / 32B / 72B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2024-09-19-95",
+      "company": "qwen",
+      "date": "2024-09-19",
+      "title": "Qwen2.5 family",
+      "models": [
+        "Qwen2.5-Coder-1.5B / 7B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2024-09-19-96",
+      "company": "qwen",
+      "date": "2024-09-19",
+      "title": "Qwen2.5 family",
+      "models": [
+        "Qwen2.5-Math-1.5B / 7B / 72B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-09-24-97",
+      "company": "goog",
+      "date": "2024-09-24",
+      "title": "Gemini 1.5 family",
+      "models": [
+        "Gemini 1.5 Pro 002",
+        "Gemini 1.5 Flash 002"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "meta-2024-09-25-98",
+      "company": "meta",
+      "date": "2024-09-25",
+      "title": "Llama 3.2",
+      "models": [
+        "Llama 3.2"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-10-03-99",
+      "company": "goog",
+      "date": "2024-10-03",
+      "title": "Gemma 2 family",
+      "models": [
+        "Gemma 2 JPN (2B)"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-10-03-100",
+      "company": "goog",
+      "date": "2024-10-03",
+      "title": "Gemini 1.5 Flash-8B GA",
+      "models": [
+        "Gemini 1.5 Flash-8B GA"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2024-10-09-101",
+      "company": "mis",
+      "date": "2024-10-09",
+      "title": "Ministral family",
+      "models": [
+        "Ministral 1 - 3B",
+        "Ministral 1 - 8B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2024-10-22-102",
+      "company": "anth",
+      "date": "2024-10-22",
+      "title": "Claude 3.5 family",
+      "models": [
+        "Claude 3.5 Sonnet (20241022)",
+        "Claude 3.5 Haiku"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "xai-2024-11-04-103",
+      "company": "xai",
+      "date": "2024-11-04",
+      "title": "grok-beta family",
+      "models": [
+        "grok-beta",
+        "grok-vision-beta"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2024-11-12-104",
+      "company": "qwen",
+      "date": "2024-11-12",
+      "title": "Qwen2.5 family",
+      "models": [
+        "Qwen2.5-Coder-0.5B / 3B / 14B / 32B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "moon-2024-11-16-105",
+      "company": "moon",
+      "date": "2024-11-16",
+      "title": "k0-math",
+      "models": [
+        "k0-math"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2024-11-18-106",
+      "company": "mis",
+      "date": "2024-11-18",
+      "title": "Mistral Large 2",
+      "models": [
+        "Mistral Large 2.1",
+        "Pixtral Large"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "deep-2024-11-20-107",
+      "company": "deep",
+      "date": "2024-11-20",
+      "title": "DeepSeek-R1 family",
+      "models": [
+        "DeepSeek-R1-Lite-Preview"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2024-11-20-108",
+      "company": "oai",
+      "date": "2024-11-20",
+      "title": "GPT-4o family",
+      "models": [
+        "GPT-4o update(1120)"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2024-11-28-109",
+      "company": "qwen",
+      "date": "2024-11-28",
+      "title": "QwQ-32B-Preview",
+      "models": [
+        "QwQ-32B-Preview"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-12-05-110",
+      "company": "goog",
+      "date": "2024-12-05",
+      "title": "Gemma 2 family",
+      "models": [
+        "PaliGemma 2 (3B, 10B, 28B)"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2024-12-05-111",
+      "company": "oai",
+      "date": "2024-12-05",
+      "title": "o1 family",
+      "models": [
+        "OpenAI o1",
+        "o1 pro mode"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "meta-2024-12-06-112",
+      "company": "meta",
+      "date": "2024-12-06",
+      "title": "Llama 3.3 70B Instruct",
+      "models": [
+        "Llama 3.3 70B Instruct"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "deep-2024-12-10-113",
+      "company": "deep",
+      "date": "2024-12-10",
+      "title": "DeepSeek-V2.5-1210",
+      "models": [
+        "DeepSeek-V2.5-1210"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-12-11-114",
+      "company": "goog",
+      "date": "2024-12-11",
+      "title": "Gemini 2.0 family",
+      "models": [
+        "Gemini 2.0 Flash Experimental"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "xai-2024-12-12-115",
+      "company": "xai",
+      "date": "2024-12-12",
+      "title": "Grok-2 family",
+      "models": [
+        "grok-2-1212",
+        "grok-2-vision-1212"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "moon-2024-12-16-116",
+      "company": "moon",
+      "date": "2024-12-16",
+      "title": "k1",
+      "models": [
+        "k1"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2024-12-19-117",
+      "company": "goog",
+      "date": "2024-12-19",
+      "title": "Gemini 2.0 family",
+      "models": [
+        "Gemini 2.0 Flash Thinking Mode"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2024-12-25-118",
+      "company": "qwen",
+      "date": "2024-12-25",
+      "title": "QVQ-72B-Preview",
+      "models": [
+        "QVQ-72B-Preview"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "deep-2024-12-26-119",
+      "company": "deep",
+      "date": "2024-12-26",
+      "title": "DeepSeek-V3",
+      "models": [
+        "DeepSeek-V3"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-01-13-120",
+      "company": "mis",
+      "date": "2025-01-13",
+      "title": "Codestral 2501",
+      "models": [
+        "Codestral 2501"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mini-2025-01-15-121",
+      "company": "mini",
+      "date": "2025-01-15",
+      "title": "MiniMax-Text-01",
+      "models": [
+        "MiniMax-Text-01"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "deep-2025-01-20-122",
+      "company": "deep",
+      "date": "2025-01-20",
+      "title": "DeepSeek-R1 family",
+      "models": [
+        "DeepSeek-R1-Zero",
+        "DeepSeek-R1",
+        "DeepSeek-R1-Distill series"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "moon-2025-01-20-123",
+      "company": "moon",
+      "date": "2025-01-20",
+      "title": "Kimi k1.5",
+      "models": [
+        "Kimi k1.5"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-01-26-124",
+      "company": "qwen",
+      "date": "2025-01-26",
+      "title": "Qwen2.5 family",
+      "models": [
+        "Qwen2.5-VL-3B / 7B / 72B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-01-28-125",
+      "company": "qwen",
+      "date": "2025-01-28",
+      "title": "Qwen2.5-Max",
+      "models": [
+        "Qwen2.5-Max"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2025-01-29-126",
+      "company": "oai",
+      "date": "2025-01-29",
+      "title": "GPT-4o family",
+      "models": [
+        "GPT-4o update(0129)"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-01-30-127",
+      "company": "mis",
+      "date": "2025-01-30",
+      "title": "Mistral Small 3.0",
+      "models": [
+        "Mistral Small 3.0"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2025-01-31-128",
+      "company": "oai",
+      "date": "2025-01-31",
+      "title": "o3-mini",
+      "models": [
+        "o3-mini"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2025-02-05-129",
+      "company": "goog",
+      "date": "2025-02-05",
+      "title": "Gemini 2.0 family",
+      "models": [
+        "Gemini 2.0 Flash",
+        "Gemini 2.0 Pro Experimental",
+        "Gemini 2.0 Flash-Lite Preview"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-02-17-130",
+      "company": "mis",
+      "date": "2025-02-17",
+      "title": "Mistral Saba",
+      "models": [
+        "Mistral Saba"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2025-02-19-131",
+      "company": "goog",
+      "date": "2025-02-19",
+      "title": "Gemma 2 family",
+      "models": [
+        "PaliGemma 2 mix (3B, 10B, 28B)"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "xai-2025-02-19-132",
+      "company": "xai",
+      "date": "2025-02-19",
+      "title": "Grok 3 family",
+      "models": [
+        "Grok 3",
+        "Grok 3 mini"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "moon-2025-02-23-133",
+      "company": "moon",
+      "date": "2025-02-23",
+      "title": "Moonlight-16B-A3B",
+      "models": [
+        "Moonlight-16B-A3B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2025-02-24-134",
+      "company": "anth",
+      "date": "2025-02-24",
+      "title": "Claude 3.7 Sonnet",
+      "models": [
+        "Claude 3.7 Sonnet"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2025-02-25-135",
+      "company": "goog",
+      "date": "2025-02-25",
+      "title": "Gemini 2.0 Flash-Lite",
+      "models": [
+        "Gemini 2.0 Flash-Lite"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2025-02-27-136",
+      "company": "oai",
+      "date": "2025-02-27",
+      "title": "GPT-4.5",
+      "models": [
+        "GPT-4.5"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-03-06-137",
+      "company": "qwen",
+      "date": "2025-03-06",
+      "title": "QwQ-32B",
+      "models": [
+        "QwQ-32B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2025-03-10-138",
+      "company": "goog",
+      "date": "2025-03-10",
+      "title": "Gemma 3 family",
+      "models": [
+        "Gemma 3 (1B, 4B, 12B, 27B)"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-03-17-139",
+      "company": "mis",
+      "date": "2025-03-17",
+      "title": "Mistral Small 3.1",
+      "models": [
+        "Mistral Small 3.1"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2025-03-19-140",
+      "company": "oai",
+      "date": "2025-03-19",
+      "title": "o1-pro",
+      "models": [
+        "o1-pro"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-03-25-141",
+      "company": "qwen",
+      "date": "2025-03-25",
+      "title": "Qwen2.5 family",
+      "models": [
+        "Qwen2.5-VL-32B-Instruct"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "deep-2025-03-25-142",
+      "company": "deep",
+      "date": "2025-03-25",
+      "title": "DeepSeek-V3-0324",
+      "models": [
+        "DeepSeek-V3-0324"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2025-03-25-143",
+      "company": "goog",
+      "date": "2025-03-25",
+      "title": "Gemini 2.5 family",
+      "models": [
+        "Gemini 2.5 Pro Experimental"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-03-26-144",
+      "company": "qwen",
+      "date": "2025-03-26",
+      "title": "Qwen2.5-Omni-7B",
+      "models": [
+        "Qwen2.5-Omni-7B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2025-03-27-145",
+      "company": "oai",
+      "date": "2025-03-27",
+      "title": "GPT-4o family",
+      "models": [
+        "GPT-4o update (0327)"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "meta-2025-04-05-146",
+      "company": "meta",
+      "date": "2025-04-05",
+      "title": "Llama 4 family",
+      "models": [
+        "Llama 4 Scout",
+        "Llama 4 Maverick"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "moon-2025-04-10-147",
+      "company": "moon",
+      "date": "2025-04-10",
+      "title": "Kimi-VL-A3B",
+      "models": [
+        "Kimi-VL-A3B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2025-04-14-148",
+      "company": "oai",
+      "date": "2025-04-14",
+      "title": "GPT-4.1 family",
+      "models": [
+        "GPT-4.1",
+        "GPT-4.1 mini",
+        "GPT-4.1 nano"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "glm-2025-04-14-149",
+      "company": "glm",
+      "date": "2025-04-14",
+      "title": "GLM-4 family",
+      "models": [
+        "GLM-4-9B/32B/Air/Flash-0414",
+        "GLM-Z1-9B/32B/Air/Flash-0414"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2025-04-16-150",
+      "company": "oai",
+      "date": "2025-04-16",
+      "title": "o3 family",
+      "models": [
+        "o3",
+        "o4-mini"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2025-04-17-151",
+      "company": "goog",
+      "date": "2025-04-17",
+      "title": "Gemini 2.5 family",
+      "models": [
+        "Gemini 2.5 Flash Preview"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-04-29-152",
+      "company": "qwen",
+      "date": "2025-04-29",
+      "title": "Qwen3 family",
+      "models": [
+        "Qwen3 Family (0.6B / 1.7B / 4B / 8B / 14B / 32B / 30B-A3B / 235B-A22B)"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-04-30-153",
+      "company": "qwen",
+      "date": "2025-04-30",
+      "title": "Qwen2.5-Omni-3B",
+      "models": [
+        "Qwen2.5-Omni-3B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "moon-2025-05-06-154",
+      "company": "moon",
+      "date": "2025-05-06",
+      "title": "kimi-thinking-preview",
+      "models": [
+        "kimi-thinking-preview"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-05-07-155",
+      "company": "mis",
+      "date": "2025-05-07",
+      "title": "Mistral Medium 3.0",
+      "models": [
+        "Mistral Medium 3.0"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2025-05-16-156",
+      "company": "oai",
+      "date": "2025-05-16",
+      "title": "codex-1 family",
+      "models": [
+        "codex-1",
+        "codex-mini-latest"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2025-05-20-157",
+      "company": "goog",
+      "date": "2025-05-20",
+      "title": "MedGemma",
+      "models": [
+        "MedGemma (4B, 27B)"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-05-21-158",
+      "company": "mis",
+      "date": "2025-05-21",
+      "title": "Devstral Small 1.0",
+      "models": [
+        "Devstral Small 1.0"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2025-05-22-159",
+      "company": "anth",
+      "date": "2025-05-22",
+      "title": "Claude 4 family",
+      "models": [
+        "Claude Opus 4",
+        "Claude Sonnet 4"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "deep-2025-05-28-160",
+      "company": "deep",
+      "date": "2025-05-28",
+      "title": "DeepSeek-R1-0528",
+      "models": [
+        "DeepSeek-R1-0528"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2025-06-06-161",
+      "company": "anth",
+      "date": "2025-06-06",
+      "title": "Claude Gov models",
+      "models": [
+        "Claude Gov models"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-06-10-162",
+      "company": "mis",
+      "date": "2025-06-10",
+      "title": "Magistral Small 1.0",
+      "models": [
+        "Magistral Small 1.0"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-06-10-163",
+      "company": "mis",
+      "date": "2025-06-10",
+      "title": "Magistral Medium 1.0",
+      "models": [
+        "Magistral Medium 1.0"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2025-06-10-164",
+      "company": "oai",
+      "date": "2025-06-10",
+      "title": "o3-pro",
+      "models": [
+        "o3-pro"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mini-2025-06-16-165",
+      "company": "mini",
+      "date": "2025-06-16",
+      "title": "MiniMax-M1",
+      "models": [
+        "MiniMax-M1"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2025-06-17-166",
+      "company": "goog",
+      "date": "2025-06-17",
+      "title": "Gemini 2.5 family",
+      "models": [
+        "Gemini 2.5 Pro",
+        "Gemini 2.5 Flash",
+        "Gemini 2.5 Flash-Lite Preview"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "moon-2025-06-17-167",
+      "company": "moon",
+      "date": "2025-06-17",
+      "title": "Kimi-Dev-72B",
+      "models": [
+        "Kimi-Dev-72B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-06-20-168",
+      "company": "mis",
+      "date": "2025-06-20",
+      "title": "Mistral Small 3.2",
+      "models": [
+        "Mistral Small 3.2"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "moon-2025-06-21-169",
+      "company": "moon",
+      "date": "2025-06-21",
+      "title": "Kimi-VL-A3B-Thinking-25…",
+      "models": [
+        "Kimi-VL-A3B-Thinking-2506"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2025-06-26-170",
+      "company": "goog",
+      "date": "2025-06-26",
+      "title": "Gemma 3 family",
+      "models": [
+        "Gemma 3n (E2B, E4B)"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2025-07-09-171",
+      "company": "goog",
+      "date": "2025-07-09",
+      "title": "Gemma 2 family",
+      "models": [
+        "T5Gemma",
+        "MedGemma 27B multimodal"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "xai-2025-07-09-172",
+      "company": "xai",
+      "date": "2025-07-09",
+      "title": "Grok 4 family",
+      "models": [
+        "Grok 4",
+        "Grok 4 Heavy"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-07-10-173",
+      "company": "mis",
+      "date": "2025-07-10",
+      "title": "Devstral family",
+      "models": [
+        "Devstral Medium 1.0",
+        "Devstral Small 1.1"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "moon-2025-07-10-174",
+      "company": "moon",
+      "date": "2025-07-10",
+      "title": "Kimina-Prover-72B",
+      "models": [
+        "Kimina-Prover-72B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "moon-2025-07-11-175",
+      "company": "moon",
+      "date": "2025-07-11",
+      "title": "Kimi-K2",
+      "models": [
+        "Kimi-K2"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-07-15-176",
+      "company": "mis",
+      "date": "2025-07-15",
+      "title": "Voxtral Small family",
+      "models": [
+        "Voxtral Small",
+        "Voxtral Mini"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-07-21-177",
+      "company": "qwen",
+      "date": "2025-07-21",
+      "title": "Qwen3-235B-A22B-2507",
+      "models": [
+        "Qwen3-235B-A22B-2507"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-07-22-178",
+      "company": "qwen",
+      "date": "2025-07-22",
+      "title": "Qwen3 family",
+      "models": [
+        "Qwen3-Coder-480B-A35B-Instruct"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2025-07-22-179",
+      "company": "goog",
+      "date": "2025-07-22",
+      "title": "Gemini 2.5 Flash-Lite",
+      "models": [
+        "Gemini 2.5 Flash-Lite"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-07-24-180",
+      "company": "mis",
+      "date": "2025-07-24",
+      "title": "Magistral Small 1.1",
+      "models": [
+        "Magistral Small 1.1"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-07-24-181",
+      "company": "mis",
+      "date": "2025-07-24",
+      "title": "Magistral Medium 1.1",
+      "models": [
+        "Magistral Medium 1.1"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "glm-2025-07-28-182",
+      "company": "glm",
+      "date": "2025-07-28",
+      "title": "GLM-4.5 family",
+      "models": [
+        "GLM-4.5 Family"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-07-30-183",
+      "company": "qwen",
+      "date": "2025-07-30",
+      "title": "Qwen3-30B-A3B-2507",
+      "models": [
+        "Qwen3-30B-A3B-2507"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-07-30-184",
+      "company": "mis",
+      "date": "2025-07-30",
+      "title": "Codestral 2508",
+      "models": [
+        "Codestral 2508"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-07-31-185",
+      "company": "qwen",
+      "date": "2025-07-31",
+      "title": "Qwen3 family",
+      "models": [
+        "Qwen3-Coder-30B-A3B-Instruct"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2025-08-01-186",
+      "company": "goog",
+      "date": "2025-08-01",
+      "title": "Gemini 2.5 Deep Think",
+      "models": [
+        "Gemini 2.5 Deep Think"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2025-08-05-187",
+      "company": "anth",
+      "date": "2025-08-05",
+      "title": "Claude Opus 4.1",
+      "models": [
+        "Claude Opus 4.1"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2025-08-05-188",
+      "company": "oai",
+      "date": "2025-08-05",
+      "title": "gpt-oss family",
+      "models": [
+        "gpt-oss-120b",
+        "gpt-oss-20b"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-08-06-189",
+      "company": "qwen",
+      "date": "2025-08-06",
+      "title": "Qwen3-4B-2507",
+      "models": [
+        "Qwen3-4B-2507"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2025-08-07-190",
+      "company": "oai",
+      "date": "2025-08-07",
+      "title": "GPT-5 family",
+      "models": [
+        "GPT-5",
+        "GPT-5 mini",
+        "GPT-5 nano",
+        "GPT-5 Pro"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-08-12-191",
+      "company": "mis",
+      "date": "2025-08-12",
+      "title": "Mistral Medium 3.1",
+      "models": [
+        "Mistral Medium 3.1"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2025-08-14-192",
+      "company": "goog",
+      "date": "2025-08-14",
+      "title": "Gemma 3 family",
+      "models": [
+        "Gemma 3 (270M)"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "deep-2025-08-21-193",
+      "company": "deep",
+      "date": "2025-08-21",
+      "title": "DeepSeek-V3.1",
+      "models": [
+        "DeepSeek-V3.1"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "xai-2025-08-23-194",
+      "company": "xai",
+      "date": "2025-08-23",
+      "title": "Grok 2.5 open weights",
+      "models": [
+        "Grok 2.5 open weights"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "xai-2025-08-28-195",
+      "company": "xai",
+      "date": "2025-08-28",
+      "title": "Grok Code Fast 1",
+      "models": [
+        "Grok Code Fast 1"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "moon-2025-09-05-196",
+      "company": "moon",
+      "date": "2025-09-05",
+      "title": "Kimi-K2-0905",
+      "models": [
+        "Kimi-K2-0905"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-09-11-197",
+      "company": "qwen",
+      "date": "2025-09-11",
+      "title": "Qwen3 family",
+      "models": [
+        "Qwen3-Next-80B-A3B-Instruct/Thinking"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2025-09-13-198",
+      "company": "goog",
+      "date": "2025-09-13",
+      "title": "VaultGemma",
+      "models": [
+        "VaultGemma (1B)"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2025-09-15-199",
+      "company": "oai",
+      "date": "2025-09-15",
+      "title": "GPT-5-Codex",
+      "models": [
+        "GPT-5-Codex"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-09-18-200",
+      "company": "mis",
+      "date": "2025-09-18",
+      "title": "Magistral Small 1.2",
+      "models": [
+        "Magistral Small 1.2"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-09-18-201",
+      "company": "mis",
+      "date": "2025-09-18",
+      "title": "Magistral Medium 1.2",
+      "models": [
+        "Magistral Medium 1.2"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "xai-2025-09-19-202",
+      "company": "xai",
+      "date": "2025-09-19",
+      "title": "Grok 4 Fast",
+      "models": [
+        "Grok 4 Fast"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-09-21-203",
+      "company": "qwen",
+      "date": "2025-09-21",
+      "title": "Qwen3 family",
+      "models": [
+        "Qwen3-Omni-30B-A3B-Instruct / Thinking"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "deep-2025-09-22-204",
+      "company": "deep",
+      "date": "2025-09-22",
+      "title": "DeepSeek-V3.1-Terminus",
+      "models": [
+        "DeepSeek-V3.1-Terminus"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-09-23-205",
+      "company": "qwen",
+      "date": "2025-09-23",
+      "title": "Qwen3 family",
+      "models": [
+        "Qwen3-VL-235B-A22B-Instruct / Thinking"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-09-24-206",
+      "company": "qwen",
+      "date": "2025-09-24",
+      "title": "Qwen3-Max",
+      "models": [
+        "Qwen3-Max"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2025-09-29-207",
+      "company": "anth",
+      "date": "2025-09-29",
+      "title": "Claude Sonnet 4.5",
+      "models": [
+        "Claude Sonnet 4.5"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "deep-2025-09-29-208",
+      "company": "deep",
+      "date": "2025-09-29",
+      "title": "DeepSeek-V3.2-Exp",
+      "models": [
+        "DeepSeek-V3.2-Exp"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "glm-2025-09-30-209",
+      "company": "glm",
+      "date": "2025-09-30",
+      "title": "GLM-4.6",
+      "models": [
+        "GLM-4.6"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-10-04-210",
+      "company": "qwen",
+      "date": "2025-10-04",
+      "title": "Qwen3 family",
+      "models": [
+        "Qwen3-VL-30B-A3B-Instruct / Thinking"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-10-15-211",
+      "company": "qwen",
+      "date": "2025-10-15",
+      "title": "Qwen3 family",
+      "models": [
+        "Qwen3-VL-4B / 8B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2025-10-15-212",
+      "company": "anth",
+      "date": "2025-10-15",
+      "title": "Claude Haiku 4.5",
+      "models": [
+        "Claude Haiku 4.5"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2025-10-21-213",
+      "company": "qwen",
+      "date": "2025-10-21",
+      "title": "Qwen3 family",
+      "models": [
+        "Qwen3-VL-2B / 32B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mini-2025-10-27-214",
+      "company": "mini",
+      "date": "2025-10-27",
+      "title": "MiniMax-M2",
+      "models": [
+        "MiniMax-M2"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "moon-2025-10-30-215",
+      "company": "moon",
+      "date": "2025-10-30",
+      "title": "Kimi-Linear-48B-A3B",
+      "models": [
+        "Kimi-Linear-48B-A3B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "moon-2025-11-06-216",
+      "company": "moon",
+      "date": "2025-11-06",
+      "title": "Kimi-k2-thinking",
+      "models": [
+        "Kimi-k2-thinking"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2025-11-12-217",
+      "company": "oai",
+      "date": "2025-11-12",
+      "title": "GPT-5.1 family",
+      "models": [
+        "GPT-5.1 Instant",
+        "GPT-5.1 Thinking",
+        "GPT-5.1-Codex",
+        "GPT-5.1-Codex mini"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "xai-2025-11-17-218",
+      "company": "xai",
+      "date": "2025-11-17",
+      "title": "Grok 4.1",
+      "models": [
+        "Grok 4.1"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2025-11-18-219",
+      "company": "goog",
+      "date": "2025-11-18",
+      "title": "Gemini 3 Pro Preview",
+      "models": [
+        "Gemini 3 Pro Preview"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2025-11-19-220",
+      "company": "oai",
+      "date": "2025-11-19",
+      "title": "GPT-5.1-Codex-Max",
+      "models": [
+        "GPT-5.1-Codex-Max"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2025-11-24-221",
+      "company": "anth",
+      "date": "2025-11-24",
+      "title": "Claude Opus 4.5",
+      "models": [
+        "Claude Opus 4.5"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "deep-2025-11-27-222",
+      "company": "deep",
+      "date": "2025-11-27",
+      "title": "DeepSeek-Math-V2",
+      "models": [
+        "DeepSeek-Math-V2"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "deep-2025-12-01-223",
+      "company": "deep",
+      "date": "2025-12-01",
+      "title": "DeepSeek-V3.2 family",
+      "models": [
+        "DeepSeek-V3.2",
+        "DeepSeek-V3.2-Speciale"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-12-02-224",
+      "company": "mis",
+      "date": "2025-12-02",
+      "title": "Ministral family",
+      "models": [
+        "Ministral 3 - 3B/8B/14B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-12-02-225",
+      "company": "mis",
+      "date": "2025-12-02",
+      "title": "Mistral Large 3.0",
+      "models": [
+        "Mistral Large 3.0"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-12-09-226",
+      "company": "mis",
+      "date": "2025-12-09",
+      "title": "Devstral family",
+      "models": [
+        "Devstral 2",
+        "Devstral Small 2"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2025-12-11-227",
+      "company": "oai",
+      "date": "2025-12-11",
+      "title": "GPT-5.2 family",
+      "models": [
+        "GPT-5.2 Instant",
+        "GPT-5.2 Thinking / gpt-5.2",
+        "GPT-5.2 Pro"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-12-16-228",
+      "company": "mis",
+      "date": "2025-12-16",
+      "title": "Mistral Small Creative",
+      "models": [
+        "Mistral Small Creative"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2025-12-17-229",
+      "company": "goog",
+      "date": "2025-12-17",
+      "title": "Gemini 3 Flash Preview",
+      "models": [
+        "Gemini 3 Flash Preview"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2025-12-18-230",
+      "company": "goog",
+      "date": "2025-12-18",
+      "title": "FunctionGemma family",
+      "models": [
+        "FunctionGemma (270M)",
+        "T5Gemma v2"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2025-12-18-231",
+      "company": "oai",
+      "date": "2025-12-18",
+      "title": "GPT-5.2-Codex",
+      "models": [
+        "GPT-5.2-Codex"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mini-2025-12-22-232",
+      "company": "mini",
+      "date": "2025-12-22",
+      "title": "MiniMax-M2.1",
+      "models": [
+        "MiniMax-M2.1"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "glm-2025-12-22-233",
+      "company": "glm",
+      "date": "2025-12-22",
+      "title": "GLM-4.7",
+      "models": [
+        "GLM-4.7"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2026-01-13-234",
+      "company": "goog",
+      "date": "2026-01-13",
+      "title": "Gemma 1 family",
+      "models": [
+        "MedGemma 1.5 (4B)"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2026-01-15-235",
+      "company": "goog",
+      "date": "2026-01-15",
+      "title": "TranslateGemma",
+      "models": [
+        "TranslateGemma (4B, 12B, 27B)"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "glm-2026-01-19-236",
+      "company": "glm",
+      "date": "2026-01-19",
+      "title": "GLM-4.7-Flash",
+      "models": [
+        "GLM-4.7-Flash"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mini-2026-01-27-237",
+      "company": "mini",
+      "date": "2026-01-27",
+      "title": "MiniMax-M2-Her",
+      "models": [
+        "MiniMax-M2-Her"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "moon-2026-01-27-238",
+      "company": "moon",
+      "date": "2026-01-27",
+      "title": "kimi-k2.5",
+      "models": [
+        "kimi-k2.5"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2026-02-02-239",
+      "company": "qwen",
+      "date": "2026-02-02",
+      "title": "Qwen3-Coder-Next",
+      "models": [
+        "Qwen3-Coder-Next"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2026-02-05-240",
+      "company": "anth",
+      "date": "2026-02-05",
+      "title": "Claude Opus 4.6",
+      "models": [
+        "Claude Opus 4.6"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2026-02-05-241",
+      "company": "oai",
+      "date": "2026-02-05",
+      "title": "GPT-5.3-Codex",
+      "models": [
+        "GPT-5.3-Codex"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mini-2026-02-12-242",
+      "company": "mini",
+      "date": "2026-02-12",
+      "title": "MiniMax-M2.5",
+      "models": [
+        "MiniMax-M2.5"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2026-02-12-243",
+      "company": "oai",
+      "date": "2026-02-12",
+      "title": "GPT-5.3-Codex-Spark",
+      "models": [
+        "GPT-5.3-Codex-Spark"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "glm-2026-02-12-244",
+      "company": "glm",
+      "date": "2026-02-12",
+      "title": "GLM-5",
+      "models": [
+        "GLM-5"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2026-02-16-245",
+      "company": "qwen",
+      "date": "2026-02-16",
+      "title": "Qwen3.5-397B-A17B",
+      "models": [
+        "Qwen3.5-397B-A17B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2026-02-16-246",
+      "company": "qwen",
+      "date": "2026-02-16",
+      "title": "Qwen3.5-Plus",
+      "models": [
+        "Qwen3.5-Plus"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2026-02-17-247",
+      "company": "anth",
+      "date": "2026-02-17",
+      "title": "Claude Sonnet 4.6",
+      "models": [
+        "Claude Sonnet 4.6"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "xai-2026-02-17-248",
+      "company": "xai",
+      "date": "2026-02-17",
+      "title": "Grok 4.20 family",
+      "models": [
+        "Grok 4.20 Beta",
+        "Grok 4.20 Multi-agent"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2026-02-19-249",
+      "company": "goog",
+      "date": "2026-02-19",
+      "title": "Gemini 3.1 Pro Preview",
+      "models": [
+        "Gemini 3.1 Pro Preview"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2026-02-24-250",
+      "company": "qwen",
+      "date": "2026-02-24",
+      "title": "Qwen3.5 family",
+      "models": [
+        "Qwen3.5-122B-A10B / 35B-A3B / 27B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2026-03-02-251",
+      "company": "qwen",
+      "date": "2026-03-02",
+      "title": "Qwen3.5 family",
+      "models": [
+        "Qwen3.5-0.8B / 2B / 4B / 9B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2026-03-03-252",
+      "company": "goog",
+      "date": "2026-03-03",
+      "title": "Gemini 3.1 family",
+      "models": [
+        "Gemini 3.1 Flash-Lite Preview"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2026-03-03-253",
+      "company": "oai",
+      "date": "2026-03-03",
+      "title": "GPT-5.3 Instant",
+      "models": [
+        "GPT-5.3 Instant"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2026-03-05-254",
+      "company": "oai",
+      "date": "2026-03-05",
+      "title": "GPT-5.4 family",
+      "models": [
+        "GPT-5.4 Thinking / gpt-5.4",
+        "GPT-5.4 Pro"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2026-03-16-255",
+      "company": "mis",
+      "date": "2026-03-16",
+      "title": "Mistral Small family",
+      "models": [
+        "Mistral Small 4",
+        "Leanstral"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2026-03-17-256",
+      "company": "oai",
+      "date": "2026-03-17",
+      "title": "GPT-5.4 family",
+      "models": [
+        "GPT-5.4 mini",
+        "GPT-5.4 nano"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2026-03-18-257",
+      "company": "qwen",
+      "date": "2026-03-18",
+      "title": "Qwen3.5-Max-Preview",
+      "models": [
+        "Qwen3.5-Max-Preview"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mini-2026-03-18-258",
+      "company": "mini",
+      "date": "2026-03-18",
+      "title": "MiniMax-M2.7",
+      "models": [
+        "MiniMax-M2.7"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2026-03-29-259",
+      "company": "qwen",
+      "date": "2026-03-29",
+      "title": "Qwen3.5-Omni",
+      "models": [
+        "Qwen3.5-Omni"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2026-03-31-260",
+      "company": "goog",
+      "date": "2026-03-31",
+      "title": "Gemma 4 family",
+      "models": [
+        "Gemma 4 (E2B, E4B, 31B, 26B A4B)"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2026-04-01-261",
+      "company": "qwen",
+      "date": "2026-04-01",
+      "title": "Qwen3.6-Plus",
+      "models": [
+        "Qwen3.6-Plus"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2026-04-07-262",
+      "company": "anth",
+      "date": "2026-04-07",
+      "title": "Claude Mythos Preview",
+      "models": [
+        "Claude Mythos Preview"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "glm-2026-04-07-263",
+      "company": "glm",
+      "date": "2026-04-07",
+      "title": "GLM-5.1",
+      "models": [
+        "GLM-5.1"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "meta-2026-04-08-264",
+      "company": "meta",
+      "date": "2026-04-08",
+      "title": "Muse Spark",
+      "models": [
+        "Muse Spark"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2026-04-16-265",
+      "company": "qwen",
+      "date": "2026-04-16",
+      "title": "Qwen3.6-35B-A3B",
+      "models": [
+        "Qwen3.6-35B-A3B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "anth-2026-04-16-266",
+      "company": "anth",
+      "date": "2026-04-16",
+      "title": "Claude Opus 4.7",
+      "models": [
+        "Claude Opus 4.7"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "xai-2026-04-17-267",
+      "company": "xai",
+      "date": "2026-04-17",
+      "title": "Grok 4.3 Beta",
+      "models": [
+        "Grok 4.3 Beta"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2026-04-20-268",
+      "company": "qwen",
+      "date": "2026-04-20",
+      "title": "Qwen3.6-Max-Preview",
+      "models": [
+        "Qwen3.6-Max-Preview"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "moon-2026-04-20-269",
+      "company": "moon",
+      "date": "2026-04-20",
+      "title": "kimi-k2.6",
+      "models": [
+        "kimi-k2.6"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2026-04-22-270",
+      "company": "qwen",
+      "date": "2026-04-22",
+      "title": "Qwen3.6-27B",
+      "models": [
+        "Qwen3.6-27B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2026-04-23-271",
+      "company": "oai",
+      "date": "2026-04-23",
+      "title": "GPT-5.5 family",
+      "models": [
+        "GPT-5.5 Thinking",
+        "GPT-5.5 Pro"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "deep-2026-04-24-272",
+      "company": "deep",
+      "date": "2026-04-24",
+      "title": "DeepSeek-V4 family",
+      "models": [
+        "DeepSeek-V4-Pro",
+        "DeepSeek-V4-Flash"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2026-04-29-273",
+      "company": "mis",
+      "date": "2026-04-29",
+      "title": "Mistral Medium 3.5",
+      "models": [
+        "Mistral Medium 3.5"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2026-05-05-274",
+      "company": "oai",
+      "date": "2026-05-05",
+      "title": "GPT-5.5 Instant",
+      "models": [
+        "GPT-5.5 Instant"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "goog-2026-05-07-275",
+      "company": "goog",
+      "date": "2026-05-07",
+      "title": "Gemini 3.1 Flash-Lite",
+      "models": [
+        "Gemini 3.1 Flash-Lite"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    }
+  ]
+}
