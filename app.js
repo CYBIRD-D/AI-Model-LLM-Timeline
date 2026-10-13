@@ -193,7 +193,16 @@ function groupSameDayFamilies(entries){
  }
  return [...standalone,...grouped.values()];
 }
+let measuredTextContext=null;
 function textWidthApprox(text){
+ // Use real browser font metrics so shrinking the card never clips a model name.
+ if(!measuredTextContext&&typeof document!=="undefined"){
+  try{measuredTextContext=document.createElement("canvas").getContext("2d");}catch{}
+ }
+ if(measuredTextContext){
+  measuredTextContext.font="710 10.1px system-ui";
+  return measuredTextContext.measureText(text).width;
+ }
  let width=0;
  for(const char of text){
   if(/[il1.,': ]/.test(char))width+=3.2;
