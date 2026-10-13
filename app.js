@@ -113,9 +113,9 @@ function syncButtons(){
  $("timelineView").hidden=state.mode!=="timeline";$("listView").hidden=state.mode!=="list";
  $("resultsTitle").textContent=state.mode==="list"?"Release directory":"Timeline overview";
  $("overviewBtn").classList.toggle("active",state.density==="overview");$("detailBtn").classList.toggle("active",state.density==="detail");$("modelsBtn").classList.toggle("active",state.density==="models");
- $("densityLabel").textContent=state.density==="overview"?"Nearby releases grouped":state.density==="models"?"Every named model shown separately":"Same-day model families grouped";
+ $("densityLabel").textContent=state.density==="overview"?"Nearby releases grouped":state.density==="models"?"Individual models · families kept together":"Same-day model families grouped";
  $("zoomRange").value=String(state.zoom);
- $("groupingNote").textContent=state.density==="overview"?"Click a group to inspect every release.":state.density==="models"?"Every named variant is shown without family aggregation.":"Same-day variants share a family card when supported by the available model names; All models expands them.";
+ $("groupingNote").textContent=state.density==="overview"?"Click a group to inspect every release.":state.density==="models"?"Same-day Family cards stay grouped; other model entries are shown individually.":"Compatible same-day variants use one Family card; click it to see its members.";
 }
 function draw({keepScroll=true}={}){
  const scroll=$("timelineScroll"),left=scroll.scrollLeft,top=scroll.scrollTop;
@@ -257,9 +257,17 @@ function layoutEvents(entries,scale){
    }
    items=[...buckets.values()].map(list=>({events:list,date:list[0].date,name:list.length===1?list[0].title:list.length+" releases",grouped:list.length>1}));
  }else if(state.density==="models"){
-   for(const e of entries){
-     for(const name of expandModelNames(e.models.length?e.models:[e.title])){
-       items.push({events:[e],date:e.date,name,model:name,grouped:false});
+   // All models does not break apart same-day family releases.
+   // The family card keeps its original member list in the detail drawer.
+   for(const release of groupSameDayFamilies(entries)){
+     if(release.family){
+       items.push(release);
+       continue;
+     }
+     for(const e of release.events){
+       for(const name of expandModelNames(e.models.length?e.models:[e.title])){
+         items.push({events:[e],date:e.date,name,model:name,grouped:false});
+       }
      }
    }
  }else items=groupSameDayFamilies(entries);
