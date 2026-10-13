@@ -4488,7 +4488,7 @@
       "id": "qwen-2026-07-15-qwen3-7-flash",
       "company": "qwen",
       "date": "2026-07-15",
-      "title": "Qwen3.7-Flash",
+      "title": "Qwen3.7-Flash (0715 snapshot)",
       "models": [
         "Qwen3.7-Flash"
       ],
@@ -4498,9 +4498,9 @@
         "General"
       ],
       "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
-      "verification": "verified",
-      "event_type": "model_release",
-      "notes": "Dated 2026-07-15 API snapshot; public availability may have differed."
+      "verification": "provisional",
+      "event_type": "api_snapshot",
+      "notes": "Model Studio lists qwen3.7-flash-2026-07-15 as its active API snapshot. The exact first-public availability date is not independently verified; 2026-07-15 is taken from the official version identifier."
     },
     {
       "id": "xai-2026-07-16-grok-4-5",
