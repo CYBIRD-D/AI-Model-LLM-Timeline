@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "datasetUpdated": "2026-10-24",
   "coverageThrough": "2026-10-23",
-  "notes": "Selective text-generating LLM history, updated October 24 2026. DeepSeek checkpoint suffixes such as -0731, -0813, -1017 represent distinct dated revisions, not generic rename/aliases. API releases before downloadable weights are separate Closed vs Open events. Added Kimi K3.1 Pro API 2026-10-23 (weights still pending), MiniMax M3.1 Flash API 2026-10-19 then open weights 2026-10-23. Original migrated entries remain partly unverified; this is not an exhaustive census.",
+  "notes": "Selective text-generating LLM history, updated October 24 2026. DeepSeek checkpoint suffixes such as -0731, -0813, -1017 represent distinct dated revisions, not generic rename/aliases. API releases before downloadable weights are separate Closed vs Open events. Added Kimi K3.1 Pro API 2026-10-23 (weights still pending), MiniMax M3.1 Flash API 2026-10-19 then open weights 2026-10-23. Original migrated entries remain partly unverified; this is not an exhaustive census. Excludes dedicated OCR-only models such as Mistral OCR 4; text-generating LLMs remain in scope.",
   "events": [
     {
       "id": "oai-2022-11-30-1",
@@ -4422,23 +4422,6 @@
       "source": "https://z.ai/blog/glm-5.2",
       "verification": "verified",
       "event_type": "model_release"
-    },
-    {
-      "id": "mis-2026-06-23-mistral-ocr-4",
-      "company": "mis",
-      "date": "2026-06-23",
-      "title": "Mistral OCR 4",
-      "models": [
-        "Mistral OCR 4"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "Multimodal"
-      ],
-      "source": "https://mistral.ai/news/ocr-4/",
-      "verification": "verified",
-      "event_type": "model_release",
-      "notes": "Self-hosted container option; downloadable checkpoint not verified."
     },
     {
       "id": "oai-2026-06-26-gpt-5-6-sol-preview",
