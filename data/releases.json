@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
-  "datasetUpdated": "2026-10-14",
-  "coverageThrough": "2026-10-13",
-  "notes": "Historical release groups, supplemented through 2026-10-13 with official-source-backed model announcements and model-weight releases. Open/Closed is evaluated for each recorded event/date, not inferred from the company or the model's current state. In particular, Kimi K3 and MiniMax M3 had API announcements before weight publication. Older migrated records are not yet comprehensively verified; this update is not an exhaustive census of all specialized models. Mistral Medium 3.5 was also corrected to Open on the original 2026-04-29 model lifecycle date using Mistral's documentation.",
+  "datasetUpdated": "2026-10-24",
+  "coverageThrough": "2026-10-23",
+  "notes": "Selective text-generating LLM history, updated October 24 2026. DeepSeek checkpoint suffixes such as -0731, -0813, -1017 represent distinct dated revisions, not generic rename/aliases. API releases before downloadable weights are separate Closed vs Open events. Added Kimi K3.1 Pro API 2026-10-23 (weights still pending), MiniMax M3.1 Flash API 2026-10-19 then open weights 2026-10-23. Original migrated entries remain partly unverified; this is not an exhaustive census.",
   "events": [
     {
       "id": "oai-2022-11-30-1",
@@ -50,21 +50,6 @@
       "verification": "unverified"
     },
     {
-      "id": "oai-2023-03-14-5",
-      "company": "oai",
-      "date": "2023-03-14",
-      "title": "GPT-4",
-      "models": [
-        "GPT-4"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "General"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "anth-2023-03-14-4",
       "company": "anth",
       "date": "2023-03-14",
@@ -91,6 +76,21 @@
         "ChatGLM-6B/130B"
       ],
       "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2023-03-14-5",
+      "company": "oai",
+      "date": "2023-03-14",
+      "title": "GPT-4",
+      "models": [
+        "GPT-4"
+      ],
+      "availability": "closed",
       "capabilities": [
         "General"
       ],
@@ -766,21 +766,6 @@
       "verification": "unverified"
     },
     {
-      "id": "oai-2024-04-09-53",
-      "company": "oai",
-      "date": "2024-04-09",
-      "title": "GPT-4 Turbo GA",
-      "models": [
-        "GPT-4 Turbo GA"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "General"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "goog-2024-04-09-51",
       "company": "goog",
       "date": "2024-04-09",
@@ -806,6 +791,21 @@
       "availability": "closed",
       "capabilities": [
         "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2024-04-09-53",
+      "company": "oai",
+      "date": "2024-04-09",
+      "title": "GPT-4 Turbo GA",
+      "models": [
+        "GPT-4 Turbo GA"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
       ],
       "source": null,
       "verification": "unverified"
@@ -841,21 +841,6 @@
       "verification": "unverified"
     },
     {
-      "id": "mis-2024-04-17-57",
-      "company": "mis",
-      "date": "2024-04-17",
-      "title": "Mixtral 8x22B",
-      "models": [
-        "Mixtral 8x22B"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "General"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "mini-2024-04-17-56",
       "company": "mini",
       "date": "2024-04-17",
@@ -864,6 +849,21 @@
         "abab6.5 / abab6.5s"
       ],
       "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2024-04-17-57",
+      "company": "mis",
+      "date": "2024-04-17",
+      "title": "Mixtral 8x22B",
+      "models": [
+        "Mixtral 8x22B"
+      ],
+      "availability": "open",
       "capabilities": [
         "General"
       ],
@@ -1161,6 +1161,26 @@
       "verification": "unverified"
     },
     {
+      "id": "deep-2024-06-28-deepseek-v2-chat-0628-model_update",
+      "company": "deep",
+      "date": "2024-06-28",
+      "title": "DeepSeek-V2-Chat-0628",
+      "models": [
+        "DeepSeek-V2-Chat-0628"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General",
+        "Reasoning"
+      ],
+      "source": "https://api-docs.deepseek.com/updates/",
+      "verification": "verified",
+      "event_type": "model_update",
+      "notes": "June 28 update of deepseek-chat (V2-0628), distinct from the initial DeepSeek V2 release on May 6. Official downloadable Chat-0628 weights also exist.",
+      "related_model": "DeepSeek-V2",
+      "weight_source": "https://huggingface.co/deepseek-ai/DeepSeek-V2-Chat-0628"
+    },
+    {
       "id": "mis-2024-07-16-77",
       "company": "mis",
       "date": "2024-07-16",
@@ -1172,21 +1192,6 @@
       "availability": "open",
       "capabilities": [
         "Coding"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
-      "id": "oai-2024-07-18-79",
-      "company": "oai",
-      "date": "2024-07-18",
-      "title": "GPT-4o mini",
-      "models": [
-        "GPT-4o mini"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "General"
       ],
       "source": null,
       "verification": "unverified"
@@ -1207,6 +1212,21 @@
       "verification": "unverified"
     },
     {
+      "id": "oai-2024-07-18-79",
+      "company": "oai",
+      "date": "2024-07-18",
+      "title": "GPT-4o mini",
+      "models": [
+        "GPT-4o mini"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
       "id": "meta-2024-07-23-80",
       "company": "meta",
       "date": "2024-07-23",
@@ -1220,6 +1240,26 @@
       ],
       "source": null,
       "verification": "unverified"
+    },
+    {
+      "id": "deep-2024-07-24-deepseek-coder-v2-instruct-0724-model_update",
+      "company": "deep",
+      "date": "2024-07-24",
+      "title": "DeepSeek-Coder-V2-Instruct-0724",
+      "models": [
+        "DeepSeek-Coder-V2-Instruct-0724"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding",
+        "Reasoning"
+      ],
+      "source": "https://api-docs.deepseek.com/updates/",
+      "verification": "verified",
+      "event_type": "model_update",
+      "notes": "July 24 updated model for the deepseek-coder API; downloadable Instruct-0724 weights are documented by DeepSeek.",
+      "related_model": "DeepSeek-Coder-V2",
+      "weight_source": "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct-0724"
     },
     {
       "id": "mis-2024-07-24-81",
@@ -1313,21 +1353,6 @@
       "verification": "unverified"
     },
     {
-      "id": "qwen-2024-08-30-87",
-      "company": "qwen",
-      "date": "2024-08-30",
-      "title": "Qwen2 family",
-      "models": [
-        "Qwen2-VL-2B/72B"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "Multimodal"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "glm-2024-08-30-88",
       "company": "glm",
       "date": "2024-08-30",
@@ -1338,6 +1363,21 @@
       "availability": "closed",
       "capabilities": [
         "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2024-08-30-87",
+      "company": "qwen",
+      "date": "2024-08-30",
+      "title": "Qwen2 family",
+      "models": [
+        "Qwen2-VL-2B/72B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
       ],
       "source": null,
       "verification": "unverified"
@@ -1373,6 +1413,21 @@
       "verification": "unverified"
     },
     {
+      "id": "goog-2024-09-12-91",
+      "company": "goog",
+      "date": "2024-09-12",
+      "title": "DataGemma",
+      "models": [
+        "DataGemma (2B)"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
       "id": "oai-2024-09-12-92",
       "company": "oai",
       "date": "2024-09-12",
@@ -1384,21 +1439,6 @@
       "availability": "closed",
       "capabilities": [
         "Reasoning"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
-      "id": "goog-2024-09-12-91",
-      "company": "goog",
-      "date": "2024-09-12",
-      "title": "DataGemma",
-      "models": [
-        "DataGemma (2B)"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "Multimodal"
       ],
       "source": null,
       "verification": "unverified"
@@ -1619,21 +1659,6 @@
       "verification": "unverified"
     },
     {
-      "id": "oai-2024-11-20-108",
-      "company": "oai",
-      "date": "2024-11-20",
-      "title": "GPT-4o family",
-      "models": [
-        "GPT-4o update(1120)"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "General"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "deep-2024-11-20-107",
       "company": "deep",
       "date": "2024-11-20",
@@ -1644,6 +1669,21 @@
       "availability": "open",
       "capabilities": [
         "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2024-11-20-108",
+      "company": "oai",
+      "date": "2024-11-20",
+      "title": "GPT-4o family",
+      "models": [
+        "GPT-4o update(1120)"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
       ],
       "source": null,
       "verification": "unverified"
@@ -1664,6 +1704,21 @@
       "verification": "unverified"
     },
     {
+      "id": "goog-2024-12-05-110",
+      "company": "goog",
+      "date": "2024-12-05",
+      "title": "Gemma 2 family",
+      "models": [
+        "PaliGemma 2 (3B, 10B, 28B)"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
       "id": "oai-2024-12-05-111",
       "company": "oai",
       "date": "2024-12-05",
@@ -1675,21 +1730,6 @@
       "availability": "closed",
       "capabilities": [
         "Reasoning"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
-      "id": "goog-2024-12-05-110",
-      "company": "goog",
-      "date": "2024-12-05",
-      "title": "Gemma 2 family",
-      "models": [
-        "PaliGemma 2 (3B, 10B, 28B)"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "Multimodal"
       ],
       "source": null,
       "verification": "unverified"
@@ -2141,6 +2181,24 @@
       "verification": "unverified"
     },
     {
+      "id": "deep-2025-03-25-142",
+      "company": "deep",
+      "date": "2025-03-24",
+      "title": "DeepSeek-V3-0324",
+      "models": [
+        "DeepSeek-V3-0324"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": "https://api-docs.deepseek.com/updates/",
+      "verification": "verified",
+      "event_type": "model_update",
+      "related_model": "DeepSeek-V3",
+      "notes": "Official DeepSeek changelog dates the API revision to March 24, not March 25. Suffix 0324 is checkpoint date."
+    },
+    {
       "id": "goog-2025-03-25-143",
       "company": "goog",
       "date": "2025-03-25",
@@ -2151,21 +2209,6 @@
       "availability": "closed",
       "capabilities": [
         "Multimodal"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
-      "id": "deep-2025-03-25-142",
-      "company": "deep",
-      "date": "2025-03-25",
-      "title": "DeepSeek-V3-0324",
-      "models": [
-        "DeepSeek-V3-0324"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "General"
       ],
       "source": null,
       "verification": "unverified"
@@ -2247,23 +2290,6 @@
       "verification": "unverified"
     },
     {
-      "id": "oai-2025-04-14-148",
-      "company": "oai",
-      "date": "2025-04-14",
-      "title": "GPT-4.1 family",
-      "models": [
-        "GPT-4.1",
-        "GPT-4.1 mini",
-        "GPT-4.1 nano"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "General"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "glm-2025-04-14-149",
       "company": "glm",
       "date": "2025-04-14",
@@ -2283,6 +2309,23 @@
       ],
       "source": "https://github.com/zai-org/GLM-4",
       "verification": "verified"
+    },
+    {
+      "id": "oai-2025-04-14-148",
+      "company": "oai",
+      "date": "2025-04-14",
+      "title": "GPT-4.1 family",
+      "models": [
+        "GPT-4.1",
+        "GPT-4.1 mini",
+        "GPT-4.1 nano"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
     },
     {
       "id": "oai-2025-04-16-150",
@@ -2468,21 +2511,6 @@
       "verification": "unverified"
     },
     {
-      "id": "oai-2025-06-10-164",
-      "company": "oai",
-      "date": "2025-06-10",
-      "title": "o3-pro",
-      "models": [
-        "o3-pro"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "Reasoning"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "mis-2025-06-10-163",
       "company": "mis",
       "date": "2025-06-10",
@@ -2506,6 +2534,21 @@
         "Magistral Small 1.0"
       ],
       "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2025-06-10-164",
+      "company": "oai",
+      "date": "2025-06-10",
+      "title": "o3-pro",
+      "models": [
+        "o3-pro"
+      ],
+      "availability": "closed",
       "capabilities": [
         "Reasoning"
       ],
@@ -2850,6 +2893,21 @@
       "verification": "unverified"
     },
     {
+      "id": "anth-2025-08-05-187",
+      "company": "anth",
+      "date": "2025-08-05",
+      "title": "Claude Opus 4.1",
+      "models": [
+        "Claude Opus 4.1"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
       "id": "oai-2025-08-05-188",
       "company": "oai",
       "date": "2025-08-05",
@@ -2859,21 +2917,6 @@
         "gpt-oss-20b"
       ],
       "availability": "open",
-      "capabilities": [
-        "General"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
-      "id": "anth-2025-08-05-187",
-      "company": "anth",
-      "date": "2025-08-05",
-      "title": "Claude Opus 4.1",
-      "models": [
-        "Claude Opus 4.1"
-      ],
-      "availability": "closed",
       "capabilities": [
         "General"
       ],
@@ -3506,21 +3549,6 @@
       "verification": "unverified"
     },
     {
-      "id": "oai-2025-12-18-231",
-      "company": "oai",
-      "date": "2025-12-18",
-      "title": "GPT-5.2-Codex",
-      "models": [
-        "GPT-5.2-Codex"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "Coding"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "goog-2025-12-18-230",
       "company": "goog",
       "date": "2025-12-18",
@@ -3532,6 +3560,21 @@
       "availability": "open",
       "capabilities": [
         "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2025-12-18-231",
+      "company": "oai",
+      "date": "2025-12-18",
+      "title": "GPT-5.2-Codex",
+      "models": [
+        "GPT-5.2-Codex"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Coding"
       ],
       "source": null,
       "verification": "unverified"
@@ -3612,12 +3655,12 @@
       "verification": "unverified"
     },
     {
-      "id": "moon-2026-01-27-238",
-      "company": "moon",
+      "id": "mini-2026-01-27-237",
+      "company": "mini",
       "date": "2026-01-27",
-      "title": "kimi-k2.5",
+      "title": "MiniMax-M2-Her",
       "models": [
-        "kimi-k2.5"
+        "MiniMax-M2-Her"
       ],
       "availability": "open",
       "capabilities": [
@@ -3627,12 +3670,12 @@
       "verification": "unverified"
     },
     {
-      "id": "mini-2026-01-27-237",
-      "company": "mini",
+      "id": "moon-2026-01-27-238",
+      "company": "moon",
       "date": "2026-01-27",
-      "title": "MiniMax-M2-Her",
+      "title": "kimi-k2.5",
       "models": [
-        "MiniMax-M2-Her"
+        "kimi-k2.5"
       ],
       "availability": "open",
       "capabilities": [
@@ -3657,21 +3700,6 @@
       "verification": "unverified"
     },
     {
-      "id": "oai-2026-02-05-241",
-      "company": "oai",
-      "date": "2026-02-05",
-      "title": "GPT-5.3-Codex",
-      "models": [
-        "GPT-5.3-Codex"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "Coding"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "anth-2026-02-05-240",
       "company": "anth",
       "date": "2026-02-05",
@@ -3687,12 +3715,12 @@
       "verification": "unverified"
     },
     {
-      "id": "oai-2026-02-12-243",
+      "id": "oai-2026-02-05-241",
       "company": "oai",
-      "date": "2026-02-12",
-      "title": "GPT-5.3-Codex-Spark",
+      "date": "2026-02-05",
+      "title": "GPT-5.3-Codex",
       "models": [
-        "GPT-5.3-Codex-Spark"
+        "GPT-5.3-Codex"
       ],
       "availability": "closed",
       "capabilities": [
@@ -3727,6 +3755,21 @@
       "availability": "open",
       "capabilities": [
         "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2026-02-12-243",
+      "company": "oai",
+      "date": "2026-02-12",
+      "title": "GPT-5.3-Codex-Spark",
+      "models": [
+        "GPT-5.3-Codex-Spark"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Coding"
       ],
       "source": null,
       "verification": "unverified"
@@ -3838,21 +3881,6 @@
       "verification": "unverified"
     },
     {
-      "id": "oai-2026-03-03-253",
-      "company": "oai",
-      "date": "2026-03-03",
-      "title": "GPT-5.3 Instant",
-      "models": [
-        "GPT-5.3 Instant"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "General"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "goog-2026-03-03-252",
       "company": "goog",
       "date": "2026-03-03",
@@ -3863,6 +3891,21 @@
       "availability": "closed",
       "capabilities": [
         "Multimodal"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "oai-2026-03-03-253",
+      "company": "oai",
+      "date": "2026-03-03",
+      "title": "GPT-5.3 Instant",
+      "models": [
+        "GPT-5.3 Instant"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
       ],
       "source": null,
       "verification": "unverified"
@@ -3916,21 +3959,6 @@
       "verification": "unverified"
     },
     {
-      "id": "qwen-2026-03-18-257",
-      "company": "qwen",
-      "date": "2026-03-18",
-      "title": "Qwen3.5-Max-Preview",
-      "models": [
-        "Qwen3.5-Max-Preview"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "General"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "mini-2026-03-18-258",
       "company": "mini",
       "date": "2026-03-18",
@@ -3939,6 +3967,21 @@
         "MiniMax-M2.7"
       ],
       "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2026-03-18-257",
+      "company": "qwen",
+      "date": "2026-03-18",
+      "title": "Qwen3.5-Max-Preview",
+      "models": [
+        "Qwen3.5-Max-Preview"
+      ],
+      "availability": "closed",
       "capabilities": [
         "General"
       ],
@@ -4081,21 +4124,6 @@
       "verification": "unverified"
     },
     {
-      "id": "qwen-2026-04-20-268",
-      "company": "qwen",
-      "date": "2026-04-20",
-      "title": "Qwen3.6-Max-Preview",
-      "models": [
-        "Qwen3.6-Max-Preview"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "General"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "moon-2026-04-20-269",
       "company": "moon",
       "date": "2026-04-20",
@@ -4104,6 +4132,21 @@
         "kimi-k2.6"
       ],
       "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "qwen-2026-04-20-268",
+      "company": "qwen",
+      "date": "2026-04-20",
+      "title": "Qwen3.6-Max-Preview",
+      "models": [
+        "Qwen3.6-Max-Preview"
+      ],
+      "availability": "closed",
       "capabilities": [
         "General"
       ],
@@ -4274,23 +4317,6 @@
       "event_type": "model_release"
     },
     {
-      "id": "qwen-2026-06-01-qwen3-7-plus",
-      "company": "qwen",
-      "date": "2026-06-01",
-      "title": "Qwen3.7-Plus",
-      "models": [
-        "Qwen3.7-Plus"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "Multimodal",
-        "Reasoning"
-      ],
-      "source": "https://www.alibabacloud.com/help/en/model-studio/newly-released-models",
-      "verification": "verified",
-      "event_type": "model_release"
-    },
-    {
       "id": "mini-2026-06-01-minimax-m3",
       "company": "mini",
       "date": "2026-06-01",
@@ -4310,6 +4336,23 @@
       "notes": "Announcement explicitly said downloadable weights would follow in about ten days."
     },
     {
+      "id": "qwen-2026-06-01-qwen3-7-plus",
+      "company": "qwen",
+      "date": "2026-06-01",
+      "title": "Qwen3.7-Plus",
+      "models": [
+        "Qwen3.7-Plus"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning"
+      ],
+      "source": "https://www.alibabacloud.com/help/en/model-studio/newly-released-models",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
       "id": "anth-2026-06-09-claude-fable-5-and-mythos-5",
       "company": "anth",
       "date": "2026-06-09",
@@ -4324,23 +4367,6 @@
         "Coding"
       ],
       "source": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
-      "verification": "verified",
-      "event_type": "model_release"
-    },
-    {
-      "id": "moon-2026-06-12-kimi-k2-7-code",
-      "company": "moon",
-      "date": "2026-06-12",
-      "title": "Kimi K2.7 Code",
-      "models": [
-        "Kimi K2.7 Code"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "Coding",
-        "Reasoning"
-      ],
-      "source": "https://www.kimi.com/code/docs/en/kimi-code/whats-new.html",
       "verification": "verified",
       "event_type": "model_release"
     },
@@ -4362,6 +4388,23 @@
       "verification": "verified",
       "event_type": "weights_release",
       "notes": "Weights published June 12; corroborated by same-day vLLM and MiniMax ecosystem releases."
+    },
+    {
+      "id": "moon-2026-06-12-kimi-k2-7-code",
+      "company": "moon",
+      "date": "2026-06-12",
+      "title": "Kimi K2.7 Code",
+      "models": [
+        "Kimi K2.7 Code"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding",
+        "Reasoning"
+      ],
+      "source": "https://www.kimi.com/code/docs/en/kimi-code/whats-new.html",
+      "verification": "verified",
+      "event_type": "model_release"
     },
     {
       "id": "glm-2026-06-16-glm-5-2",
@@ -4449,6 +4492,23 @@
       "event_type": "model_release"
     },
     {
+      "id": "meta-2026-07-09-muse-spark-1-1",
+      "company": "meta",
+      "date": "2026-07-09",
+      "title": "Muse Spark 1.1",
+      "models": [
+        "Muse Spark 1.1"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning"
+      ],
+      "source": "https://research.meta.ai/blog/introducing-muse-spark-meta-model-api",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
       "id": "oai-2026-07-09-gpt-5-6-family",
       "company": "oai",
       "date": "2026-07-09",
@@ -4466,23 +4526,6 @@
       "source": "https://openai.com/index/gpt-5-6/",
       "verification": "verified",
       "event_type": "general_availability"
-    },
-    {
-      "id": "meta-2026-07-09-muse-spark-1-1",
-      "company": "meta",
-      "date": "2026-07-09",
-      "title": "Muse Spark 1.1",
-      "models": [
-        "Muse Spark 1.1"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "Multimodal",
-        "Reasoning"
-      ],
-      "source": "https://research.meta.ai/blog/introducing-muse-spark-meta-model-api",
-      "verification": "verified",
-      "event_type": "model_release"
     },
     {
       "id": "qwen-2026-07-15-qwen3-7-flash",
@@ -4503,23 +4546,6 @@
       "notes": "Model Studio lists qwen3.7-flash-2026-07-15 as its active API snapshot. The exact first-public availability date is not independently verified; 2026-07-15 is taken from the official version identifier."
     },
     {
-      "id": "xai-2026-07-16-grok-4-5",
-      "company": "xai",
-      "date": "2026-07-16",
-      "title": "Grok 4.5",
-      "models": [
-        "Grok 4.5"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "Reasoning",
-        "Coding"
-      ],
-      "source": "https://x.ai/news/grok-4-5",
-      "verification": "verified",
-      "event_type": "model_release"
-    },
-    {
       "id": "moon-2026-07-16-kimi-k3",
       "company": "moon",
       "date": "2026-07-16",
@@ -4537,6 +4563,23 @@
       "verification": "verified",
       "event_type": "api_release",
       "notes": "API release; full downloadable weights were announced for July 27."
+    },
+    {
+      "id": "xai-2026-07-16-grok-4-5",
+      "company": "xai",
+      "date": "2026-07-16",
+      "title": "Grok 4.5",
+      "models": [
+        "Grok 4.5"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://x.ai/news/grok-4-5",
+      "verification": "verified",
+      "event_type": "model_release"
     },
     {
       "id": "goog-2026-07-21-gemini-3-5-flash-lite",
@@ -4607,6 +4650,26 @@
       "event_type": "weights_release"
     },
     {
+      "id": "deep-2026-07-31-deepseek-v4-flash-0731-model_update",
+      "company": "deep",
+      "date": "2026-07-31",
+      "title": "DeepSeek-V4-Flash-0731",
+      "models": [
+        "DeepSeek-V4-Flash-0731"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://api-docs.deepseek.com/updates/",
+      "verification": "verified",
+      "event_type": "model_update",
+      "notes": "GA/post-training refresh of the April 24 V4-Flash Preview. Official DeepSeek changelog names the 0731 checkpoint. Downloadable weights released.",
+      "related_model": "DeepSeek-V4-Flash",
+      "weight_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731"
+    },
+    {
       "id": "meta-2026-08-05-muse-spark-1-2",
       "company": "meta",
       "date": "2026-08-05",
@@ -4675,6 +4738,26 @@
       "event_type": "model_release"
     },
     {
+      "id": "deep-2026-08-13-deepseek-v4-pro-0813-model_update",
+      "company": "deep",
+      "date": "2026-08-13",
+      "title": "DeepSeek-V4-Pro-0813",
+      "models": [
+        "DeepSeek-V4-Pro-0813"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://api-docs.deepseek.com/zh-cn/news/news260813/",
+      "verification": "verified",
+      "event_type": "model_update",
+      "notes": "General-availability revision of V4 Pro Preview. The API alias deepseek-v4-pro points to this 0813 model as of Oct 24; downloadable official checkpoint exists.",
+      "related_model": "DeepSeek-V4-Pro",
+      "weight_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813"
+    },
+    {
       "id": "goog-2026-08-13-gemini-3-7-flash",
       "company": "goog",
       "date": "2026-08-13",
@@ -4688,23 +4771,6 @@
         "Reasoning"
       ],
       "source": "https://ai.google.dev/gemini-api/docs/changelog",
-      "verification": "verified",
-      "event_type": "model_release"
-    },
-    {
-      "id": "qwen-2026-08-14-qwen3-8-27b",
-      "company": "qwen",
-      "date": "2026-08-14",
-      "title": "Qwen3.8-27B",
-      "models": [
-        "Qwen3.8-27B"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "Reasoning",
-        "Multimodal"
-      ],
-      "source": "https://github.com/QwenLM/Qwen3.8",
       "verification": "verified",
       "event_type": "model_release"
     },
@@ -4727,6 +4793,43 @@
       "notes": "Model weight publication occurred after the API announcement; this event reflects initial API availability."
     },
     {
+      "id": "qwen-2026-08-14-qwen3-8-27b",
+      "company": "qwen",
+      "date": "2026-08-14",
+      "title": "Qwen3.8-27B",
+      "models": [
+        "Qwen3.8-27B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Reasoning",
+        "Multimodal"
+      ],
+      "source": "https://github.com/QwenLM/Qwen3.8",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
+      "id": "deep-2026-08-21-deepseek-v4-flash-vision-exp-api_release",
+      "company": "deep",
+      "date": "2026-08-21",
+      "title": "DeepSeek-V4-Flash-Vision-Exp",
+      "models": [
+        "DeepSeek-V4-Flash-Vision-Exp"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://api-docs.deepseek.com/news/news260821/",
+      "verification": "verified",
+      "event_type": "api_release",
+      "notes": "Experimental multimodal API launch. Open checkpoint was not yet released at this time; official downloadable weights followed Aug 31.",
+      "related_model": "DeepSeek-V4-Flash"
+    },
+    {
       "id": "glm-2026-08-26-glm-5-3-flash",
       "company": "glm",
       "date": "2026-08-26",
@@ -4742,6 +4845,26 @@
       "source": "https://z.ai/blog/glm-5.3-flash",
       "verification": "verified",
       "event_type": "model_release"
+    },
+    {
+      "id": "deep-2026-08-31-deepseek-v4-flash-vision-exp-weights-weights_release",
+      "company": "deep",
+      "date": "2026-08-31",
+      "title": "DeepSeek-V4-Flash-Vision-Exp (weights)",
+      "models": [
+        "DeepSeek-V4-Flash-Vision-Exp"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp",
+      "verification": "verified",
+      "event_type": "weights_release",
+      "notes": "Official MIT-licensed weights made public after the Aug 21 API-only launch. Source: official Hugging Face checkpoint, first repository commits Aug 31.",
+      "related_model": "DeepSeek-V4-Flash-Vision-Exp"
     },
     {
       "id": "anth-2026-09-01-claude-fable-mythos-5-1",
@@ -4882,6 +5005,23 @@
       "event_type": "model_release"
     },
     {
+      "id": "anth-2026-09-22-claude-opus-5-5",
+      "company": "anth",
+      "date": "2026-09-22",
+      "title": "Claude Opus 5.5",
+      "models": [
+        "Claude Opus 5.5"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://www.anthropic.com/claude-opus-5-5",
+      "verification": "verified",
+      "event_type": "model_release"
+    },
+    {
       "id": "oai-2026-09-22-gpt-6-family",
       "company": "oai",
       "date": "2026-09-22",
@@ -4896,23 +5036,6 @@
         "Coding"
       ],
       "source": "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
-      "verification": "verified",
-      "event_type": "model_release"
-    },
-    {
-      "id": "anth-2026-09-22-claude-opus-5-5",
-      "company": "anth",
-      "date": "2026-09-22",
-      "title": "Claude Opus 5.5",
-      "models": [
-        "Claude Opus 5.5"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "Reasoning",
-        "Coding"
-      ],
-      "source": "https://www.anthropic.com/claude-opus-5-5",
       "verification": "verified",
       "event_type": "model_release"
     },
@@ -5021,6 +5144,87 @@
       "source": "https://ai.google.dev/gemini-api/docs/changelog",
       "verification": "verified",
       "event_type": "model_release"
+    },
+    {
+      "id": "deep-2026-10-17-deepseek-v4-1-flash-1017-model_update",
+      "company": "deep",
+      "date": "2026-10-17",
+      "title": "DeepSeek-V4.1-Flash-1017",
+      "models": [
+        "DeepSeek-V4.1-Flash-1017"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://api-docs.deepseek.com/news/news261017/",
+      "verification": "verified",
+      "event_type": "model_update",
+      "notes": "Separate October 17 checkpoint improving reasoning, coding and agent performance over original September 10 V4.1 Flash. Official model weights released; same deepseek-flash API alias now routes to -1017.",
+      "related_model": "DeepSeek-V4.1-Flash",
+      "weight_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017"
+    },
+    {
+      "id": "mini-2026-10-19-minimax-m3-1-flash-api_release",
+      "company": "mini",
+      "date": "2026-10-19",
+      "title": "MiniMax-M3.1-Flash",
+      "models": [
+        "MiniMax-M3.1-Flash"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "Coding",
+        "Reasoning"
+      ],
+      "source": "https://www.minimax.io/blog/minimax-m31f",
+      "verification": "verified",
+      "event_type": "api_release",
+      "notes": "First public API/general release Oct 19. MiniMax's announcement said model weights would be released later. Native multimodal text-output MoE.",
+      "related_model": "MiniMax-M3.1-Flash"
+    },
+    {
+      "id": "mini-2026-10-23-minimax-m3-1-flash-weights-weights_release",
+      "company": "mini",
+      "date": "2026-10-23",
+      "title": "MiniMax-M3.1-Flash (weights)",
+      "models": [
+        "MiniMax-M3.1-Flash"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal",
+        "Coding",
+        "Reasoning"
+      ],
+      "source": "https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash",
+      "verification": "verified",
+      "event_type": "weights_release",
+      "notes": "First official public Hugging Face weight commit on Oct 23; downloadable checkpoint under MiniMax Community License. Not a claim of OSI-approved licensing.",
+      "related_model": "MiniMax-M3.1-Flash"
+    },
+    {
+      "id": "moon-2026-10-23-kimi-k3-1-pro-api_release",
+      "company": "moon",
+      "date": "2026-10-23",
+      "title": "Kimi K3.1 Pro",
+      "models": [
+        "Kimi K3.1 Pro"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://www.kimi.com/code/docs/en/kimi-code/whats-new.html",
+      "verification": "verified",
+      "event_type": "api_release",
+      "notes": "First K3.1 series model launched on Kimi Code, Work, chat and API on Oct 23. Highspeed uses same model and is not a separate release. Open weights promised by Nov 4 but not yet downloadable Oct 24. Tech blog dated Oct 24: https://www.kimi.com/en/blog/kimi-k3-1-pro",
+      "related_model": "Kimi K3.1"
     }
   ]
 }
