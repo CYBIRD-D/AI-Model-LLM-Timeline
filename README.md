@@ -22,9 +22,9 @@ An interactive release-history explorer for text-generating AI models, hosted on
 
 The timeline "Named models" counter counts expanded display labels derived from explicitly specified variants. Because some legacy source labels are ambiguous, it is not a definitive count of all published models.
 
-The site loads its release records from [`data/releases.json`](./data/releases.json). This file currently contains **322 release entries**, including **47 newly added release events** from May–October 2026. Entries migrated from the previous HTML version are **not automatically validated**; newly added entries carry source URLs and date-specific release status.
+The site loads its release records from [`data/releases.json`](./data/releases.json). This file currently contains **332 release entries**. The October 14 update added 47 dated events; the October 24 follow-up added 10 more (including two historical DeepSeek revisions). Entries migrated from the previous HTML version are **not automatically validated**; newly added entries carry source URLs and date-specific release status.
 
-**Coverage:** The latest documented text-producing LLM release in this dataset is **October 13, 2026** (Gemini 4 Argon). The dataset update date is **October 14, 2026**. Coverage of releases before and after May 2026 is selective, **not an exhaustive census**. Historical entries without primary sources remain unverified; the page exposes missing references rather than inventing them.
+**Coverage:** The latest documented text-producing LLM events in this dataset are **October 23, 2026** (Kimi K3.1 Pro and MiniMax M3.1 Flash weights). The dataset update date is **October 24, 2026**. Coverage of releases before and after May 2026 is selective, **not an exhaustive census**. Historical entries without primary sources remain unverified; the page exposes missing references rather than inventing them.
 
 A data entry has the following structure:
 
@@ -41,6 +41,29 @@ A data entry has the following structure:
   "verification": "unverified"
 }
 ```
+
+## October 24, 2026: checkpoint revisions and launches
+
+**Dated DeepSeek variants are separate release events**, even if the model family or stable API alias remains the same. For example `DeepSeek-V4.1-Flash` on **Sep 10** and `DeepSeek-V4.1-Flash-1017` on **Oct 17** are different checkpoints. The suffix `-1017` identifies the checkpoint revision date (MMDD), **not** a price tier, separate model family, or independent API alias. The API name `deepseek-flash` automatically serves the current revision. Other versions added are:
+
+| Date | Checkpoint / event | Availability at event |
+| --- | --- | --- |
+| 2024-06-28 | DeepSeek-V2-Chat-0628 | Open |
+| 2024-07-24 | DeepSeek-Coder-V2-Instruct-0724 | Open |
+| 2026-07-31 | DeepSeek-V4-Flash-0731 | Open |
+| 2026-08-13 | DeepSeek-V4-Pro-0813 | Open |
+| 2026-08-21 | DeepSeek-V4-Flash-Vision-Exp API launch | Closed |
+| 2026-08-31 | DeepSeek-V4-Flash-Vision-Exp weights | Open |
+| 2026-10-17 | DeepSeek-V4.1-Flash-1017 | Open |
+
+Also corrected the existing `DeepSeek-V3-0324` release date from March 25 to **March 24, 2025** using DeepSeek's official changelog. The original DeepSeek V4 Preview release on April 24 remains separately recorded.
+
+**Newly released model events:**
+- **October 19:** `MiniMax-M3.1-Flash` launched via API as **Closed**. MiniMax said its weights would follow.
+- **October 23:** the official `MiniMaxAI/MiniMax-M3.1-Flash` weights were published on Hugging Face under the **MiniMax Community License**, represented by a separate **Open** release event.
+- **October 23:** `Kimi K3.1 Pro` became available via Kimi apps, Code, Work and API, recorded as **Closed** while its weights are not yet downloadable. Moonshot plans open weights by **November 4, 2026**; this future promise is not a release event. The faster Highspeed serving tier uses the same model and is not given its own release card.
+
+Use DeepSeek's [API changelog](https://api-docs.deepseek.com/updates/) and [1017 release announcement](https://api-docs.deepseek.com/news/news261017/), [Moonshot's Kimi Code release history](https://www.kimi.com/code/docs/en/kimi-code/whats-new.html), MiniMax's [October 19 announcement](https://www.minimax.io/blog/minimax-m31f), and the [official October 23 weights](https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash) to audit these dates. The model drawer links to first-party weight repositories where applicable.
 
 ## 2026 source-backed update
 
@@ -60,7 +83,7 @@ This refresh uses the [companion API pricing repository](https://github.com/CYBI
 | Moonshot / Kimi | 4 | Kimi announcements and Kimi Code changelog |
 | MiniMax | 2 | MiniMax's model announcement and June 12 downloadable weights |
 
-**Launch and weights can be different events.** A closed API launch followed by an open checkpoint release gets two dated entries, for example Kimi K3 (July 16 / July 27, 2026) and MiniMax M3 (June 1 / June 12, 2026). A future promise of open weights does **not** make the initial API release Open; for example the Mistral Large 4 preview is Closed as of October 14.
+**Launch and weights can be different events.** A closed API launch followed by an open checkpoint release gets two dated entries, for example Kimi K3 (July 16 / July 27, 2026) and MiniMax M3 (June 1 / June 12, 2026). A future promise of open weights does **not** make the initial API release Open; for example the Mistral Large 4 preview was Closed on its October 6 release date.
 
 We retain provider-specific dates, avoid fake release dates inferred from prices or marketing names, and do not create separate model entries for API service-speed tiers (such as HighSpeed). Embeddings-only, speech-only, image-generation-only and video-generation-only systems are out of scope for the text-producing LLM timeline. The original April 29 Mistral Medium 3.5 entry was also corrected to Open based on Mistral's first-party model lifecycle and licensing documentation.
 
