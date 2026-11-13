@@ -31,6 +31,48 @@ test('Gemma parameter variants stay grouped in all modes and at both zoom limits
  }
 });
 
+test('Early GLM families stay grouped without mixing Z1, Rumination, vision or context variants',()=>{
+ const entries=data.events.filter(e=>e.company==='glm');
+ const groups=run('groupSameDayFamilies(entries)',{entries});
+ const april=groups.filter(g=>g.date==='2025-04-14');
+ assert.deepEqual(april.map(g=>g.name).sort(),['GLM-4-0414 Family','GLM-Z1-0414 Family','GLM-Z1-Rumination-32B-0414']);
+ assert.deepEqual(april.find(g=>g.name==='GLM-4-0414 Family').events.flatMap(e=>e.models),['GLM-4-9B-0414','GLM-4-32B-Base-0414','GLM-4-32B-0414']);
+ assert.deepEqual(april.find(g=>g.name==='GLM-Z1-0414 Family').events.flatMap(e=>e.models),['GLM-Z1-9B-0414','GLM-Z1-32B-0414']);
+ assert.deepEqual(groups.filter(g=>g.date==='2024-06-05').map(g=>g.name).sort(),['GLM-4 Family','GLM-4-9B-Chat-1M','GLM-4V-9B']);
+ assert.deepEqual(groups.find(g=>g.name==='ChatGLM Family').events.flatMap(e=>e.models),['ChatGLM-6B','ChatGLM-130B']);
+ const before=JSON.stringify(entries);
+ for(const density of ['overview','detail','models'])for(const zoom of [.4,1.3,2.8]){
+  const cards=run('state.density=density;state.zoom=zoom;state.fromMonth="2022-11";layoutEvents(entries,2.08*zoom).cards',{entries,density,zoom});
+  const html=cards.map(c=>c.html).join('');
+  for(const [date,name] of [['2023-03-14','ChatGLM Family'],['2024-06-05','GLM-4 Family'],['2025-04-14','GLM-4-0414 Family'],['2025-04-14','GLM-Z1-0414 Family'],['2025-07-28','GLM-4.5 Family']]){
+   assert.equal(html.split(`aria-label="${name} — ${date}"`).length-1,1,`${density}/${zoom}: ${name}`);
+  }
+  assert.doesNotMatch(html,/aria-label="GLM-(?:4-(?:9B|32B)(?:-Base)?|Z1-(?:9B|32B))-0414 —/);
+  for(const event of entries){
+   const actual=cards.flatMap(c=>c.events).filter(e=>e.id===event.id);
+   assert.ok(actual.every(e=>e.date===event.date));
+   assert.deepEqual(run('expandModelNames(names)',{names:actual.flatMap(e=>e.models)}).sort(),run('expandModelNames(names)',{names:event.models}).sort());
+  }
+ }
+ assert.equal(JSON.stringify(entries),before);
+});
+
+test('GLM grouping combines separate same-day parameter entries and respects date and status boundaries',()=>{
+ const entries=[
+  entry('a','glm','2025-04-14',['GLM-Z1-9B-0414']),
+  entry('b','glm','2025-04-14',['GLM-Z1-32B-0414']),
+  entry('c','glm','2025-04-15',['GLM-Z1-9B-0414']),
+  entry('d','glm','2025-04-14',['GLM-Z1-32B-0414'],{availability:'closed'}),
+  entry('e','glm','2025-04-14',['GLM-Z1-9B-0415']),
+  entry('f','glm','2025-04-14',['GLM-Z1-Rumination-32B-0414'])
+ ];
+ const groups=run('groupSameDayFamilies(entries)',{entries});
+ assert.equal(groups.length,5);
+ const family=groups.find(g=>g.name==='GLM-Z1-0414 Family');
+ assert.deepEqual(family.events.map(e=>e.id),['a','b']);
+ assert.equal(family.date,'2025-04-14');
+});
+
 test('Grouping preserves dates, subtype qualifiers and complete member lists',()=>{
  const entries=[
   entry('a','goog','2026-03-31',['Gemma 4 E2B'],{capabilities:['General']}),
