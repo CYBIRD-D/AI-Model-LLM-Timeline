@@ -174,7 +174,7 @@ function cardLabel(name,company){
 }
 
 // Derive these families from model identifiers, not legacy titles such as
-// "Qwen3 family" or "Gemma 2 family" that covered unrelated subseries.
+// "Qwen3 family", "Gemma 2 family" or "GLM-4 family" that mixed subseries.
 function parameterFamily(name,company){
  let value=String(name).replace(/\s+Family\b/i,"").trim();
  if(company==="qwen"&&/^Qwen(?:\d|[-\s])/i.test(value)){
@@ -192,11 +192,19 @@ function parameterFamily(name,company){
   return value.replace(/\s*\(\s*(?:E?\d+(?:\.\d+)?[BMT](?:[-\s]+A\d+(?:\.\d+)?B)?)\s*\)/gi,"")
    .replace(/\s+E?\d+(?:\.\d+)?[BMT](?:[-\s]+A\d+(?:\.\d+)?B)?(?=$|\s)/gi,"").replace(/\s+/g," ").trim();
  }
+ if(company==="glm"&&/^(?:ChatGLM\d*|GLM[-\s])\b/i.test(value)&&/[-\s]\d+(?:\.\d+)?B(?=$|[-\s])/i.test(value)){
+  // B denotes parameters here; 1M is a context variant. Keep V, Z1,
+  // Rumination and dated checkpoints separate, while Base/Chat/Instruct
+  // variants of the same parameter family share one card.
+  return value.replace(/[-\s]+\d+(?:\.\d+)?B(?=$|[-\s])/gi,"")
+   .replace(/[-\s]+(?:Base|Chat|Instruct)(?=$|[-\s])/gi,"")
+   .replace(/\s+/g,"-").replace(/-+$/g,"");
+ }
  return null;
 }
 
 function splitModelSeries(event){
- if(event.company!=="qwen"&&event.company!=="goog")return [{event,family:null}];
+ if(!["qwen","goog","glm"].includes(event.company))return [{event,family:null}];
  const names=expandModelNames(event.models),groups=new Map();
  for(const name of names){
   const family=parameterFamily(name,event.company);
@@ -204,7 +212,7 @@ function splitModelSeries(event){
   if(!groups.has(key))groups.set(key,{family,names:[]});
   groups.get(key).names.push(name);
  }
- // Non-Gemma Google releases keep the existing Gemini family rules.
+ // Model names without parameters retain explicitly declared family rules.
  if(![...groups.values()].some(group=>group.family))return [{event,family:null}];
  return [...groups.values()].map(group=>{
   const title=group.names.length>1&&group.family?group.family+" Family":groups.size===1&&!/\s+family$/i.test(event.title)?event.title:group.names[0];
@@ -302,8 +310,8 @@ function layoutEvents(entries,scale){
  if(state.density==="overview"){
    const buckets=new Map(),windowDays=Math.max(28,Math.min(115,Math.round(105/Math.max(.4,state.zoom))));
    for(const release of releases){
-     // Family cards stay atomic at every zoom; never obscure Qwen/Gemma subseries.
-     if(release.family||release.events.some(e=>e.company==="qwen"||e.company==="goog"&&e.models.some(m=>/gemma/i.test(m)))){items.push(release);continue;}
+     // Family cards stay atomic at every zoom; never obscure inferred subseries.
+     if(release.family||release.events.some(e=>e.company==="qwen"||e.company==="glm"||e.company==="goog"&&e.models.some(m=>/gemma/i.test(m)))){items.push(release);continue;}
      const e=release.events[0];
      const bucket=Math.floor(days(monthStart(state.fromMonth),e.date)/windowDays);
      if(!buckets.has(bucket))buckets.set(bucket,[]);
