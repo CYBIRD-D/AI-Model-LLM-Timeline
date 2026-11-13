@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
-  "datasetUpdated": "2026-10-24",
-  "coverageThrough": "2026-10-23",
-  "notes": "Selective text-generating LLM history, updated October 24 2026. DeepSeek checkpoint suffixes such as -0731, -0813, -1017 represent distinct dated revisions, not generic rename/aliases. API releases before downloadable weights are separate Closed vs Open events. Added Kimi K3.1 Pro API 2026-10-23 (weights still pending), MiniMax M3.1 Flash API 2026-10-19 then open weights 2026-10-23. Original migrated entries remain partly unverified; this is not an exhaustive census. Excludes dedicated OCR-only models such as Mistral OCR 4; text-generating LLMs remain in scope.",
+  "datasetUpdated": "2026-11-13",
+  "coverageThrough": "2026-11-12",
+  "notes": "Selective text-generating LLM history, updated October 24 2026. DeepSeek checkpoint suffixes such as -0731, -0813, -1017 represent distinct dated revisions, not generic rename/aliases. API releases before downloadable weights are separate Closed vs Open events. Added Kimi K3.1 Pro API 2026-10-23 (weights still pending), MiniMax M3.1 Flash API 2026-10-19 then open weights 2026-10-23. Original migrated entries remain partly unverified; this is not an exhaustive census. Excludes dedicated OCR-only models such as Mistral OCR 4; text-generating LLMs remain in scope. November 13 update: Gemini 4 Carbon (Nov 10), Hydrogen (Nov 12), Muse Ember 1.0 (Nov 9), Qwen4-Max-Preview (Nov 11), four verified Closed entries. Qwen's entry is strictly a limited Token Plan preview rather than the general-release Qwen4 Max. Tencent HY5 was not added: as of November 13, 2026, Tencent had only announced Hy4's November 4 launch and described HY5 as a future model, with no sourced HY5 launch date.",
   "events": [
     {
       "id": "oai-2022-11-30-1",
@@ -5208,6 +5208,82 @@
       "event_type": "api_release",
       "notes": "First K3.1 series model launched on Kimi Code, Work, chat and API on Oct 23. Highspeed uses same model and is not a separate release. Open weights promised by Nov 4 but not yet downloadable Oct 24. Tech blog dated Oct 24: https://www.kimi.com/en/blog/kimi-k3-1-pro",
       "related_model": "Kimi K3.1"
+    },
+    {
+      "company": "meta",
+      "date": "2026-11-09",
+      "title": "Muse Ember 1.0",
+      "models": [
+        "Muse Ember 1.0"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding",
+        "Multimodal"
+      ],
+      "source": "https://research.meta.ai/blog/muse-ember",
+      "verification": "verified",
+      "event_type": "general_availability",
+      "notes": "Announced November 9, 2026. Available on Muse Code and Meta Model API as muse-ember-1.0. No public model-weight release confirmed.",
+      "id": "meta-2026-11-09-muse-ember-1-0"
+    },
+    {
+      "company": "goog",
+      "date": "2026-11-10",
+      "title": "Gemini 4 Carbon",
+      "models": [
+        "Gemini 4 Carbon"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding",
+        "Multimodal"
+      ],
+      "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
+      "verification": "verified",
+      "event_type": "general_availability",
+      "notes": "General availability announced November 10, 2026 via the paid Gemini API and Google products. Google reported earlier limited access for selected cybersecurity defenders approximately two weeks before, without a precise date in the official announcement. Carbon is a closed-weight model.",
+      "id": "goog-2026-11-10-gemini-4-carbon"
+    },
+    {
+      "company": "qwen",
+      "date": "2026-11-11",
+      "title": "Qwen4-Max-Preview",
+      "models": [
+        "Qwen4-Max-Preview"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding",
+        "Multimodal"
+      ],
+      "source": "https://www.alibabacloud.com/help/en/model-studio/qwen4-max-preview",
+      "verification": "verified",
+      "event_type": "limited_preview",
+      "notes": "Alibaba Cloud Model Studio documents a Token Plan-only preview from 10:00 November 11 to 24:00 November 25, 2026 (UTC+8), with retirement after that window. This is not a general-availability Qwen4-Max release or an open-weights release. API model ID: qwen4-max-preview.",
+      "id": "qwen-2026-11-11-qwen4-max-preview"
+    },
+    {
+      "company": "goog",
+      "date": "2026-11-12",
+      "title": "Gemini 4 Hydrogen",
+      "models": [
+        "Gemini 4 Hydrogen"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Reasoning",
+        "Coding",
+        "Multimodal"
+      ],
+      "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+      "verification": "verified",
+      "event_type": "general_availability",
+      "notes": "Google announced worldwide rollout November 12, 2026 across Gemini API, AI Studio, Gemini app, Antigravity and other products. Correct name is Hydrogen (not Hydrogon). Open weights not published.",
+      "id": "goog-2026-11-12-gemini-4-hydrogen"
     }
   ]
 }
