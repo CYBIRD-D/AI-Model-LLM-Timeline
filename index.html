@@ -6,8 +6,8 @@
   <meta name="color-scheme" content="dark light">
   <meta name="description" content="An interactive history of language model releases. Explore model launches by company, date, and open or closed availability.">
   <title>AI Model Timeline — Model release explorer</title>
-  <link rel="stylesheet" href="./styles.css">
-  <script src="./app.js" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=20261113-families">
+  <script src="./app.js?v=20261113-families" defer></script>
 </head>
 <body data-theme="dark">
   <div class="site">
@@ -87,13 +87,13 @@
             <div class="filter-section">
               <div class="filter-heading"><span>AVAILABILITY</span></div>
               <div id="availabilityFilters" class="availability-options"></div>
-              <div class="filter-description">Open and Closed remain separate tracks under each company.</div>
+              <div class="filter-description">Open includes models with a confirmed near-term weight release schedule.</div>
             </div>
             <div class="filter-section">
               <div class="filter-heading"><span>CAPABILITIES</span><button class="text-button" type="button" id="allCategories">All</button></div>
               <div id="capabilityFilters" class="capability-options"></div>
             </div>
-            <div class="sidebar-bottom"><span class="legend-dot legend-open"></span>Open <span class="legend-dot legend-closed"></span>Closed <span class="sidebar-bottom-note">Release status at the recorded event</span></div>
+            <div class="sidebar-bottom"><span class="legend-dot legend-open"></span>Open <span class="legend-dot legend-closed"></span>Closed <span class="sidebar-bottom-note">Dates show the first model release; weight publication dates appear in Details.</span></div>
           </aside>
 
           <section class="results" aria-label="Model releases">
@@ -124,7 +124,7 @@
               <div class="timeline-scroll" id="timelineScroll" tabindex="0" aria-label="Scrollable release timeline. Scroll horizontally to navigate dates; scroll vertically to see additional release tracks.">
                 <div id="timelineCanvas" class="timeline-canvas"></div>
               </div>
-              <div class="timeline-foot"><div class="timeline-explain"><span class="color-key"></span>Event colors identify the company; tracks separate Open and Closed. <span id="groupingNote">Use All models or maximum zoom to reveal model variants.</span></div><span id="visibleRange" class="range-text"></span></div>
+              <div class="timeline-foot"><div class="timeline-explain"><span class="color-key"></span>Event colors identify the company; tracks separate Open and Closed. <span id="groupingNote">Same-day model families stay grouped at every zoom.</span></div><span id="visibleRange" class="range-text"></span></div>
             </div>
 
             <div id="listView" class="list-view" hidden>

@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "datasetUpdated": "2026-11-13",
   "coverageThrough": "2026-11-12",
-  "notes": "Selective text-generating LLM history, updated October 24 2026. DeepSeek checkpoint suffixes such as -0731, -0813, -1017 represent distinct dated revisions, not generic rename/aliases. API releases before downloadable weights are separate Closed vs Open events. Added Kimi K3.1 Pro API 2026-10-23 (weights still pending), MiniMax M3.1 Flash API 2026-10-19 then open weights 2026-10-23. Original migrated entries remain partly unverified; this is not an exhaustive census. Excludes dedicated OCR-only models such as Mistral OCR 4; text-generating LLMs remain in scope. November 13 update: Gemini 4 Carbon (Nov 10), Hydrogen (Nov 12), Muse Ember 1.0 (Nov 9), Qwen4-Max-Preview (Nov 11), four verified Closed entries. Qwen's entry is strictly a limited Token Plan preview rather than the general-release Qwen4 Max. Tencent Hy4 GA (November 4, 2026) is now included under a new Tencent Hunyuan company. HY5 remains excluded without a verified launch. The Hy4 GA API/product launch is Closed on that date, as its weights were only promised for later.",
+  "notes": "Selective text-generating LLM history, updated November 13, 2026. Dates identify original public model launches or distinct dated checkpoint revisions. Later publication of the same weights is metadata and does not add another model release. Open/Closed classification follows availabilityPolicy, with announced schedules distinguished from confirmed weight publication. Legacy migrated records remain partly unverified. Excludes dedicated OCR-only, embedding-only, image-only and speech-only models. Qwen4-Max is a limited preview, distinct from a GA release; Tencent Hy4 is the formal model, distinct from Hy4 Preview.",
   "events": [
     {
       "id": "oai-2022-11-30-1",
@@ -419,7 +419,7 @@
       "id": "qwen-2023-11-30-28",
       "company": "qwen",
       "date": "2023-11-30",
-      "title": "Qwen-1.8B family",
+      "title": "Qwen Family",
       "models": [
         "Qwen-1.8B",
         "Qwen-72B"
@@ -447,21 +447,6 @@
       "verification": "unverified"
     },
     {
-      "id": "mis-2023-12-11-31",
-      "company": "mis",
-      "date": "2023-12-11",
-      "title": "Mistral Medium 1.0",
-      "models": [
-        "Mistral Medium 1.0"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "General"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "mis-2023-12-11-30",
       "company": "mis",
       "date": "2023-12-11",
@@ -471,6 +456,21 @@
         "Mixtral 8x7B"
       ],
       "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2023-12-11-31",
+      "company": "mis",
+      "date": "2023-12-11",
+      "title": "Mistral Medium 1.0",
+      "models": [
+        "Mistral Medium 1.0"
+      ],
+      "availability": "closed",
       "capabilities": [
         "General"
       ],
@@ -601,7 +601,7 @@
       "id": "qwen-2024-02-04-40",
       "company": "qwen",
       "date": "2024-02-04",
-      "title": "Qwen1.5 family",
+      "title": "Qwen1.5 Family",
       "models": [
         "Qwen1.5-0.5B / 1.8B / 4B / 7B / 14B / 72B"
       ],
@@ -631,7 +631,7 @@
       "id": "goog-2024-02-21-42",
       "company": "goog",
       "date": "2024-02-21",
-      "title": "Gemma 1 family",
+      "title": "Gemma 1 Family",
       "models": [
         "Gemma 1 (2B, 7B)"
       ],
@@ -694,16 +694,21 @@
       "id": "xai-2024-03-17-46",
       "company": "xai",
       "date": "2024-03-17",
-      "title": "Grok-1 open weights",
+      "title": "Grok-1 Base",
       "models": [
-        "Grok-1 open weights"
+        "Grok-1 Base"
       ],
       "availability": "open",
       "capabilities": [
         "General"
       ],
-      "source": null,
-      "verification": "unverified"
+      "source": "https://x.ai/news/grok-os",
+      "verification": "verified",
+      "event_type": "model_release",
+      "weight_status": "published",
+      "weight_release_date": "2024-03-17",
+      "weight_source": "https://github.com/xai-org/grok",
+      "notes": "First public release of the raw Grok-1 base checkpoint, not the dialogue-fine-tuned chat model. This is a distinct model release, rather than a second launch of the earlier Grok chat product."
     },
     {
       "id": "qwen-2024-03-28-47",
@@ -1074,7 +1079,7 @@
       "id": "qwen-2024-06-06-71",
       "company": "qwen",
       "date": "2024-06-06",
-      "title": "Qwen2 family",
+      "title": "Qwen2 Family",
       "models": [
         "Qwen2-0.5B / 1.5B / 7B / 57B-A14B / 72B"
       ],
@@ -1149,7 +1154,7 @@
       "id": "goog-2024-06-27-76",
       "company": "goog",
       "date": "2024-06-27",
-      "title": "Gemma 2 family",
+      "title": "Gemma 2 Family",
       "models": [
         "Gemma 2 (9B, 27B)"
       ],
@@ -1280,7 +1285,7 @@
       "id": "goog-2024-07-31-82",
       "company": "goog",
       "date": "2024-07-31",
-      "title": "Gemma 2 family",
+      "title": "Gemma 2 (2B)",
       "models": [
         "Gemma 2 (2B)"
       ],
@@ -1295,7 +1300,7 @@
       "id": "qwen-2024-08-08-83",
       "company": "qwen",
       "date": "2024-08-08",
-      "title": "Qwen2 family",
+      "title": "Qwen2-Math Family",
       "models": [
         "Qwen2-Math-1.5B / 7B / 72B"
       ],
@@ -1371,7 +1376,7 @@
       "id": "qwen-2024-08-30-87",
       "company": "qwen",
       "date": "2024-08-30",
-      "title": "Qwen2 family",
+      "title": "Qwen2-VL Family",
       "models": [
         "Qwen2-VL-2B/72B"
       ],
@@ -1462,7 +1467,7 @@
       "id": "qwen-2024-09-19-94",
       "company": "qwen",
       "date": "2024-09-19",
-      "title": "Qwen2.5 family",
+      "title": "Qwen2.5 Family",
       "models": [
         "Qwen2.5-0.5B / 1.5B / 3B / 7B / 14B / 32B / 72B"
       ],
@@ -1477,7 +1482,7 @@
       "id": "qwen-2024-09-19-95",
       "company": "qwen",
       "date": "2024-09-19",
-      "title": "Qwen2.5 family",
+      "title": "Qwen2.5-Coder Family",
       "models": [
         "Qwen2.5-Coder-1.5B / 7B"
       ],
@@ -1492,7 +1497,7 @@
       "id": "qwen-2024-09-19-96",
       "company": "qwen",
       "date": "2024-09-19",
-      "title": "Qwen2.5 family",
+      "title": "Qwen2.5-Math Family",
       "models": [
         "Qwen2.5-Math-1.5B / 7B / 72B"
       ],
@@ -1553,7 +1558,7 @@
       "id": "goog-2024-10-03-99",
       "company": "goog",
       "date": "2024-10-03",
-      "title": "Gemma 2 family",
+      "title": "Gemma 2 JPN (2B)",
       "models": [
         "Gemma 2 JPN (2B)"
       ],
@@ -1616,7 +1621,7 @@
       "id": "qwen-2024-11-12-104",
       "company": "qwen",
       "date": "2024-11-12",
-      "title": "Qwen2.5 family",
+      "title": "Qwen2.5-Coder Family",
       "models": [
         "Qwen2.5-Coder-0.5B / 3B / 14B / 32B"
       ],
@@ -1707,7 +1712,7 @@
       "id": "goog-2024-12-05-110",
       "company": "goog",
       "date": "2024-12-05",
-      "title": "Gemma 2 family",
+      "title": "PaliGemma 2 Family",
       "models": [
         "PaliGemma 2 (3B, 10B, 28B)"
       ],
@@ -1926,7 +1931,7 @@
       "id": "qwen-2025-01-26-124",
       "company": "qwen",
       "date": "2025-01-26",
-      "title": "Qwen2.5 family",
+      "title": "Qwen2.5-VL Family",
       "models": [
         "Qwen2.5-VL-3B / 7B / 72B"
       ],
@@ -2033,7 +2038,7 @@
       "id": "goog-2025-02-19-131",
       "company": "goog",
       "date": "2025-02-19",
-      "title": "Gemma 2 family",
+      "title": "PaliGemma 2 mix Family",
       "models": [
         "PaliGemma 2 mix (3B, 10B, 28B)"
       ],
@@ -2139,7 +2144,7 @@
       "id": "goog-2025-03-10-138",
       "company": "goog",
       "date": "2025-03-10",
-      "title": "Gemma 3 family",
+      "title": "Gemma 3 Family",
       "models": [
         "Gemma 3 (1B, 4B, 12B, 27B)"
       ],
@@ -2217,7 +2222,7 @@
       "id": "qwen-2025-03-25-141",
       "company": "qwen",
       "date": "2025-03-25",
-      "title": "Qwen2.5 family",
+      "title": "Qwen2.5-VL-32B-Instruct",
       "models": [
         "Qwen2.5-VL-32B-Instruct"
       ],
@@ -2362,7 +2367,7 @@
       "id": "qwen-2025-04-29-152",
       "company": "qwen",
       "date": "2025-04-29",
-      "title": "Qwen3 family",
+      "title": "Qwen3 Family",
       "models": [
         "Qwen3 Family (0.6B / 1.7B / 4B / 8B / 14B / 32B / 30B-A3B / 235B-A22B)"
       ],
@@ -2438,7 +2443,7 @@
       "id": "goog-2025-05-20-157",
       "company": "goog",
       "date": "2025-05-20",
-      "title": "MedGemma",
+      "title": "MedGemma Family",
       "models": [
         "MedGemma (4B, 27B)"
       ],
@@ -2511,21 +2516,6 @@
       "verification": "unverified"
     },
     {
-      "id": "mis-2025-06-10-163",
-      "company": "mis",
-      "date": "2025-06-10",
-      "title": "Magistral Medium 1.0",
-      "models": [
-        "Magistral Medium 1.0"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "Reasoning"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "mis-2025-06-10-162",
       "company": "mis",
       "date": "2025-06-10",
@@ -2534,6 +2524,21 @@
         "Magistral Small 1.0"
       ],
       "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-06-10-163",
+      "company": "mis",
+      "date": "2025-06-10",
+      "title": "Magistral Medium 1.0",
+      "models": [
+        "Magistral Medium 1.0"
+      ],
+      "availability": "closed",
       "capabilities": [
         "Reasoning"
       ],
@@ -2636,7 +2641,7 @@
       "id": "goog-2025-06-26-170",
       "company": "goog",
       "date": "2025-06-26",
-      "title": "Gemma 3 family",
+      "title": "Gemma 3n Family",
       "models": [
         "Gemma 3n (E2B, E4B)"
       ],
@@ -2651,7 +2656,7 @@
       "id": "goog-2025-07-09-171",
       "company": "goog",
       "date": "2025-07-09",
-      "title": "Gemma 2 family",
+      "title": "T5Gemma / MedGemma 27B multimodal",
       "models": [
         "T5Gemma",
         "MedGemma 27B multimodal"
@@ -2775,28 +2780,13 @@
       "id": "qwen-2025-07-22-178",
       "company": "qwen",
       "date": "2025-07-22",
-      "title": "Qwen3 family",
+      "title": "Qwen3-Coder-480B-A35B-Instruct",
       "models": [
         "Qwen3-Coder-480B-A35B-Instruct"
       ],
       "availability": "open",
       "capabilities": [
         "Coding"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
-      "id": "mis-2025-07-24-181",
-      "company": "mis",
-      "date": "2025-07-24",
-      "title": "Magistral Medium 1.1",
-      "models": [
-        "Magistral Medium 1.1"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "Reasoning"
       ],
       "source": null,
       "verification": "unverified"
@@ -2810,6 +2800,21 @@
         "Magistral Small 1.1"
       ],
       "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-07-24-181",
+      "company": "mis",
+      "date": "2025-07-24",
+      "title": "Magistral Medium 1.1",
+      "models": [
+        "Magistral Medium 1.1"
+      ],
+      "availability": "closed",
       "capabilities": [
         "Reasoning"
       ],
@@ -2866,7 +2871,7 @@
       "id": "qwen-2025-07-31-185",
       "company": "qwen",
       "date": "2025-07-31",
-      "title": "Qwen3 family",
+      "title": "Qwen3-Coder-30B-A3B-Instruct",
       "models": [
         "Qwen3-Coder-30B-A3B-Instruct"
       ],
@@ -2975,7 +2980,7 @@
       "id": "goog-2025-08-14-192",
       "company": "goog",
       "date": "2025-08-14",
-      "title": "Gemma 3 family",
+      "title": "Gemma 3 (270M)",
       "models": [
         "Gemma 3 (270M)"
       ],
@@ -3005,16 +3010,20 @@
       "id": "xai-2025-08-23-194",
       "company": "xai",
       "date": "2025-08-23",
-      "title": "Grok 2.5 open weights",
+      "title": "Grok 2.5",
       "models": [
-        "Grok 2.5 open weights"
+        "Grok 2.5"
       ],
       "availability": "open",
       "capabilities": [
         "General"
       ],
       "source": null,
-      "verification": "unverified"
+      "verification": "unverified",
+      "event_type": "model_release",
+      "weight_status": "published",
+      "weight_release_date": "2025-08-23",
+      "notes": "First public release recorded for this distinct checkpoint. No earlier launch date is established by the migrated dataset."
     },
     {
       "id": "xai-2025-08-28-195",
@@ -3050,7 +3059,7 @@
       "id": "qwen-2025-09-11-197",
       "company": "qwen",
       "date": "2025-09-11",
-      "title": "Qwen3 family",
+      "title": "Qwen3-Next Family",
       "models": [
         "Qwen3-Next-80B-A3B-Instruct/Thinking"
       ],
@@ -3092,21 +3101,6 @@
       "verification": "unverified"
     },
     {
-      "id": "mis-2025-09-18-201",
-      "company": "mis",
-      "date": "2025-09-18",
-      "title": "Magistral Medium 1.2",
-      "models": [
-        "Magistral Medium 1.2"
-      ],
-      "availability": "closed",
-      "capabilities": [
-        "Reasoning"
-      ],
-      "source": null,
-      "verification": "unverified"
-    },
-    {
       "id": "mis-2025-09-18-200",
       "company": "mis",
       "date": "2025-09-18",
@@ -3115,6 +3109,21 @@
         "Magistral Small 1.2"
       ],
       "availability": "open",
+      "capabilities": [
+        "Reasoning"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2025-09-18-201",
+      "company": "mis",
+      "date": "2025-09-18",
+      "title": "Magistral Medium 1.2",
+      "models": [
+        "Magistral Medium 1.2"
+      ],
+      "availability": "closed",
       "capabilities": [
         "Reasoning"
       ],
@@ -3140,7 +3149,7 @@
       "id": "qwen-2025-09-21-203",
       "company": "qwen",
       "date": "2025-09-21",
-      "title": "Qwen3 family",
+      "title": "Qwen3-Omni Family",
       "models": [
         "Qwen3-Omni-30B-A3B-Instruct / Thinking"
       ],
@@ -3170,7 +3179,7 @@
       "id": "qwen-2025-09-23-205",
       "company": "qwen",
       "date": "2025-09-23",
-      "title": "Qwen3 family",
+      "title": "Qwen3-VL Family",
       "models": [
         "Qwen3-VL-235B-A22B-Instruct / Thinking"
       ],
@@ -3245,7 +3254,7 @@
       "id": "qwen-2025-10-04-210",
       "company": "qwen",
       "date": "2025-10-04",
-      "title": "Qwen3 family",
+      "title": "Qwen3-VL Family",
       "models": [
         "Qwen3-VL-30B-A3B-Instruct / Thinking"
       ],
@@ -3275,7 +3284,7 @@
       "id": "qwen-2025-10-15-211",
       "company": "qwen",
       "date": "2025-10-15",
-      "title": "Qwen3 family",
+      "title": "Qwen3-VL Family",
       "models": [
         "Qwen3-VL-4B / 8B"
       ],
@@ -3290,7 +3299,7 @@
       "id": "qwen-2025-10-21-213",
       "company": "qwen",
       "date": "2025-10-21",
-      "title": "Qwen3 family",
+      "title": "Qwen3-VL Family",
       "models": [
         "Qwen3-VL-2B / 32B"
       ],
@@ -3552,7 +3561,7 @@
       "id": "goog-2025-12-18-230",
       "company": "goog",
       "date": "2025-12-18",
-      "title": "FunctionGemma family",
+      "title": "FunctionGemma (270M) / T5Gemma v2",
       "models": [
         "FunctionGemma (270M)",
         "T5Gemma v2"
@@ -3613,7 +3622,7 @@
       "id": "goog-2026-01-13-234",
       "company": "goog",
       "date": "2026-01-13",
-      "title": "Gemma 1 family",
+      "title": "MedGemma 1.5 (4B)",
       "models": [
         "MedGemma 1.5 (4B)"
       ],
@@ -3628,7 +3637,7 @@
       "id": "goog-2026-01-15-235",
       "company": "goog",
       "date": "2026-01-15",
-      "title": "TranslateGemma",
+      "title": "TranslateGemma Family",
       "models": [
         "TranslateGemma (4B, 12B, 27B)"
       ],
@@ -3854,7 +3863,7 @@
       "id": "qwen-2026-02-24-250",
       "company": "qwen",
       "date": "2026-02-24",
-      "title": "Qwen3.5 family",
+      "title": "Qwen3.5 Family",
       "models": [
         "Qwen3.5-122B-A10B / 35B-A3B / 27B"
       ],
@@ -3869,7 +3878,7 @@
       "id": "qwen-2026-03-02-251",
       "company": "qwen",
       "date": "2026-03-02",
-      "title": "Qwen3.5 family",
+      "title": "Qwen3.5 Family",
       "models": [
         "Qwen3.5-0.8B / 2B / 4B / 9B"
       ],
@@ -4007,7 +4016,7 @@
       "id": "goog-2026-03-31-260",
       "company": "goog",
       "date": "2026-03-31",
-      "title": "Gemma 4 family",
+      "title": "Gemma 4 Family",
       "models": [
         "Gemma 4 (E2B, E4B, 31B, 26B A4B)"
       ],
@@ -4324,7 +4333,7 @@
       "models": [
         "MiniMax M3"
       ],
-      "availability": "closed",
+      "availability": "open",
       "capabilities": [
         "Coding",
         "Reasoning",
@@ -4333,7 +4342,10 @@
       "source": "https://www.minimax.io/blog/minimax-m3",
       "verification": "verified",
       "event_type": "api_release",
-      "notes": "Announcement explicitly said downloadable weights would follow in about ten days."
+      "notes": "Original API/model launch date retained. Model weights were published later; the weight date is metadata, not another model release.",
+      "weight_status": "published",
+      "weight_release_date": "2026-06-12",
+      "weight_source": "https://github.com/MiniMax-AI/MiniMax-M3"
     },
     {
       "id": "qwen-2026-06-01-qwen3-7-plus",
@@ -4369,25 +4381,6 @@
       "source": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
       "verification": "verified",
       "event_type": "model_release"
-    },
-    {
-      "id": "mini-2026-06-12-minimax-m3-open-release",
-      "company": "mini",
-      "date": "2026-06-12",
-      "title": "MiniMax M3 open release",
-      "models": [
-        "MiniMax M3"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "Coding",
-        "Reasoning",
-        "Multimodal"
-      ],
-      "source": "https://github.com/MiniMax-AI/MiniMax-M3",
-      "verification": "verified",
-      "event_type": "weights_release",
-      "notes": "Weights published June 12; corroborated by same-day vLLM and MiniMax ecosystem releases."
     },
     {
       "id": "moon-2026-06-12-kimi-k2-7-code",
@@ -4536,7 +4529,7 @@
       "models": [
         "Kimi K3"
       ],
-      "availability": "closed",
+      "availability": "open",
       "capabilities": [
         "Multimodal",
         "Reasoning",
@@ -4545,7 +4538,10 @@
       "source": "https://www.kimi.com/en/blog/kimi-k3",
       "verification": "verified",
       "event_type": "api_release",
-      "notes": "API release; full downloadable weights were announced for July 27."
+      "notes": "Original K3 API/model launch date retained. The July 27 weight release is recorded in metadata, not as another model release.",
+      "weight_status": "published",
+      "weight_release_date": "2026-07-27",
+      "weight_source": "https://www.kimi.com/news/kimi-k3-open-source"
     },
     {
       "id": "xai-2026-07-16-grok-4-5",
@@ -4613,24 +4609,6 @@
       "source": "https://www.anthropic.com/news/claude-opus-5",
       "verification": "verified",
       "event_type": "model_release"
-    },
-    {
-      "id": "moon-2026-07-27-kimi-k3-open-release",
-      "company": "moon",
-      "date": "2026-07-27",
-      "title": "Kimi K3 open release",
-      "models": [
-        "Kimi K3"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "Multimodal",
-        "Reasoning",
-        "Coding"
-      ],
-      "source": "https://www.kimi.com/news/kimi-k3-open-source",
-      "verification": "verified",
-      "event_type": "weights_release"
     },
     {
       "id": "deep-2026-07-31-deepseek-v4-flash-0731-model_update",
@@ -4765,7 +4743,7 @@
       "models": [
         "GLM-5.3"
       ],
-      "availability": "closed",
+      "availability": "open",
       "capabilities": [
         "Reasoning",
         "Coding"
@@ -4773,7 +4751,10 @@
       "source": "https://z.ai/blog/glm-5.3",
       "verification": "verified",
       "event_type": "api_release",
-      "notes": "Model weight publication occurred after the API announcement; this event reflects initial API availability."
+      "notes": "GLM-5.3 uses the same base model as GLM-5.2. Z.ai announced public weights within two weeks of launch. Classified Open under this timeline’s near-term publication policy; the date remains the initial API launch. The schedule is not confirmation of actual weight publication.",
+      "weight_status": "announced",
+      "weight_release_window": "within two weeks of the August 14, 2026 launch",
+      "weight_schedule_source": "https://z.ai/blog/glm-5.3"
     },
     {
       "id": "qwen-2026-08-14-qwen3-8-27b",
@@ -4800,7 +4781,7 @@
       "models": [
         "DeepSeek-V4-Flash-Vision-Exp"
       ],
-      "availability": "closed",
+      "availability": "open",
       "capabilities": [
         "Multimodal",
         "Reasoning",
@@ -4809,8 +4790,11 @@
       "source": "https://api-docs.deepseek.com/news/news260821/",
       "verification": "verified",
       "event_type": "api_release",
-      "notes": "Experimental multimodal API launch. Open checkpoint was not yet released at this time; official downloadable weights followed Aug 31.",
-      "related_model": "DeepSeek-V4-Flash"
+      "notes": "Original experimental multimodal API launch date retained. The August 31 weight release is recorded in metadata, not as another model release.",
+      "related_model": "DeepSeek-V4-Flash",
+      "weight_status": "published",
+      "weight_release_date": "2026-08-31",
+      "weight_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp"
     },
     {
       "id": "glm-2026-08-26-glm-5-3-flash",
@@ -4828,26 +4812,6 @@
       "source": "https://z.ai/blog/glm-5.3-flash",
       "verification": "verified",
       "event_type": "model_release"
-    },
-    {
-      "id": "deep-2026-08-31-deepseek-v4-flash-vision-exp-weights-weights_release",
-      "company": "deep",
-      "date": "2026-08-31",
-      "title": "DeepSeek-V4-Flash-Vision-Exp (weights)",
-      "models": [
-        "DeepSeek-V4-Flash-Vision-Exp"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "Multimodal",
-        "Reasoning",
-        "Coding"
-      ],
-      "source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp",
-      "verification": "verified",
-      "event_type": "weights_release",
-      "notes": "Official MIT-licensed weights made public after the Aug 21 API-only launch. Source: official Hugging Face checkpoint, first repository commits Aug 31.",
-      "related_model": "DeepSeek-V4-Flash-Vision-Exp"
     },
     {
       "id": "anth-2026-09-01-claude-fable-mythos-5-1",
@@ -5064,7 +5028,7 @@
       "models": [
         "Mistral Large 4"
       ],
-      "availability": "closed",
+      "availability": "open",
       "capabilities": [
         "Multimodal",
         "Reasoning",
@@ -5073,7 +5037,10 @@
       "source": "https://mistral.ai/news/mistral-large-4/",
       "verification": "verified",
       "event_type": "limited_preview",
-      "notes": "API preview; weights were announced for later in October, not downloadable at launch."
+      "notes": "API preview of Mistral Large 4. Mistral announced weights by the end of October. Classified Open under this timeline’s near-term publication policy; the date remains the October 6 preview launch. The schedule is not confirmation of actual weight publication.",
+      "weight_status": "announced",
+      "weight_release_window": "by the end of October 2026",
+      "weight_schedule_source": "https://mistral.ai/news/mistral-large-4/"
     },
     {
       "id": "anth-2026-10-07-claude-haiku-5-5",
@@ -5157,7 +5124,7 @@
       "models": [
         "MiniMax-M3.1-Flash"
       ],
-      "availability": "closed",
+      "availability": "open",
       "capabilities": [
         "Multimodal",
         "Coding",
@@ -5166,28 +5133,11 @@
       "source": "https://www.minimax.io/blog/minimax-m31f",
       "verification": "verified",
       "event_type": "api_release",
-      "notes": "First public API/general release Oct 19. MiniMax's announcement said model weights would be released later. Native multimodal text-output MoE.",
-      "related_model": "MiniMax-M3.1-Flash"
-    },
-    {
-      "id": "mini-2026-10-23-minimax-m3-1-flash-weights-weights_release",
-      "company": "mini",
-      "date": "2026-10-23",
-      "title": "MiniMax-M3.1-Flash (weights)",
-      "models": [
-        "MiniMax-M3.1-Flash"
-      ],
-      "availability": "open",
-      "capabilities": [
-        "Multimodal",
-        "Coding",
-        "Reasoning"
-      ],
-      "source": "https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash",
-      "verification": "verified",
-      "event_type": "weights_release",
-      "notes": "First official public Hugging Face weight commit on Oct 23; downloadable checkpoint under MiniMax Community License. Not a claim of OSI-approved licensing.",
-      "related_model": "MiniMax-M3.1-Flash"
+      "notes": "Original API/model launch date retained. Model weights were published later; the weight date is metadata, not another model release.",
+      "related_model": "MiniMax-M3.1-Flash",
+      "weight_status": "published",
+      "weight_release_date": "2026-10-23",
+      "weight_source": "https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash"
     },
     {
       "id": "moon-2026-10-23-kimi-k3-1-pro-api_release",
@@ -5197,7 +5147,7 @@
       "models": [
         "Kimi K3.1 Pro"
       ],
-      "availability": "closed",
+      "availability": "open",
       "capabilities": [
         "Multimodal",
         "Reasoning",
@@ -5206,8 +5156,11 @@
       "source": "https://www.kimi.com/code/docs/en/kimi-code/whats-new.html",
       "verification": "verified",
       "event_type": "api_release",
-      "notes": "First K3.1 series model launched on Kimi Code, Work, chat and API on Oct 23. Highspeed uses same model and is not a separate release. Open weights promised by Nov 4 but not yet downloadable Oct 24. Tech blog dated Oct 24: https://www.kimi.com/en/blog/kimi-k3-1-pro",
-      "related_model": "Kimi K3.1"
+      "notes": "First K3.1 series model launched on Kimi Code, Work, chat and API on October 23. Highspeed serves the same model and is not a separate release. Moonshot announced full weights by November 4. Classified Open under this timeline’s near-term publication policy; actual weight publication is not confirmed by this record.",
+      "related_model": "Kimi K3.1",
+      "weight_status": "announced",
+      "weight_release_window": "by November 4, 2026",
+      "weight_schedule_source": "https://www.kimi.com/en/blog/kimi-k3-1-pro"
     },
     {
       "id": "hy-2026-11-04-hy4-ga",
@@ -5217,7 +5170,7 @@
       "models": [
         "Hy4"
       ],
-      "availability": "closed",
+      "availability": "open",
       "capabilities": [
         "Multimodal",
         "Reasoning",
@@ -5227,7 +5180,10 @@
       "verification": "verified",
       "event_type": "general_availability",
       "related_model": "Hy4",
-      "notes": "Tencent officially launched Hy4 on November 4, 2026 via Tencent Cloud TokenHub and other apps. Full Hy4 model weights were not published at launch; Tencent said it planned to release model weights and system cards in the coming days. The separately released Hy4 preview had open weights on August 28. Closed reflects availability on this event date, not Tencent's stated intent for future weight publication."
+      "notes": "Tencent formally launched Hy4 on November 4 via Tencent Cloud TokenHub and other products. Tencent announced full model weights and system cards in the coming days. Classified Open under this timeline’s near-term publication policy; the original November 4 model launch date is retained. This is distinct from Hy4 Preview. The schedule is not confirmation of actual weight publication.",
+      "weight_status": "announced",
+      "weight_release_window": "in the days following the November 4, 2026 launch",
+      "weight_schedule_source": "https://www.tencent.com/tencent-launches-hy4-joining-the-ranks-of-the-worlds-leading-open-source-ai-models/"
     },
     {
       "company": "meta",
@@ -5305,5 +5261,6 @@
       "notes": "Google announced worldwide rollout November 12, 2026 across Gemini API, AI Studio, Gemini app, Antigravity and other products. Correct name is Hydrogen (not Hydrogon). Open weights not published.",
       "id": "goog-2026-11-12-gemini-4-hydrogen"
     }
-  ]
+  ],
+  "availabilityPolicy": "Open includes published models and models with an explicit, sourced commitment to publish weights within a few months. An unspecified future open-source intention alone is insufficient. Model dates use the original public launch; later weight publication is metadata, never a duplicate launch."
 }

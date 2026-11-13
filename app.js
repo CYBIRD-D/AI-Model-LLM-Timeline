@@ -166,6 +166,60 @@ function expandModelNames(names){
  return [...new Set(names.flatMap(expandModelName).filter(Boolean))];
 }
 
+// Abbreviate only timeline labels. Source names, search and details stay intact.
+function cardLabel(name,company){
+ const prefixes={oai:/\bGPT-(?=\d)/gi,anth:/\bClaude\s+/gi,goog:/\bGemini\s+/gi,meta:/^(?:Meta\s+|Llama[\s-]+)(?=\S)/i,mis:/^Mistral[\s-]+/i,deep:/^DeepSeek[\s-]+/i,qwen:/^Qwen[\s-]*(?=\d|VL\b)/i,xai:/^Grok[\s-]+/i,glm:/^GLM[\s-]+/i,moon:/^Kimi[\s-]+/i,mini:/^MiniMax[\s-]+/i};
+ const short=String(name).replace(prefixes[company]||/^$/,"").trim();
+ return short||name;
+}
+
+// Derive these families from model identifiers, not legacy titles such as
+// "Qwen3 family", "Gemma 2 family" or "GLM-4 family" that mixed subseries.
+function parameterFamily(name,company){
+ let value=String(name).replace(/\s+Family\b/i,"").trim();
+ if(company==="qwen"&&/^Qwen(?:\d|[-\s])/i.test(value)){
+  const match=value.match(/^(Qwen(?:\d+(?:\.\d+)*)?)(.*)$/i);
+  if(!match)return null;
+  let suffix=match[2];
+  suffix=suffix.replace(/[-\s]+\d+(?:\.\d+)?[BMT](?:[-\s]+A\d+(?:\.\d+)?B)?(?=$|[-\s])/gi,"");
+  suffix=suffix.replace(/[-\s]+(?:Instruct|Thinking|Base)(?=$|[-\s])/gi,"");
+  suffix=suffix.replace(/^[-\s]+|[-\s]+$/g,"");
+  return match[1]+(suffix?"-"+suffix.replace(/\s+/g,"-"):"");
+ }
+ if(company==="goog"&&/^(?:Gemma|CodeGemma|PaliGemma|RecurrentGemma|DataGemma|MedGemma|T5Gemma|FunctionGemma|TranslateGemma|VaultGemma)\b/i.test(value)){
+  // E2B/E4B, 270M, 26B A4B: parameter counts are not separate series.
+  // Keep 3n, JPN, mix, v2 and multimodal qualifiers in the family key.
+  return value.replace(/\s*\(\s*(?:E?\d+(?:\.\d+)?[BMT](?:[-\s]+A\d+(?:\.\d+)?B)?)\s*\)/gi,"")
+   .replace(/\s+E?\d+(?:\.\d+)?[BMT](?:[-\s]+A\d+(?:\.\d+)?B)?(?=$|\s)/gi,"").replace(/\s+/g," ").trim();
+ }
+ if(company==="glm"&&/^(?:ChatGLM\d*|GLM[-\s])\b/i.test(value)&&/[-\s]\d+(?:\.\d+)?B(?=$|[-\s])/i.test(value)){
+  // B denotes parameters here; 1M is a context variant. Keep V, Z1,
+  // Rumination and dated checkpoints separate, while Base/Chat/Instruct
+  // variants of the same parameter family share one card.
+  return value.replace(/[-\s]+\d+(?:\.\d+)?B(?=$|[-\s])/gi,"")
+   .replace(/[-\s]+(?:Base|Chat|Instruct)(?=$|[-\s])/gi,"")
+   .replace(/\s+/g,"-").replace(/-+$/g,"");
+ }
+ return null;
+}
+
+function splitModelSeries(event){
+ if(!["qwen","goog","glm"].includes(event.company))return [{event,family:null}];
+ const names=expandModelNames(event.models),groups=new Map();
+ for(const name of names){
+  const family=parameterFamily(name,event.company);
+  const key=family||name;
+  if(!groups.has(key))groups.set(key,{family,names:[]});
+  groups.get(key).names.push(name);
+ }
+ // Model names without parameters retain explicitly declared family rules.
+ if(![...groups.values()].some(group=>group.family))return [{event,family:null}];
+ return [...groups.values()].map(group=>{
+  const title=group.names.length>1&&group.family?group.family+" Family":groups.size===1&&!/\s+family$/i.test(event.title)?event.title:group.names[0];
+  return {family:group.family,event:{...event,models:group.names,title}};
+ });
+}
+
 function familyNameForEvent(event){
  const title=String(event.title||"").trim();
  if(!/\s+family$/i.test(title))return null;
@@ -184,12 +238,16 @@ function familyNameForEvent(event){
 }
 function groupSameDayFamilies(entries){
  const grouped=new Map(),standalone=[];
- for(const e of entries){
-  const family=familyNameForEvent(e);
+ for(const entry of entries)for(const {event:e,family:inferred} of splitModelSeries(entry)){
+  const family=inferred?inferred+" Family":familyNameForEvent(e);
   if(!family){standalone.push({events:[e],date:e.date,name:e.title,grouped:false});continue;}
-  const key=[e.date,e.company,e.availability,e.capabilities.slice().sort().join(";"),family.toLowerCase()].join("|");
-  if(!grouped.has(key))grouped.set(key,{events:[],date:e.date,name:family,grouped:true,family:true});
+  const key=[e.date,e.company,e.availability,family.toLowerCase()].join("|");
+  if(!grouped.has(key))grouped.set(key,{events:[],date:e.date,name:family,grouped:true,family:true,inferred:!!inferred});
   grouped.get(key).events.push(e);
+ }
+ for(const item of grouped.values()){
+  const models=expandModelNames(item.events.flatMap(e=>e.models));
+  if(item.inferred&&models.length===1){item.name=item.events[0].title;item.family=false;item.grouped=false;}
  }
  return [...standalone,...grouped.values()];
 }
@@ -247,34 +305,40 @@ function compactCardMetrics(name){
 }
 function layoutEvents(entries,scale){
  const gap=6,rowGap=4;
+ const releases=groupSameDayFamilies(entries);
  let items=[];
  if(state.density==="overview"){
    const buckets=new Map(),windowDays=Math.max(28,Math.min(115,Math.round(105/Math.max(.4,state.zoom))));
-   for(const e of entries){
+   for(const release of releases){
+     // Family cards stay atomic at every zoom; never obscure inferred subseries.
+     if(release.family||release.events.some(e=>e.company==="qwen"||e.company==="glm"||e.company==="goog"&&e.models.some(m=>/gemma/i.test(m)))){items.push(release);continue;}
+     const e=release.events[0];
      const bucket=Math.floor(days(monthStart(state.fromMonth),e.date)/windowDays);
      if(!buckets.has(bucket))buckets.set(bucket,[]);
      buckets.get(bucket).push(e);
    }
-   items=[...buckets.values()].map(list=>({events:list,date:list[0].date,name:list.length===1?list[0].title:list.length+" releases",grouped:list.length>1}));
+   items.push(...[...buckets.values()].map(list=>({events:list,date:list[0].date,name:list.length===1?list[0].title:list.length+" releases",grouped:list.length>1})));
  }else if(state.density==="models"){
    // All models does not break apart same-day family releases.
    // The family card keeps its original member list in the detail drawer.
-   for(const release of groupSameDayFamilies(entries)){
+   for(const release of releases){
      if(release.family){
        items.push(release);
        continue;
      }
      for(const e of release.events){
-       for(const name of expandModelNames(e.models.length?e.models:[e.title])){
-         items.push({events:[e],date:e.date,name,model:name,grouped:false});
+       const names=expandModelNames(e.models.length?e.models:[e.title]);
+       for(const name of names){
+         const label=names.length===1&&!/\bfamily\b/i.test(e.title)?e.title:name;
+         items.push({events:[e],date:e.date,name:label,model:label,grouped:false});
        }
      }
    }
- }else items=groupSameDayFamilies(entries);
+ }else items=releases;
  items.sort((a,b)=>a.date.localeCompare(b.date)||a.name.localeCompare(b.name));
  const occupied=[],rowHeights=[],cards=[];
  for(const item of items){
-  const metrics=compactCardMetrics(item.name);
+  const metrics=compactCardMetrics(cardLabel(item.name,item.events[0].company));
   const x=days(monthStart(state.fromMonth),item.date)*scale;
   let row=occupied.findIndex(end=>end+gap<=x);
   if(row<0){row=occupied.length;occupied.push(x+metrics.width);rowHeights.push(metrics.height);}
@@ -324,8 +388,9 @@ function drawTimeline(entries){
      if(!subset.length)continue;
      const layout=layoutEvents(subset,px);
      html+='<div class="track" style="width:'+(width+label)+'px;height:'+layout.height+'px"><div class="track-label"><span class="track-label-name" style="color:var(--'+av+')">'+(av==="open"?"Open":"Closed")+'</span><span class="track-count">'+(state.density==="models"?layout.cards.length:subset.length)+'</span></div><div class="track-grid" style="width:'+width+'px">'+grid+layout.cards.map(c=>{
-       if(c.events.length>1)groupRecords.set("g"+gIndex++,c.events);
-       return c.html.replace('data-group="true"',c.events.length>1?'data-group="g'+(gIndex-1)+'"':'data-group="false"');
+       const key="g"+gIndex++;
+       groupRecords.set(key,c.events);
+       return c.html.replace(/data-group="[^"]*"/,'data-group="'+key+'"');
      }).join("")+'</div></div>';
    }
  }
@@ -343,6 +408,15 @@ function drawList(entries){
  $("listRows").innerHTML=shown.map(e=>'<tr><td>'+escapeHTML(e.date)+'</td><td>'+escapeHTML(e.title)+'</td><td>'+escapeHTML(COMPANIES[e.company]?.name||e.company)+'</td><td><span class="'+e.availability+'-tag">'+(e.availability==="open"?"Open":"Closed")+'</span></td><td>'+escapeHTML(e.capabilities.join(", "))+'</td><td><button class="row-open" type="button" data-id="'+escapeHTML(e.id)+'">Details ↗</button></td></tr>').join("");
  $("showMore").hidden=shown.length>=ordered.length;
 }
+function weightDetails(entries){
+ const records=entries.filter(e=>e.weight_status||e.weight_release_date||e.weight_release_window);
+ if(!records.length)return "";
+ return '<section class="drawer-section"><h3>MODEL WEIGHTS</h3>'+records.map(e=>{
+  const status=e.weight_release_date?"Published "+fmt(e.weight_release_date):"Publication announced: "+e.weight_release_window;
+  const source=e.weight_source||e.weight_schedule_source;
+  return '<p class="drawer-note">'+(records.length>1?escapeHTML(e.title)+" · ":"")+escapeHTML(status)+'. The timeline uses the original model release date.</p>'+(source?'<a class="drawer-link" href="'+escapeHTML(source)+'" target="_blank" rel="noopener noreferrer">'+(e.weight_release_date?"Model weights / release reference":"Weight release schedule")+' ↗</a>':"");
+ }).join("")+'</section>';
+}
 function openDetails(id,groupKey,modelName=""){
  let entries=groupKey&&groupRecords.has(groupKey)?groupRecords.get(groupKey):[];
  if(!entries.length){const found=state.data.find(e=>e.id===id);if(found)entries=[found];}
@@ -352,7 +426,7 @@ function openDetails(id,groupKey,modelName=""){
  const uniqueModels=[...new Set(entries.flatMap(e=>expandModelNames(e.models)))];
  const grouped=entries.length>1;
  const eventLabels={weights_release:"Weights published",api_release:"API launch",api_snapshot:"API snapshot",model_update:"Model revision",general_availability:"General availability",limited_preview:"Limited preview",model_release:"Model release"};
- $("drawerContent").innerHTML='<div class="drawer-company"><span class="company-color" style="background:'+comp.color+'"></span>'+escapeHTML(comp.name)+'</div><h2 class="drawer-title" id="drawerTitle">'+escapeHTML(grouped?entries.length+" grouped releases":(modelName||first.title))+'</h2><div class="drawer-info"><div><span class="detail-key">'+(grouped?"Earliest release":"Release date")+'</span><span class="detail-value">'+escapeHTML(fmt(first.date))+'</span></div><div><span class="detail-key">Availability</span><span class="detail-value">'+(first.availability==="open"?"Open":"Closed")+'</span></div><div><span class="detail-key">'+(grouped?"Release groups":"Event type")+'</span><span class="detail-value">'+(grouped?entries.length:escapeHTML(eventLabels[first.event_type]||"Model release"))+'</span></div><div><span class="detail-key">Capabilities</span><span class="detail-value">'+escapeHTML([...new Set(entries.flatMap(e=>e.capabilities))].join(", "))+'</span></div></div>'+(grouped?'<section class="drawer-section"><h3>RELEASE DATES</h3><ul class="drawer-models">'+entries.map(e=>'<li>'+escapeHTML(e.date)+' · '+escapeHTML(e.title)+'</li>').join("")+'</ul></section>':'')+'<section class="drawer-section"><h3>MODELS IN THIS RELEASE</h3><ul class="drawer-models">'+uniqueModels.map(m=>'<li>'+escapeHTML(m)+'</li>').join("")+'</ul></section><section class="drawer-section"><h3>DATA & SOURCES</h3>'+(first.source?'<a class="drawer-link" href="'+escapeHTML(first.source)+'" target="_blank" rel="noopener noreferrer">Official release reference ↗</a>':'<div class="drawer-note">Source not yet recorded in the migrated dataset. This historical entry has not been independently verified. Help improve its accuracy on GitHub.</div>')+(first.weight_source?'<p><a class="drawer-link" href="'+escapeHTML(first.weight_source)+'" target="_blank" rel="noopener noreferrer">Official model weights ↗</a></p>':'')+(first.notes?'<p class="drawer-note">'+escapeHTML(first.notes)+'</p>':'')+'<p><a class="drawer-link" href="https://github.com/CYBIRD-D/AI-Model-LLM-Timeline/issues/new" target="_blank" rel="noopener noreferrer">Suggest a correction ↗</a></p></section>';
+ $("drawerContent").innerHTML='<div class="drawer-company"><span class="company-color" style="background:'+comp.color+'"></span>'+escapeHTML(comp.name)+'</div><h2 class="drawer-title" id="drawerTitle">'+escapeHTML(grouped?entries.length+" grouped releases":(modelName||first.title))+'</h2><div class="drawer-info"><div><span class="detail-key">'+(grouped?"Earliest release":"Release date")+'</span><span class="detail-value">'+escapeHTML(fmt(first.date))+'</span></div><div><span class="detail-key">Availability</span><span class="detail-value">'+(first.availability==="open"?"Open":"Closed")+'</span></div><div><span class="detail-key">'+(grouped?"Release groups":"Event type")+'</span><span class="detail-value">'+(grouped?entries.length:escapeHTML(eventLabels[first.event_type]||"Model release"))+'</span></div><div><span class="detail-key">Capabilities</span><span class="detail-value">'+escapeHTML([...new Set(entries.flatMap(e=>e.capabilities))].join(", "))+'</span></div></div>'+weightDetails(entries)+(grouped?'<section class="drawer-section"><h3>RELEASE DATES</h3><ul class="drawer-models">'+entries.map(e=>'<li>'+escapeHTML(e.date)+' · '+escapeHTML(e.title)+'</li>').join("")+'</ul></section>':'')+'<section class="drawer-section"><h3>MODELS IN THIS RELEASE</h3><ul class="drawer-models">'+uniqueModels.map(m=>'<li>'+escapeHTML(m)+'</li>').join("")+'</ul></section><section class="drawer-section"><h3>DATA & SOURCES</h3>'+(first.source?'<a class="drawer-link" href="'+escapeHTML(first.source)+'" target="_blank" rel="noopener noreferrer">Official release reference ↗</a>':'<div class="drawer-note">Source not yet recorded in the migrated dataset. This historical entry has not been independently verified. Help improve its accuracy on GitHub.</div>')+(first.weight_source&&!first.weight_status?'<p><a class="drawer-link" href="'+escapeHTML(first.weight_source)+'" target="_blank" rel="noopener noreferrer">Official model weights ↗</a></p>':'')+(first.notes?'<p class="drawer-note">'+escapeHTML(first.notes)+'</p>':'')+'<p><a class="drawer-link" href="https://github.com/CYBIRD-D/AI-Model-LLM-Timeline/issues/new" target="_blank" rel="noopener noreferrer">Suggest a correction ↗</a></p></section>';
  $("drawerOverlay").hidden=false;$("detailDrawer").classList.add("is-open");$("detailDrawer").setAttribute("aria-hidden","false");document.body.style.overflow="hidden";$("closeDrawer").focus();
 }
 function closeDetails(){$("detailDrawer").classList.remove("is-open");$("detailDrawer").setAttribute("aria-hidden","true");$("drawerOverlay").hidden=true;document.body.style.overflow="";if(previousFocus?.isConnected)previousFocus.focus();}
@@ -453,7 +527,7 @@ async function init(){
  $("metricEvents").textContent=state.data.length.toLocaleString();
  $("metricModels").textContent=state.data.reduce((n,e)=>n+expandModelNames(e.models).length,0).toLocaleString();
  $("metricCompanies").textContent=new Set(state.data.map(e=>e.company)).size;
- $("updateBadge").textContent="Dataset migrated "+datasetMeta.datasetUpdated;
+ $("updateBadge").textContent="Dataset updated "+datasetMeta.datasetUpdated;
  $("coverageBadge").textContent="Records through "+datasetMeta.coverageThrough;
  let theme=null,collapsed=null;
  try{theme=localStorage.getItem("timeline-theme");collapsed=localStorage.getItem("timeline-filters-collapsed");}catch{}
