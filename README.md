@@ -22,9 +22,9 @@ An interactive release-history explorer for text-generating AI models, hosted on
 
 The timeline "Named models" counter counts expanded display labels derived from explicitly specified variants. Because some legacy source labels are ambiguous, it is not a definitive count of all published models.
 
-The site loads its release records from [`data/releases.json`](./data/releases.json). This file currently contains **331 release entries**. The October 14 update added 46 dated events; the October 24 follow-up added 10 more (including two historical DeepSeek revisions). Entries migrated from the previous HTML version are **not automatically validated**; newly added entries carry source URLs and date-specific release status.
+The site loads its release records from [`data/releases.json`](./data/releases.json). This file currently contains **335 release entries**. The October 14 update added 46 dated events; the October 24 follow-up added 10 more (including two historical DeepSeek revisions). Entries migrated from the previous HTML version are **not automatically validated**; newly added entries carry source URLs and date-specific release status.
 
-**Coverage:** The latest documented text-producing LLM events in this dataset are **October 23, 2026** (Kimi K3.1 Pro and MiniMax M3.1 Flash weights). The dataset update date is **October 24, 2026**. Coverage of releases before and after May 2026 is selective, **not an exhaustive census**. Historical entries without primary sources remain unverified; the page exposes missing references rather than inventing them.
+**Coverage:** The latest documented release in this dataset is **November 12, 2026** (Gemini 4 Hydrogen). The dataset update date is **November 13, 2026**. Coverage of releases before and after May 2026 is selective, **not an exhaustive census**. Historical entries without primary sources remain unverified; the page exposes missing references rather than inventing them.
 
 A data entry has the following structure:
 
@@ -41,6 +41,21 @@ A data entry has the following structure:
   "verification": "unverified"
 }
 ```
+
+## November 13, 2026: Carbon, Hydrogen, Ember, and Qwen4-Max Preview
+
+Four official, dated releases have been added to the timeline:
+
+| Release date | Model | Availability at release | Official source |
+| --- | --- | --- | --- |
+| 2026-11-09 | Muse Ember 1.0 (API model ID: `muse-ember-1.0`) | Closed | [Meta AI Research](https://research.meta.ai/blog/muse-ember) |
+| 2026-11-10 | Gemini 4 Carbon | Closed | [Google](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/) |
+| 2026-11-11 | Qwen4-Max-Preview (`qwen4-max-preview`) | Closed | [Alibaba Cloud](https://www.alibabacloud.com/help/en/model-studio/qwen4-max-preview) |
+| 2026-11-12 | Gemini 4 Hydrogen | Closed | [Google](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/) |
+
+**Important classification details:** The Qwen4 model is a **Token Plan-only preview** dated November 11–25, not a full general-availability release of Qwen4-Max. Google's general Carbon release was November 10, after earlier restricted cybersecurity access whose exact start date is not stated in the main announcement. These records represent **closed-weight models**.
+
+**Tencent HY5 is not entered:** Tencent's November 4 announcement was for **Hy4**, and coverage dated November 13 still describes HY5 as a future model, rather than a product with a verifiable release date. We do not assign HY5 a date or availability status until it actually launches. See [Tencent's Hy4 announcement](https://www.tencent.com/tencent-launches-hy4-joining-the-ranks-of-the-worlds-leading-open-source-ai-models/).
 
 ## October 24, 2026: checkpoint revisions and launches
 
