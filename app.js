@@ -1,5 +1,5 @@
 "use strict";
-const COMPANIES={oai:{name:"OpenAI",color:"#94a6ff"},anth:{name:"Anthropic",color:"#ce9980"},goog:{name:"Google DeepMind",color:"#5c9bee"},meta:{name:"Meta",color:"#9e8bee"},mis:{name:"Mistral AI",color:"#f3a563"},deep:{name:"DeepSeek",color:"#46bfaf"},qwen:{name:"Alibaba Qwen",color:"#e8b459"},xai:{name:"xAI",color:"#95a0af"},glm:{name:"Zhipu AI / GLM",color:"#c790e8"},moon:{name:"Moonshot AI",color:"#73cce0"},mini:{name:"MiniMax",color:"#ed8aa7"}};
+const COMPANIES={oai:{name:"OpenAI",color:"#94a6ff"},anth:{name:"Anthropic",color:"#ce9980"},goog:{name:"Google DeepMind",color:"#5c9bee"},meta:{name:"Meta",color:"#9e8bee"},mis:{name:"Mistral AI",color:"#f3a563"},deep:{name:"DeepSeek",color:"#46bfaf"},qwen:{name:"Alibaba Qwen",color:"#e8b459"},xai:{name:"xAI",color:"#95a0af"},glm:{name:"Zhipu AI / GLM",color:"#c790e8"},hy:{name:"Tencent Hunyuan",color:"#75bcd7"},moon:{name:"Moonshot AI",color:"#73cce0"},mini:{name:"MiniMax",color:"#ed8aa7"}};
 const COMPANY_ORDER=Object.keys(COMPANIES);
 const CAPS=["General","Reasoning","Multimodal","Coding"];
 const MONTHS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
