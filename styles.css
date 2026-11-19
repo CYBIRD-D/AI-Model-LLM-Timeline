@@ -96,6 +96,11 @@ body[data-theme=light] .date-group input[type=month]{color-scheme:light}
 .event-card.compact-card.family-card{background:color-mix(in srgb,var(--panel2) 87%,var(--event-color) 13%);border-left-width:3px}
 .event-card.compact-card.family-card:hover{background:var(--panel3)}
 
+@media(any-pointer:fine){
+ .timeline-canvas{cursor:grab;user-select:none}
+ .timeline-scroll.is-panning,.timeline-scroll.is-panning *{cursor:grabbing}
+}
+
 .dot-track{min-height:44px}
 .dot-track .track-grid::before{content:"";position:absolute;inset:20px 0 auto;border-top:1px solid var(--stroke);pointer-events:none}
 .event-dot{position:absolute;z-index:1;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:transparent}
