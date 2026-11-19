@@ -4936,6 +4936,28 @@
       "event_type": "model_release"
     },
     {
+      "id": "qwen-2026-08-26-qwen3-8-flash-next",
+      "company": "qwen",
+      "date": "2026-08-26",
+      "title": "Qwen3.8-Flash-Next",
+      "models": [
+        "Qwen3.8-Flash-Next"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://github.com/QwenLM/Qwen3.8-Flash-Next#news",
+      "verification": "verified",
+      "event_type": "model_release",
+      "notes": "Qwen's release log dates the model launch to August 26, 2026. The model is an early release of the architecture used in Qwen4, with weights available under Qwen Community License 1.0.",
+      "weight_status": "published",
+      "weight_release_date": "2026-08-26",
+      "weight_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next"
+    },
+    {
       "id": "anth-2026-09-01-claude-fable-mythos-5-1",
       "company": "anth",
       "date": "2026-09-01",
