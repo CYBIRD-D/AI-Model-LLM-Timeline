@@ -560,6 +560,51 @@ function defaultFromMonth(){
  const previousYear=(yearFromMonth(lastDataMonth)-1)+"-01";
  return previousYear<firstDataMonth?firstDataMonth:previousYear;
 }
+function enableTimelineDrag(scroll,canvas){
+ const threshold=6;
+ let gesture=null,suppressClick=false;
+
+ function endDrag(event){
+  if(!gesture||(event.pointerId!==undefined&&event.pointerId!==gesture.pointerId))return;
+  const {pointerId}=gesture;
+  gesture=null;
+  scroll.classList.remove("is-panning");
+  if(scroll.hasPointerCapture(pointerId))scroll.releasePointerCapture(pointerId);
+ }
+
+ scroll.addEventListener("pointerdown",event=>{
+  suppressClick=false;
+  if(gesture||event.pointerType!=="mouse"||event.button!==0||!canvas.contains(event.target))return;
+  if(scroll.scrollWidth<=scroll.clientWidth)return;
+  gesture={pointerId:event.pointerId,x:event.clientX,y:event.clientY,left:scroll.scrollLeft,dragging:false};
+ });
+ window.addEventListener("pointermove",event=>{
+  if(gesture?.pointerId!==event.pointerId)return;
+  if(!(event.buttons&1)){endDrag(event);return;}
+  const dx=event.clientX-gesture.x;
+  if(!gesture.dragging){
+   if(Math.abs(dx)<threshold||Math.abs(dx)<Math.abs(event.clientY-gesture.y))return;
+   gesture.dragging=true;
+   suppressClick=true;
+   scroll.setPointerCapture(event.pointerId);
+   scroll.classList.add("is-panning");
+   hideDotPreview();
+  }
+  event.preventDefault();
+  scroll.scrollLeft=gesture.left-dx;
+ });
+ window.addEventListener("pointerup",endDrag);
+ window.addEventListener("pointercancel",endDrag);
+ window.addEventListener("blur",endDrag);
+ scroll.addEventListener("lostpointercapture",endDrag);
+ scroll.addEventListener("click",event=>{
+  // A drag can still generate a click, even when it began on a model button.
+  if(!suppressClick||event.detail===0)return;
+  suppressClick=false;
+  event.preventDefault();
+  event.stopPropagation();
+ },true);
+}
 function setupEvents(){
  $("searchInput").addEventListener("input",e=>{state.query=e.target.value;state.listLimit=120;draw();});
  $("companyFilters").addEventListener("change",e=>{const id=e.target.dataset.company;if(!id)return;e.target.checked?state.companies.add(id):state.companies.delete(id);draw();});
@@ -583,6 +628,7 @@ function setupEvents(){
  $("filterToggle").addEventListener("click",()=>{setCollapsed(!state.filtersCollapsed);draw();});
  $("expandBtn").addEventListener("click",()=>setExpanded(!state.expanded));
  const canvas=$("timelineCanvas");
+ enableTimelineDrag($("timelineScroll"),canvas);
  canvas.addEventListener("click",e=>{
   const button=e.target.closest(".event-card,.event-dot");
   if(!button)return;

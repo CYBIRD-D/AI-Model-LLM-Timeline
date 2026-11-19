@@ -6,8 +6,8 @@
   <meta name="color-scheme" content="dark light">
   <meta name="description" content="An interactive history of language model releases. Explore model launches by company, date, and open or closed availability.">
   <title>AI Model Timeline — Model release explorer</title>
-  <link rel="stylesheet" href="./styles.css?v=20261119-dots">
-  <script src="./app.js?v=20261119-dots" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=20261119-drag">
+  <script src="./app.js?v=20261119-drag" defer></script>
 </head>
 <body data-theme="dark">
   <div class="site">
@@ -122,7 +122,7 @@
                   <button id="expandBtn" class="expand-btn" type="button" aria-pressed="false" title="Expand timeline workspace">Expand ⤢</button>
                 </div>
               </div>
-              <div class="timeline-scroll" id="timelineScroll" tabindex="0" aria-label="Scrollable release timeline. Scroll horizontally to navigate dates; scroll vertically to see additional release tracks.">
+              <div class="timeline-scroll" id="timelineScroll" tabindex="0" aria-label="Release timeline. Drag left or right with the mouse or use the scrollbar to navigate dates. Scroll vertically to see more release tracks.">
                 <div id="timelineCanvas" class="timeline-canvas"></div>
               </div>
               <div class="timeline-foot"><div class="timeline-explain"><span class="color-key"></span>Event colors identify the company; tracks separate Open and Closed. <span id="groupingNote">Same-day model families stay grouped at every zoom.</span></div><span id="visibleRange" class="range-text"></span></div>
