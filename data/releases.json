@@ -1,8 +1,8 @@
 {
   "schemaVersion": 3,
-  "datasetUpdated": "2026-11-13",
+  "datasetUpdated": "2026-11-19",
   "coverageThrough": "2026-11-12",
-  "notes": "Selective text-generating LLM history, updated November 13, 2026. Dates identify original public model launches or distinct dated checkpoint revisions. Later publication of the same weights is metadata and does not add another model release. Open/Closed classification follows availabilityPolicy, with announced schedules distinguished from confirmed weight publication. Legacy migrated records remain partly unverified. Excludes dedicated OCR-only, embedding-only, image-only and speech-only models. Qwen4-Max is a limited preview, distinct from a GA release; Tencent Hy4 is the formal model, distinct from Hy4 Preview.",
+  "notes": "Selective text-generating LLM history. Dates identify original public model launches or distinct dated checkpoint revisions. Later publication of the same weights is metadata and does not add another model release. Open/Closed classification follows availabilityPolicy, with announced schedules distinguished from confirmed weight publication. Legacy migrated records remain partly unverified. Excludes dedicated OCR-only, embedding-only, image-only and speech-only models. Qwen4-Max is a limited preview, distinct from a GA release; Tencent Hy4 is the formal model, distinct from Hy4 Preview.",
   "events": [
     {
       "id": "oai-2022-11-30-1",
@@ -1436,7 +1436,7 @@
       "id": "oai-2024-09-12-92",
       "company": "oai",
       "date": "2024-09-12",
-      "title": "o1 family",
+      "title": "o1 Family",
       "models": [
         "o1-preview",
         "o1-mini"
@@ -1445,8 +1445,8 @@
       "capabilities": [
         "Reasoning"
       ],
-      "source": null,
-      "verification": "unverified"
+      "source": "https://openai.com/index/introducing-openai-o1-preview/",
+      "verification": "verified"
     },
     {
       "id": "mis-2024-09-17-93",
@@ -1682,7 +1682,7 @@
       "id": "oai-2024-11-20-108",
       "company": "oai",
       "date": "2024-11-20",
-      "title": "GPT-4o family",
+      "title": "GPT-4o update (1120)",
       "models": [
         "GPT-4o update(1120)"
       ],
@@ -1727,7 +1727,7 @@
       "id": "oai-2024-12-05-111",
       "company": "oai",
       "date": "2024-12-05",
-      "title": "o1 family",
+      "title": "o1 Family",
       "models": [
         "OpenAI o1",
         "o1 pro mode"
@@ -1736,8 +1736,8 @@
       "capabilities": [
         "Reasoning"
       ],
-      "source": null,
-      "verification": "unverified"
+      "source": "https://openai.com/index/introducing-chatgpt-pro/",
+      "verification": "verified"
     },
     {
       "id": "meta-2024-12-06-112",
@@ -1961,7 +1961,7 @@
       "id": "oai-2025-01-29-126",
       "company": "oai",
       "date": "2025-01-29",
-      "title": "GPT-4o family",
+      "title": "GPT-4o update (0129)",
       "models": [
         "GPT-4o update(0129)"
       ],
@@ -2252,7 +2252,7 @@
       "id": "oai-2025-03-27-145",
       "company": "oai",
       "date": "2025-03-27",
-      "title": "GPT-4o family",
+      "title": "GPT-4o update (0327)",
       "models": [
         "GPT-4o update (0327)"
       ],
@@ -2427,7 +2427,7 @@
       "id": "oai-2025-05-16-156",
       "company": "oai",
       "date": "2025-05-16",
-      "title": "codex-1 family",
+      "title": "codex-1 Family",
       "models": [
         "codex-1",
         "codex-mini-latest"
@@ -2436,8 +2436,8 @@
       "capabilities": [
         "Coding"
       ],
-      "source": null,
-      "verification": "unverified"
+      "source": "https://openai.com/index/introducing-codex/",
+      "verification": "verified"
     },
     {
       "id": "goog-2025-05-20-157",
@@ -2916,7 +2916,7 @@
       "id": "oai-2025-08-05-188",
       "company": "oai",
       "date": "2025-08-05",
-      "title": "gpt-oss family",
+      "title": "gpt-oss Family",
       "models": [
         "gpt-oss-120b",
         "gpt-oss-20b"
@@ -2925,8 +2925,8 @@
       "capabilities": [
         "General"
       ],
-      "source": null,
-      "verification": "unverified"
+      "source": "https://openai.com/index/introducing-gpt-oss/",
+      "verification": "verified"
     },
     {
       "id": "qwen-2025-08-06-189",

@@ -10,6 +10,7 @@ const dUTC=s=>Date.parse(s+"T00:00:00Z");
 const days=(a,b)=>(dUTC(b)-dUTC(a))/86400000;
 const iso=(y,m=1,d=1)=>new Date(Date.UTC(y,m-1,d)).toISOString().slice(0,10);
 const fmt=d=>{const [y,m,day]=d.split("-");return MONTHS[Number(m)-1]+" "+Number(day)+", "+y;};
+const shortDate=value=>value.slice(2);
 const monthStart=key=>key+"-01";
 const monthAfter=key=>{const [y,m]=key.split("-").map(Number);return iso(y,m+1).slice(0,7);};
 const yearFromMonth=key=>Number(key.slice(0,4));
@@ -19,15 +20,18 @@ const state={data:[],query:"",companies:new Set(COMPANY_ORDER),availability:new 
 let datasetMeta={},toastTimeout,previousFocus=null,resizeTimer,firstDataMonth,lastDataMonth,lastSelectableMonth;
 let activeMonthField=null,calendarYear=0;
 function tell(message){const el=$("toast");el.textContent=message;el.classList.add("show");clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>el.classList.remove("show"),2800);}
-function prettyMonth(value){
+function prettyMonth(value,compact=false){
  if(!validMonth(value))return "Select month";
- return MONTHS[Number(value.slice(5))-1]+" "+value.slice(0,4);
+ const year=value.slice(0,4);
+ return MONTHS[Number(value.slice(5))-1]+" "+(compact?shortDate(year):year);
 }
 function syncMonthButtons(){
  for(const field of ["fromMonth","toMonth"]){
-  $(field+"Text").textContent=prettyMonth(state[field]);
-  $(field).dataset.month=state[field];
-  $(field).setAttribute("aria-expanded",String(activeMonthField===field&&!$("monthPickerPopup").hidden));
+  const button=$(field);
+  $(field+"Text").textContent=prettyMonth(state[field],true);
+  button.title=prettyMonth(state[field]);
+  button.dataset.month=state[field];
+  button.setAttribute("aria-expanded",String(activeMonthField===field&&!$("monthPickerPopup").hidden));
  }
 }
 function renderMonthPicker(){
@@ -167,9 +171,19 @@ function expandModelNames(names){
 }
 
 // Abbreviate only timeline labels. Source names, search and details stay intact.
+const CARD_WORDS={experimental:"Exp.",instruct:"Instr.",preview:"Prev.",snapshot:"snap."};
 function cardLabel(name,company){
  const prefixes={oai:/\bGPT-(?=\d)/gi,anth:/\bClaude\s+/gi,goog:/\bGemini\s+/gi,meta:/^(?:Meta\s+|Llama[\s-]+)(?=\S)/i,mis:/^Mistral[\s-]+/i,deep:/^DeepSeek[\s-]+/i,qwen:/^Qwen[\s-]*(?=\d|VL\b)/i,xai:/^Grok[\s-]+/i,glm:/^GLM[\s-]+/i,moon:/^Kimi[\s-]+/i,mini:/^MiniMax[\s-]+/i};
- const short=String(name).replace(prefixes[company]||/^$/,"").trim();
+ let short=String(name).replace(prefixes[company]||/^$/,"").trim();
+ if(company==="oai"){
+  short=short.replace(/^4V\s*\/\s*4 with Vision$/i,"4V")
+   .replace(/^ChatGPT\s*\/\s*3\.5 series$/i,"ChatGPT / 3.5")
+   .replace(/^4o update\s*\((\d{4})\)$/i,"4o ($1)");
+ }
+ if(company==="goog")short=short.replace(/\bFlash Thinking Mode$/,"Flash Thinking");
+ if(short.length>20){
+  short=short.replace(/\b(?:experimental|instruct|preview|snapshot)\b/gi,word=>CARD_WORDS[word.toLowerCase()]);
+ }
  return short||name;
 }
 
@@ -220,12 +234,19 @@ function splitModelSeries(event){
  });
 }
 
+const OPENAI_FAMILY_MEMBERS=new Map([
+ ["o1",/^(?:OpenAI\s+)?o1(?:-(?:preview|mini|pro)|\s+pro\s+mode)?$/i],
+ ["gpt-oss",/^gpt-oss-\d+(?:\.\d+)?b$/i],
+ ["codex-1",/^(?:codex-1|codex-mini-latest)$/i]
+]);
 function familyNameForEvent(event){
  const title=String(event.title||"").trim();
  if(!/\s+family$/i.test(title))return null;
  const family=title.replace(/\s+family$/i,"").trim();
  const names=expandModelNames(event.models);
  if(names.length<2)return null;
+ const openAIRule=event.company==="oai"?OPENAI_FAMILY_MEMBERS.get(family.toLowerCase()):null;
+ if(openAIRule)return names.every(name=>openAIRule.test(name))?family+" Family":null;
  const escaped=family.replace(/[-/\\^$*+?.()|[\]{}]/g,"\\$&");
  let match;
  if(/^Claude\s+\d+(?:\.\d+)?$/i.test(family)){
@@ -293,7 +314,7 @@ function wrapCardTitle(label,maxWidth){
  return lines.length?lines:[""];
 }
 function compactCardMetrics(name){
- const choices=[92,104,116,128,140,152,166,180,194];
+ const choices=[70,80,92,104,116,128,140,152,166,180,194];
  let best=null;
  for(const width of choices){
   const lines=wrapCardTitle(name,width-17);
@@ -350,9 +371,10 @@ function layoutEvents(entries,scale){
  const html=cards.map(({item,row,x,metrics})=>{
   const company=COMPANIES[item.events[0].company];
   const fullName=escapeHTML(item.name);
+  const fullDate=escapeHTML(item.date);
   const nameLines=metrics.lines.map(escapeHTML).join("<br>");
   const family=item.family?" family-card":"";
-  const card='<button type="button" aria-label="'+fullName+' — '+escapeHTML(item.date)+'" class="event-card compact-card'+family+' '+(item.grouped&&!item.family?"grouped ":"")+(item.model?"model-level":"")+'" data-id="'+escapeHTML(item.events[0].id)+'" data-group="'+(item.grouped?"true":"false")+'" data-model="'+escapeHTML(item.model||"")+'" style="left:'+x.toFixed(1)+'px;top:'+rowTops[row]+'px;width:'+metrics.width+'px;height:'+metrics.height+'px;--event-color:'+company.color+'" title="'+fullName+' — '+escapeHTML(item.date)+'"><span class="event-name">'+nameLines+'</span><span class="event-date">'+escapeHTML(item.date)+'</span></button>';
+  const card='<button type="button" aria-label="'+fullName+' — '+fullDate+'" class="event-card compact-card'+family+' '+(item.grouped&&!item.family?"grouped ":"")+(item.model?"model-level":"")+'" data-id="'+escapeHTML(item.events[0].id)+'" data-group="'+(item.grouped?"true":"false")+'" data-model="'+escapeHTML(item.model||"")+'" style="left:'+x.toFixed(1)+'px;top:'+rowTops[row]+'px;width:'+metrics.width+'px;height:'+metrics.height+'px;--event-color:'+company.color+'" title="'+fullName+' — '+fullDate+'"><span class="event-name">'+nameLines+'</span><time class="event-date" datetime="'+fullDate+'">'+escapeHTML(shortDate(item.date))+'</time></button>';
   return {html:card,events:item.events};
  });
  return {height:Math.max(57,offset+3),cards:html};
@@ -371,7 +393,7 @@ function drawTimeline(entries){
    if(key===state.fromMonth||key.endsWith("-01")){
     const year=key.slice(0,4),yearNext=(Number(year)+1)+"-01";
     const boundedEnd=monthStart(yearNext)<end?monthStart(yearNext):end;
-    yearSegments.push('<div class="axis-year" style="left:'+x.toFixed(1)+'px;width:'+(days(monthStart(key),boundedEnd)*px).toFixed(1)+'px">'+year+'</div>');
+    yearSegments.push('<div class="axis-year" title="'+year+'" style="left:'+x.toFixed(1)+'px;width:'+(days(monthStart(key),boundedEnd)*px).toFixed(1)+'px">'+shortDate(year)+'</div>');
    }
    if(w>=29)monthSegments.push('<div class="axis-month" style="left:'+x.toFixed(1)+'px;width:'+w.toFixed(1)+'px">'+MONTHS[Number(key.slice(5))-1]+'</div>');
    key=monthEnd;
@@ -396,7 +418,9 @@ function drawTimeline(entries){
  }
  $("timelineCanvas").innerHTML=html;
  $("timelineCanvas").style.width=width+label+"px";
- $("visibleRange").textContent=state.fromMonth+" – "+state.toMonth;
+ const range=$("visibleRange");
+ range.textContent=shortDate(state.fromMonth)+" – "+shortDate(state.toMonth);
+ range.title=state.fromMonth+" – "+state.toMonth;
  const today=new Date().toISOString().slice(0,10);
  if(today>=start&&today<end){
   const line=document.createElement("i");line.className="today-line";line.style.left=(label+days(start,today)*px)+"px";line.style.top="57px";$("timelineCanvas").append(line);

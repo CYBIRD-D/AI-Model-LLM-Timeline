@@ -25,7 +25,7 @@ The timeline "Named models" counter counts expanded display labels derived from 
 
 The site loads its release records from [`data/releases.json`](./data/releases.json). This file currently contains **332 release entries**. Four duplicate weight-publication events have been merged into their original model launches. Entries migrated from the previous HTML version are **not automatically validated**; newly added entries carry source URLs and verification status.
 
-**Coverage:** The latest documented release in this dataset is **November 12, 2026** (Gemini 4 Hydrogen). The dataset update date is **November 13, 2026**. Coverage of releases before and after May 2026 is selective, **not an exhaustive census**. Historical entries without primary sources remain unverified; the page exposes missing references rather than inventing them.
+**Coverage:** The latest documented release in this dataset is **November 12, 2026** (Gemini 4 Hydrogen). The dataset update date is **November 19, 2026**. Coverage of releases before and after May 2026 is selective, **not an exhaustive census**. Historical entries without primary sources remain unverified; the page exposes missing references rather than inventing them.
 
 A data entry has the following structure:
 
