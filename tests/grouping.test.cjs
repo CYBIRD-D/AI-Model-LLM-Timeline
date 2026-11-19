@@ -33,6 +33,48 @@ test('OpenAI families keep each launch date and retain their members on one card
  assert.equal(groups.find(g=>g.date==='2025-04-16').family,undefined);
 });
 
+test('Mistral and Muse Wonder variants share cards only within the same family and launch',()=>{
+ const entries=data.events.filter(e=>e.company==='mis'||e.company==='meta');
+ const families=[
+  ['2025-07-15','Voxtral Family',['Voxtral Small','Voxtral Mini']],
+  ['2025-12-02','Ministral 3 Family',['Ministral 3 - 3B','Ministral 3 - 8B','Ministral 3 - 14B']],
+  ['2025-12-09','Devstral 2 Family',['Devstral 2','Devstral Small 2']],
+  ['2026-10-12','Muse Wonder Family',['Muse Wonder','Muse Wonder Full']]
+ ];
+ for(const density of ['overview','detail','models'])for(const zoom of [.4,2.8]){
+  const cards=run('state.density=density;state.zoom=zoom;state.fromMonth="2022-11";layoutEvents(entries,2.08*zoom).cards',{entries,density,zoom});
+  for(const [date,name,models] of families){
+   const family=cards.filter(({html})=>html.includes(`aria-label="${name} — ${date}"`));
+   assert.equal(family.length,1,`${density}/${zoom}: ${name}`);
+   const names=family[0].events.flatMap(e=>e.models);
+   assert.deepEqual(run('expandModelNames(names)',{names}),models);
+  }
+ }
+ const groups=run('groupSameDayFamilies(entries)',{entries});
+ const sameDay=date=>groups.filter(g=>g.date===date).map(g=>g.name).sort();
+ assert.deepEqual(sameDay('2024-11-18'),['Mistral Large 2.1','Pixtral Large']);
+ assert.deepEqual(sameDay('2026-03-16'),['Leanstral','Mistral Small 4']);
+ assert.equal(entries.find(e=>e.title==='Devstral Medium 1.0').availability,'closed');
+ assert.equal(entries.find(e=>e.title==='Devstral Small 1.1').availability,'open');
+});
+
+test('Dots collect a release day within a track, retain exact positions and survive maximum zoom',()=>{
+ const entries=[
+  entry('a','oai','2026-11-01',['GPT-6 Astra']),
+  entry('b','oai','2026-11-01',['GPT-6 Sol']),
+  entry('c','oai','2026-11-02',['GPT-6 Luna'])
+ ];
+ const dots=run('state.fromMonth="2026-11";state.density="dots";layoutDots(entries,2).cards',{entries});
+ assert.equal(dots.length,2);
+ assert.deepEqual(dots[0].events.map(e=>e.id),['a','b']);
+ assert.deepEqual(dots[1].events.map(e=>e.id),['c']);
+ assert.match(dots[0].html,/class="event-dot".*style="left:0\.0px;top:8px;/);
+ assert.match(dots[1].html,/class="event-dot".*style="left:2\.0px;top:35px;/);
+ assert.ok(dots.every(d=>!d.html.includes('event-name')));
+ const density=run('paramsRead();state.density',{URL,location:{href:'https://example.test/?density=dots&zoom=2.8'}});
+ assert.equal(density,'dots');
+});
+
 test('Qwen Next, Omni, VL, Coder and Math never collapse into a generic Qwen3 family',()=>{
  const releases=run('groupSameDayFamilies(entries)',{entries:data.events.filter(e=>e.company==='qwen')});
  for(const [date,name] of [['2025-09-11','Qwen3-Next Family'],['2025-09-21','Qwen3-Omni Family'],['2025-09-23','Qwen3-VL Family']]){
@@ -122,14 +164,27 @@ test('Timeline abbreviations preserve special series, checkpoint dates and full 
   ['DeepSeek-V4.1-Flash-1017','deep','V4.1-Flash-1017'],['gpt-oss Family','oai','gpt-oss Family'],
   ['Gemma 3n Family','goog','Gemma 3n Family'],['QwQ-32B','qwen','QwQ-32B'],
   ['CodeQwen1.5-7B','qwen','CodeQwen1.5-7B'],['Pixtral 12B','mis','Pixtral 12B'],
-  ['GPT-4V / GPT-4 with Vision','oai','4V'],['GPT-4o update (1120)','oai','4o (1120)'],
-  ['Gemini 2.0 Flash Experimental','goog','2.0 Flash Exp.'],
-  ['Qwen3-Coder-480B-A35B-Instruct','qwen','3-Coder-480B-A35B-Instr.']
+  ['GPT-4V / GPT-4 with Vision','oai','4V / 4 with Vision'],['GPT-4o update (1120)','oai','4o update (1120)'],
+  ['Gemini 2.0 Flash Experimental','goog','2.0 Flash Experimental'],
+  ['Qwen3-Coder-480B-A35B-Instruct','qwen','3-Coder-480B-A35B-Instruct']
  ])assert.equal(run('cardLabel(name,company)',{name,company}),expected);
  const event=data.events.find(e=>e.id==='qwen-2026-07-15-qwen3-7-flash');
  const html=run('state.density="models";state.fromMonth="2026-01";layoutEvents([event],2).cards[0].html',{event});
  assert.match(html,/0715 snapshot/);
  assert.match(html,/aria-label="Qwen3\.7-Flash/);
+});
+
+test('A short card is narrower than the old minimum and keeps its full label and date',()=>{
+ const date='2024-05-13';
+ const short=run('compactCardMetrics("4o",date)',{date});
+ const long=run('compactCardMetrics("4 Turbo Preview 0125",date)',{date});
+ assert.ok(short.width<70);
+ assert.deepEqual(short.lines,['4o']);
+ assert.equal(long.lines.join(' '),'4 Turbo Preview 0125');
+ const event=entry('a','oai',date,['GPT-4o']);
+ const html=run('state.density="detail";state.fromMonth="2024-05";layoutEvents([event],2).cards[0].html',{event});
+ assert.match(html,/aria-label="GPT-4o — 2024-05-13"/);
+ assert.match(html,/<time class="event-date" datetime="2024-05-13">24-05-13<\/time>/);
 });
 
 test('Weights metadata never shifts the original launch or adds a duplicate release',()=>{

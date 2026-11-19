@@ -9,6 +9,7 @@ An interactive release-history explorer for text-generating AI models, hosted on
 - Company swimlanes with **separate Open and Closed subtracks**. Companies with only one matching status do not show an empty subtrack.
 - Chronologically positioned release cards, with automatic **vertical collision avoidance** and dynamic track height.
 - **Overview** aggregates nearby releases; **Releases** uses concise **Family** cards for compatible same-day variants (e.g. `GPT-4.1 Family`); **All models** displays individual models where appropriate **but preserves those same-day Family cards** (also when zoom is at maximum). Clicking a Family card shows its original model names and release date.
+- **Dots** shows one marker per release day in each company and availability track. Hover or focus a marker to preview the models. Click or tap it to open release details.
 - Compact cards omit redundant prefixes such as GPT, Gemini and Claude while preserving distinguishing names such as gpt-oss, Gemma, QwQ, Next, Omni and VL. Hover text, search and Details retain full names. Vertical tracks still avoid collisions.
 - Qwen, Gemma and early GLM families are derived from actual model identifiers. Same-day parameter variants remain one Family card in every mode and at every zoom; Qwen Next / Omni / VL / Coder / Math, Gemma / Gemma 3n / PaliGemma / MedGemma, and GLM-4 / GLM-4V / GLM-Z1 / Rumination stay distinct. GLM checkpoint dates and the Chat-1M context variant remain separate.
 - Existing dataset labels that cannot be unambiguously split (for example a family label without specific model names) remain intact rather than fabricating IDs.
@@ -23,9 +24,9 @@ An interactive release-history explorer for text-generating AI models, hosted on
 
 The timeline "Named models" counter counts expanded display labels derived from explicitly specified variants. Because some legacy source labels are ambiguous, it is not a definitive count of all published models.
 
-The site loads its release records from [`data/releases.json`](./data/releases.json). This file currently contains **332 release entries**. Four duplicate weight-publication events have been merged into their original model launches. Entries migrated from the previous HTML version are **not automatically validated**; newly added entries carry source URLs and verification status.
+The site loads its release records from [`data/releases.json`](./data/releases.json). This file currently contains **343 release entries**. Four duplicate weight-publication events have been merged into their original model launches. Entries migrated from the previous HTML version are **not automatically validated**; newly added entries carry source URLs and verification status.
 
-**Coverage:** The latest documented release in this dataset is **November 12, 2026** (Gemini 4 Hydrogen). The dataset update date is **November 19, 2026**. Coverage of releases before and after May 2026 is selective, **not an exhaustive census**. Historical entries without primary sources remain unverified; the page exposes missing references rather than inventing them.
+**Coverage:** The latest documented release in this dataset is **November 18, 2026** (Gemini 4 Neon). The dataset update date is **November 19, 2026**. Coverage of releases before and after May 2026 is selective, **not an exhaustive census**. Historical entries without primary sources remain unverified; the page exposes missing references rather than inventing them.
 
 A data entry has the following structure:
 

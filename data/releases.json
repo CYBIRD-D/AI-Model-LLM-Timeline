@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "datasetUpdated": "2026-11-19",
-  "coverageThrough": "2026-11-12",
+  "coverageThrough": "2026-11-18",
   "notes": "Selective text-generating LLM history. Dates identify original public model launches or distinct dated checkpoint revisions. Later publication of the same weights is metadata and does not add another model release. Open/Closed classification follows availabilityPolicy, with announced schedules distinguished from confirmed weight publication. Legacy migrated records remain partly unverified. Excludes dedicated OCR-only, embedding-only, image-only and speech-only models. Qwen4-Max is a limited preview, distinct from a GA release; Tencent Hy4 is the formal model, distinct from Hy4 Preview.",
   "events": [
     {
@@ -450,10 +450,24 @@
       "id": "mis-2023-12-11-30",
       "company": "mis",
       "date": "2023-12-11",
-      "title": "Mixtral family",
+      "title": "Mixtral 8x7B",
       "models": [
-        "Mistral 7B 0.2",
         "Mixtral 8x7B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2023-12-11-mistral-7b-0-2",
+      "company": "mis",
+      "date": "2023-12-11",
+      "title": "Mistral 7B 0.2",
+      "models": [
+        "Mistral 7B 0.2"
       ],
       "availability": "open",
       "capabilities": [
@@ -646,10 +660,38 @@
       "id": "mis-2024-02-26-43",
       "company": "mis",
       "date": "2024-02-26",
-      "title": "Mistral Large",
+      "title": "Mistral Large 1.0",
       "models": [
-        "Mistral Large 1.0",
-        "Mistral Small 1.0",
+        "Mistral Large 1.0"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2024-02-26-mistral-small-1-0",
+      "company": "mis",
+      "date": "2024-02-26",
+      "title": "Mistral Small 1.0",
+      "models": [
+        "Mistral Small 1.0"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2024-02-26-mistral-next",
+      "company": "mis",
+      "date": "2024-02-26",
+      "title": "Mistral Next",
+      "models": [
         "Mistral Next"
       ],
       "availability": "closed",
@@ -1189,10 +1231,24 @@
       "id": "mis-2024-07-16-77",
       "company": "mis",
       "date": "2024-07-16",
-      "title": "Codestral family",
+      "title": "Codestral Mamba 7B",
       "models": [
-        "Mathstral 7B",
         "Codestral Mamba 7B"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "mis-2024-07-16-mathstral-7b",
+      "company": "mis",
+      "date": "2024-07-16",
+      "title": "Mathstral 7B",
+      "models": [
+        "Mathstral 7B"
       ],
       "availability": "open",
       "capabilities": [
@@ -1573,17 +1629,33 @@
       "id": "mis-2024-10-09-101",
       "company": "mis",
       "date": "2024-10-09",
-      "title": "Ministral family",
+      "title": "Ministral 1 - 8B",
       "models": [
-        "Ministral 1 - 3B",
         "Ministral 1 - 8B"
       ],
       "availability": "open",
       "capabilities": [
         "General"
       ],
-      "source": null,
-      "verification": "unverified"
+      "source": "https://legal.mistral.ai/ai-governance/models/ministral-1-8b/",
+      "verification": "verified",
+      "notes": "Mistral dates the first release to October 9. The October 16 launch article documents downloadable 8B Instruct weights under the Mistral Research License."
+    },
+    {
+      "id": "mis-2024-10-09-ministral-1-3b",
+      "company": "mis",
+      "date": "2024-10-09",
+      "title": "Ministral 1 - 3B",
+      "models": [
+        "Ministral 1 - 3B"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "General"
+      ],
+      "source": "https://legal.mistral.ai/ai-governance/models/ministral-1-3b/",
+      "verification": "verified",
+      "notes": "Mistral dates the first release to October 9. The launch article lists API access for 3B and downloadable research weights for the 8B Instruct model."
     },
     {
       "id": "anth-2024-10-22-102",
@@ -1651,17 +1723,33 @@
       "id": "mis-2024-11-18-106",
       "company": "mis",
       "date": "2024-11-18",
-      "title": "Mistral Large 2",
+      "title": "Mistral Large 2.1",
       "models": [
-        "Mistral Large 2.1",
+        "Mistral Large 2.1"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General"
+      ],
+      "source": "https://legal.mistral.ai/ai-governance/models/mistral-large-2/",
+      "verification": "verified",
+      "notes": "Mistral Large 24.11 is a text-model revision released under the Mistral Research License."
+    },
+    {
+      "id": "mis-2024-11-18-pixtral-large",
+      "company": "mis",
+      "date": "2024-11-18",
+      "title": "Pixtral Large",
+      "models": [
         "Pixtral Large"
       ],
-      "availability": "closed",
+      "availability": "open",
       "capabilities": [
         "Multimodal"
       ],
-      "source": null,
-      "verification": "unverified"
+      "source": "https://mistral.ai/news/pixtral-large/",
+      "verification": "verified",
+      "notes": "Separate multimodal model released on the same day as Mistral Large 2.1 under the Mistral Research License."
     },
     {
       "id": "deep-2024-11-20-107",
@@ -2688,17 +2776,33 @@
       "id": "mis-2025-07-10-173",
       "company": "mis",
       "date": "2025-07-10",
-      "title": "Devstral family",
+      "title": "Devstral Small 1.1",
       "models": [
-        "Devstral Medium 1.0",
         "Devstral Small 1.1"
       ],
       "availability": "open",
       "capabilities": [
         "Coding"
       ],
-      "source": null,
-      "verification": "unverified"
+      "source": "https://mistral.ai/news/devstral-2507/",
+      "verification": "verified",
+      "notes": "Released under Apache 2.0."
+    },
+    {
+      "id": "mis-2025-07-10-devstral-medium-1-0",
+      "company": "mis",
+      "date": "2025-07-10",
+      "title": "Devstral Medium 1.0",
+      "models": [
+        "Devstral Medium 1.0"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Coding"
+      ],
+      "source": "https://mistral.ai/news/devstral-2507/",
+      "verification": "verified",
+      "notes": "Mistral launched Devstral Medium through its API. The Apache 2.0 weight release covered Small 1.1."
     },
     {
       "id": "moon-2025-07-10-174",
@@ -2734,7 +2838,7 @@
       "id": "mis-2025-07-15-176",
       "company": "mis",
       "date": "2025-07-15",
-      "title": "Voxtral Small family",
+      "title": "Voxtral Family",
       "models": [
         "Voxtral Small",
         "Voxtral Mini"
@@ -2743,8 +2847,8 @@
       "capabilities": [
         "General"
       ],
-      "source": null,
-      "verification": "unverified"
+      "source": "https://mistral.ai/news/voxtral/",
+      "verification": "verified"
     },
     {
       "id": "qwen-2025-07-21-177",
@@ -3468,7 +3572,7 @@
       "id": "mis-2025-12-02-224",
       "company": "mis",
       "date": "2025-12-02",
-      "title": "Ministral family",
+      "title": "Ministral 3 Family",
       "models": [
         "Ministral 3 - 3B/8B/14B"
       ],
@@ -3476,8 +3580,8 @@
       "capabilities": [
         "General"
       ],
-      "source": null,
-      "verification": "unverified"
+      "source": "https://mistral.ai/news/mistral-3/",
+      "verification": "verified"
     },
     {
       "id": "mis-2025-12-02-225",
@@ -3487,18 +3591,19 @@
       "models": [
         "Mistral Large 3.0"
       ],
-      "availability": "closed",
+      "availability": "open",
       "capabilities": [
         "General"
       ],
-      "source": null,
-      "verification": "unverified"
+      "source": "https://mistral.ai/news/mistral-3/",
+      "verification": "verified",
+      "notes": "Mistral Large 3 was released under Apache 2.0 on the same day as the Ministral 3 series."
     },
     {
       "id": "mis-2025-12-09-226",
       "company": "mis",
       "date": "2025-12-09",
-      "title": "Devstral family",
+      "title": "Devstral 2 Family",
       "models": [
         "Devstral 2",
         "Devstral Small 2"
@@ -3507,8 +3612,8 @@
       "capabilities": [
         "Coding"
       ],
-      "source": null,
-      "verification": "unverified"
+      "source": "https://mistral.ai/news/devstral-2-vibe-cli/",
+      "verification": "verified"
     },
     {
       "id": "oai-2025-12-11-227",
@@ -3939,17 +4044,34 @@
       "id": "mis-2026-03-16-255",
       "company": "mis",
       "date": "2026-03-16",
-      "title": "Mistral Small family",
+      "title": "Mistral Small 4",
       "models": [
-        "Mistral Small 4",
+        "Mistral Small 4"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "General",
+        "Reasoning",
+        "Coding",
+        "Multimodal"
+      ],
+      "source": "https://mistral.ai/news/mistral-small-4/",
+      "verification": "verified"
+    },
+    {
+      "id": "mis-2026-03-16-leanstral",
+      "company": "mis",
+      "date": "2026-03-16",
+      "title": "Leanstral",
+      "models": [
         "Leanstral"
       ],
       "availability": "open",
       "capabilities": [
         "Coding"
       ],
-      "source": null,
-      "verification": "unverified"
+      "source": "https://mistral.ai/news/leanstral/",
+      "verification": "verified"
     },
     {
       "id": "oai-2026-03-17-256",
@@ -5062,7 +5184,7 @@
       "id": "meta-2026-10-12-muse-wonder-family",
       "company": "meta",
       "date": "2026-10-12",
-      "title": "Muse Wonder family",
+      "title": "Muse Wonder Family",
       "models": [
         "Muse Wonder",
         "Muse Wonder Full"
@@ -5260,6 +5382,67 @@
       "event_type": "general_availability",
       "notes": "Google announced worldwide rollout November 12, 2026 across Gemini API, AI Studio, Gemini app, Antigravity and other products. Correct name is Hydrogen (not Hydrogon). Open weights not published.",
       "id": "goog-2026-11-12-gemini-4-hydrogen"
+    },
+    {
+      "id": "hy-2026-11-16-hy4-flash",
+      "company": "hy",
+      "date": "2026-11-16",
+      "title": "Hy4 flash",
+      "models": [
+        "Hy4 flash"
+      ],
+      "availability": "open",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://www.tencent.com/tencent-launches-hy4-flash-to-power-high-speed-cost-efficient-ai-deployment-for-everyday-workflows/",
+      "verification": "verified",
+      "event_type": "general_availability",
+      "weight_status": "published",
+      "weight_release_date": "2026-11-18",
+      "weight_source": "https://huggingface.co/tencent/Hy4-flash",
+      "notes": "First released November 16 through Tencent Cloud TokenHub. Tencent published the Instruct, FP8 and Base checkpoints on November 18 under the Tencent Hy License."
+    },
+    {
+      "id": "oai-2026-11-17-gpt-6-2-family",
+      "company": "oai",
+      "date": "2026-11-17",
+      "title": "GPT-6.2 Family",
+      "models": [
+        "GPT-6.2 Astra",
+        "GPT-6.2 Sol"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+      "verification": "verified",
+      "event_type": "general_availability",
+      "notes": "GPT-6.2 Astra and GPT-6.2 Sol launched together in ChatGPT Work, Codex and the API."
+    },
+    {
+      "id": "goog-2026-11-18-gemini-4-neon",
+      "company": "goog",
+      "date": "2026-11-18",
+      "title": "Gemini 4 Neon",
+      "models": [
+        "Gemini 4 Neon"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/",
+      "verification": "verified",
+      "event_type": "general_availability",
+      "notes": "Google announced the rollout in the Gemini API, Gemini for business, Google Antigravity and the Gemini app on November 18."
     }
   ],
   "availabilityPolicy": "Open includes published models and models with an explicit, sourced commitment to publish weights within a few months. An unspecified future open-source intention alone is insufficient. Model dates use the original public launch; later weight publication is metadata, never a duplicate launch."
