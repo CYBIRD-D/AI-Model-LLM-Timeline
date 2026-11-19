@@ -6,8 +6,8 @@
   <meta name="color-scheme" content="dark light">
   <meta name="description" content="An interactive history of language model releases. Explore model launches by company, date, and open or closed availability.">
   <title>AI Model Timeline — Model release explorer</title>
-  <link rel="stylesheet" href="./styles.css?v=20261113-families">
-  <script src="./app.js?v=20261119-compact" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=20261119-dots">
+  <script src="./app.js?v=20261119-dots" defer></script>
 </head>
 <body data-theme="dark">
   <div class="site">
@@ -110,6 +110,7 @@
                   <button class="mode-btn" id="overviewBtn" type="button">Overview</button>
                   <button class="mode-btn active" id="detailBtn" type="button">Releases</button>
                   <button class="mode-btn" id="modelsBtn" type="button">All models</button>
+                  <button class="mode-btn" id="dotsBtn" type="button" aria-pressed="false">Dots</button>
                   <span id="densityLabel" class="density-label">Individual releases</span>
                 </div>
                 <div class="timeline-controlbar-right">
@@ -139,6 +140,7 @@
     </main>
   </div>
 
+  <div id="dotPreview" class="dot-preview" role="tooltip" hidden></div>
   <div id="drawerOverlay" class="drawer-overlay" hidden></div>
   <aside id="detailDrawer" class="detail-drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" aria-hidden="true" tabindex="-1">
     <div class="drawer-top"><span class="drawer-eyebrow">RELEASE DETAILS</span><button id="closeDrawer" type="button" class="close-drawer" aria-label="Close details">✕</button></div>

@@ -15,10 +15,17 @@ const monthStart=key=>key+"-01";
 const monthAfter=key=>{const [y,m]=key.split("-").map(Number);return iso(y,m+1).slice(0,7);};
 const yearFromMonth=key=>Number(key.slice(0,4));
 const MAX_ZOOM=2.8;
+const DOT_HIT_SIZE=24;
+const DENSITIES={
+ overview:{button:"overviewBtn",label:"Nearby releases grouped",note:"Click a group to inspect every release."},
+ detail:{button:"detailBtn",label:"Same-day model families grouped",note:"Click a Family card to see its members."},
+ models:{button:"modelsBtn",label:"Individual models · families kept together",note:"Click any card to see the full model names."},
+ dots:{button:"dotsBtn",label:"One dot per release day",note:"Hover or focus a dot to preview models. Click or tap for details."}
+};
 const validMonth=value=>/^\d{4}-(0[1-9]|1[0-2])$/.test(value);
 const state={data:[],query:"",companies:new Set(COMPANY_ORDER),availability:new Set(["open","closed"]),capabilities:new Set(CAPS),fromMonth:"2025-01",toMonth:"2026-05",mode:"timeline",density:"detail",zoom:1.3,filtersCollapsed:false,expanded:false,drawer:null,listLimit:120};
 let datasetMeta={},toastTimeout,previousFocus=null,resizeTimer,firstDataMonth,lastDataMonth,lastSelectableMonth;
-let activeMonthField=null,calendarYear=0;
+let activeMonthField=null,calendarYear=0,activeDot=null;
 function tell(message){const el=$("toast");el.textContent=message;el.classList.add("show");clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>el.classList.remove("show"),2800);}
 function prettyMonth(value,compact=false){
  if(!validMonth(value))return "Select month";
@@ -83,11 +90,11 @@ function paramsRead(){
  const url=new URL(location.href),q=url.searchParams;
  state.query=q.get("q")||"";
  for(const [key,field,allowed] of [["companies","companies",COMPANY_ORDER],["availability","availability",["open","closed"]],["capabilities","capabilities",CAPS]])if(q.has(key))state[field]=new Set((q.get(key)||"").split(",").filter(x=>allowed.includes(x)));
- if(["overview","detail","models"].includes(q.get("density")))state.density=q.get("density");
+ if(Object.hasOwn(DENSITIES,q.get("density")))state.density=q.get("density");
  if(["timeline","list"].includes(q.get("view")))state.mode=q.get("view");
  const z=Number(q.get("zoom"));if(q.has("zoom")&&Number.isFinite(z))state.zoom=Math.min(MAX_ZOOM,Math.max(.4,z));
  state._from=q.get("from");state._to=q.get("to");
- if(state.zoom>=MAX_ZOOM)state.density="models";
+ if(state.zoom>=MAX_ZOOM&&state.density!=="dots")state.density="models";
 }
 function paramsWrite(){
  const url=new URL(location.href),q=url.searchParams;q.delete("q");q.delete("companies");q.delete("availability");q.delete("capabilities");q.delete("from");q.delete("to");q.delete("view");q.delete("density");q.delete("zoom");
@@ -116,12 +123,17 @@ function syncButtons(){
  $("timelineTab").setAttribute("aria-pressed",state.mode==="timeline");$("listTab").setAttribute("aria-pressed",state.mode==="list");
  $("timelineView").hidden=state.mode!=="timeline";$("listView").hidden=state.mode!=="list";
  $("resultsTitle").textContent=state.mode==="list"?"Release directory":"Timeline overview";
- $("overviewBtn").classList.toggle("active",state.density==="overview");$("detailBtn").classList.toggle("active",state.density==="detail");$("modelsBtn").classList.toggle("active",state.density==="models");
- $("densityLabel").textContent=state.density==="overview"?"Nearby releases grouped":state.density==="models"?"Individual models · families kept together":"Same-day model families grouped";
+ for(const [density,{button}] of Object.entries(DENSITIES)){
+  const active=density===state.density;
+  $(button).classList.toggle("active",active);
+  $(button).setAttribute("aria-pressed",String(active));
+ }
+ $("densityLabel").textContent=DENSITIES[state.density].label;
  $("zoomRange").value=String(state.zoom);
- $("groupingNote").textContent=state.density==="overview"?"Click a group to inspect every release.":state.density==="models"?"Same-day Family cards stay grouped; other model entries are shown individually.":"Compatible same-day variants use one Family card; click it to see its members.";
+ $("groupingNote").textContent=DENSITIES[state.density].note;
 }
 function draw({keepScroll=true}={}){
+ hideDotPreview();
  const scroll=$("timelineScroll"),left=scroll.scrollLeft,top=scroll.scrollTop;
  buildFilters();syncButtons();syncMonthButtons();
  const entries=filtered();
@@ -130,10 +142,14 @@ function draw({keepScroll=true}={}){
  if(keepScroll){scroll.scrollLeft=Math.min(left,Math.max(0,scroll.scrollWidth-scroll.clientWidth));scroll.scrollTop=top;}
  paramsWrite();
 }
-function makeGrid(width,px,start){
+function timelineX(start,date,scale){
+ const inset=state.density==="dots"?DOT_HIT_SIZE/2:0;
+ return days(start,date)*scale+inset;
+}
+function makeGrid(px,start){
  const marks=[];let key=state.fromMonth;
  while(key<=state.toMonth){
-  const pos=days(start,monthStart(key))*px;
+  const pos=timelineX(start,monthStart(key),px);
   marks.push('<i aria-hidden="true" class="grid-tick '+(key.slice(5)==="01"?"year":"")+'" style="left:'+pos.toFixed(1)+'px"></i>');
   key=monthAfter(key);
  }
@@ -170,20 +186,10 @@ function expandModelNames(names){
  return [...new Set(names.flatMap(expandModelName).filter(Boolean))];
 }
 
-// Abbreviate only timeline labels. Source names, search and details stay intact.
-const CARD_WORDS={experimental:"Exp.",instruct:"Instr.",preview:"Prev.",snapshot:"snap."};
+// Company tracks repeat the provider name. Keep the rest of the title intact.
 function cardLabel(name,company){
  const prefixes={oai:/\bGPT-(?=\d)/gi,anth:/\bClaude\s+/gi,goog:/\bGemini\s+/gi,meta:/^(?:Meta\s+|Llama[\s-]+)(?=\S)/i,mis:/^Mistral[\s-]+/i,deep:/^DeepSeek[\s-]+/i,qwen:/^Qwen[\s-]*(?=\d|VL\b)/i,xai:/^Grok[\s-]+/i,glm:/^GLM[\s-]+/i,moon:/^Kimi[\s-]+/i,mini:/^MiniMax[\s-]+/i};
- let short=String(name).replace(prefixes[company]||/^$/,"").trim();
- if(company==="oai"){
-  short=short.replace(/^4V\s*\/\s*4 with Vision$/i,"4V")
-   .replace(/^ChatGPT\s*\/\s*3\.5 series$/i,"ChatGPT / 3.5")
-   .replace(/^4o update\s*\((\d{4})\)$/i,"4o ($1)");
- }
- if(company==="goog")short=short.replace(/\bFlash Thinking Mode$/,"Flash Thinking");
- if(short.length>20){
-  short=short.replace(/\b(?:experimental|instruct|preview|snapshot)\b/gi,word=>CARD_WORDS[word.toLowerCase()]);
- }
+ const short=String(name).replace(prefixes[company]||/^$/,"").trim();
  return short||name;
 }
 
@@ -234,19 +240,27 @@ function splitModelSeries(event){
  });
 }
 
-const OPENAI_FAMILY_MEMBERS=new Map([
- ["o1",/^(?:OpenAI\s+)?o1(?:-(?:preview|mini|pro)|\s+pro\s+mode)?$/i],
- ["gpt-oss",/^gpt-oss-\d+(?:\.\d+)?b$/i],
- ["codex-1",/^(?:codex-1|codex-mini-latest)$/i]
-]);
+const NAMED_FAMILY_MEMBERS={
+ oai:new Map([
+  ["o1",/^(?:OpenAI\s+)?o1(?:-(?:preview|mini|pro)|\s+pro\s+mode)?$/i],
+  ["gpt-oss",/^gpt-oss-\d+(?:\.\d+)?b$/i],
+  ["codex-1",/^(?:codex-1|codex-mini-latest)$/i]
+ ]),
+ mis:new Map([
+  ["ministral 3",/^Ministral 3\s*-\s*\d+B$/i],
+  ["devstral 2",/^Devstral(?: Small)? 2$/i],
+  ["voxtral",/^Voxtral (?:Small|Mini)$/i]
+ ]),
+ meta:new Map([["muse wonder",/^Muse Wonder(?: Full)?$/i]])
+};
 function familyNameForEvent(event){
  const title=String(event.title||"").trim();
  if(!/\s+family$/i.test(title))return null;
  const family=title.replace(/\s+family$/i,"").trim();
  const names=expandModelNames(event.models);
  if(names.length<2)return null;
- const openAIRule=event.company==="oai"?OPENAI_FAMILY_MEMBERS.get(family.toLowerCase()):null;
- if(openAIRule)return names.every(name=>openAIRule.test(name))?family+" Family":null;
+ const rule=NAMED_FAMILY_MEMBERS[event.company]?.get(family.toLowerCase());
+ if(rule)return names.every(name=>rule.test(name))?family+" Family":null;
  const escaped=family.replace(/[-/\\^$*+?.()|[\]{}]/g,"\\$&");
  let match;
  if(/^Claude\s+\d+(?:\.\d+)?$/i.test(family)){
@@ -273,13 +287,13 @@ function groupSameDayFamilies(entries){
  return [...standalone,...grouped.values()];
 }
 let measuredTextContext=null;
-function textWidthApprox(text){
+function textWidthApprox(text,font="710 10.1px system-ui"){
  // Use real browser font metrics so shrinking the card never clips a model name.
  if(!measuredTextContext&&typeof document!=="undefined"){
   try{measuredTextContext=document.createElement("canvas").getContext("2d");}catch{}
  }
  if(measuredTextContext){
-  measuredTextContext.font="710 10.1px system-ui";
+  measuredTextContext.font=font;
   return measuredTextContext.measureText(text).width;
  }
  let width=0;
@@ -313,16 +327,14 @@ function wrapCardTitle(label,maxWidth){
  if(current)lines.push(current);
  return lines.length?lines:[""];
 }
-function compactCardMetrics(name){
- const choices=[70,80,92,104,116,128,140,152,166,180,194];
- let best=null;
- for(const width of choices){
-  const lines=wrapCardTitle(name,width-17);
-  const height=Math.ceil(17+lines.length*12.5);
-  const score=(width+5)*(height+4)+(lines.length>3?400*(lines.length-3):0);
-  if(!best||score<best.score)best={width,height,lines,score};
- }
- return best;
+function compactCardMetrics(name,date){
+ const lines=wrapCardTitle(name,108);
+ const dateWidth=textWidthApprox(shortDate(date),"400 8.5px system-ui");
+ const lineWidth=Math.max(...lines.map(line=>textWidthApprox(line)));
+ // The side borders and padding use 13 px. Allow 2 px for font rounding.
+ const width=Math.ceil(Math.max(dateWidth,lineWidth))+15;
+ const height=Math.ceil(17+lines.length*12.5);
+ return {width,height,lines};
 }
 function layoutEvents(entries,scale){
  const gap=6,rowGap=4;
@@ -359,7 +371,7 @@ function layoutEvents(entries,scale){
  items.sort((a,b)=>a.date.localeCompare(b.date)||a.name.localeCompare(b.name));
  const occupied=[],rowHeights=[],cards=[];
  for(const item of items){
-  const metrics=compactCardMetrics(cardLabel(item.name,item.events[0].company));
+  const metrics=compactCardMetrics(cardLabel(item.name,item.events[0].company),item.date);
   const x=days(monthStart(state.fromMonth),item.date)*scale;
   let row=occupied.findIndex(end=>end+gap<=x);
   if(row<0){row=occupied.length;occupied.push(x+metrics.width);rowHeights.push(metrics.height);}
@@ -380,16 +392,70 @@ function layoutEvents(entries,scale){
  return {height:Math.max(57,offset+3),cards:html};
 }
 const groupRecords=new Map();
+function layoutDots(entries,scale){
+ const byDate=new Map();
+ for(const event of entries){
+  if(!byDate.has(event.date))byDate.set(event.date,[]);
+  byDate.get(event.date).push(event);
+ }
+ const start=monthStart(state.fromMonth),rowEnds=[],cards=[];
+ const spacing=3,rowHeight=DOT_HIT_SIZE+spacing;
+ for(const date of [...byDate.keys()].sort()){
+  const events=byDate.get(date),first=events[0];
+  const left=timelineX(start,date,scale)-DOT_HIT_SIZE/2;
+  let row=rowEnds.findIndex(end=>end+spacing<=left);
+  if(row<0)row=rowEnds.length;
+  rowEnds[row]=left+DOT_HIT_SIZE;
+  const name=events.length===1?first.title:events.length+" releases";
+  const label=escapeHTML(name+" — "+date);
+  const style='left:'+left.toFixed(1)+'px;top:'+(8+row*rowHeight)+'px;width:'+DOT_HIT_SIZE+'px;height:'+DOT_HIT_SIZE+'px;--dot-color:'+COMPANIES[first.company].color;
+  const html='<button type="button" class="event-dot" aria-label="'+label+'" data-id="'+escapeHTML(first.id)+'" data-group="" style="'+style+'"></button>';
+  cards.push({html,events});
+ }
+ return {height:Math.max(44,13+rowEnds.length*rowHeight),cards};
+}
+
+function hideDotPreview(){
+ if(!activeDot)return false;
+ activeDot.removeAttribute("aria-describedby");
+ $("dotPreview").hidden=true;
+ activeDot=null;
+ return true;
+}
+function showDotPreview(dot){
+ if(dot===activeDot)return;
+ const entries=groupRecords.get(dot.dataset.group);
+ if(!entries?.length)return;
+ hideDotPreview();
+ activeDot=dot;
+ const first=entries[0],company=COMPANIES[first.company];
+ const models=expandModelNames(entries.flatMap(e=>e.models.length?e.models:[e.title]));
+ const shown=models.slice(0,10);
+ const preview=$("dotPreview");
+ preview.innerHTML='<strong>'+escapeHTML(fmt(first.date))+'</strong><div class="dot-preview-meta">'+escapeHTML(company.name)+' · '+(first.availability==="open"?"Open":"Closed")+'</div>'
+  +'<ul>'+shown.map(model=>'<li>'+escapeHTML(model)+'</li>').join("")+'</ul>'
+  +(shown.length<models.length?'<div class="dot-preview-meta">+'+(models.length-shown.length)+' more in Details</div>':'');
+ preview.style.setProperty("--dot-color",company.color);
+ preview.hidden=false;
+ const anchor=dot.getBoundingClientRect(),box=preview.getBoundingClientRect(),edge=8;
+ const left=Math.min(Math.max(edge,anchor.left+anchor.width/2-box.width/2),window.innerWidth-box.width-edge);
+ const below=anchor.bottom+edge;
+ const top=below+box.height<=window.innerHeight-edge?below:Math.max(edge,anchor.top-box.height-edge);
+ preview.style.left=left+"px";
+ preview.style.top=top+"px";
+ dot.setAttribute("aria-describedby",preview.id);
+}
+
 function drawTimeline(entries){
  groupRecords.clear();
  if(!entries.length){$("timelineCanvas").innerHTML='<div class="no-results">No matching releases. Try a different company, month range or search.</div>';return;}
  const start=monthStart(state.fromMonth),end=monthStart(monthAfter(state.toMonth));
  const px=(state.density==="overview"?1.07:2.08)*state.zoom;
- const label=LABEL_W(),width=Math.max($("timelineScroll").clientWidth-label,days(start,end)*px+360),grid=makeGrid(width,px,start);
+ const label=LABEL_W(),width=Math.max($("timelineScroll").clientWidth-label,days(start,end)*px+360),grid=makeGrid(px,start);
  const yearSegments=[],monthSegments=[];
  let key=state.fromMonth;
  while(key<=state.toMonth){
-   const x=days(start,monthStart(key))*px,monthEnd=monthAfter(key),w=days(monthStart(key),monthStart(monthEnd))*px;
+   const x=timelineX(start,monthStart(key),px),monthEnd=monthAfter(key),w=days(monthStart(key),monthStart(monthEnd))*px;
    if(key===state.fromMonth||key.endsWith("-01")){
     const year=key.slice(0,4),yearNext=(Number(year)+1)+"-01";
     const boundedEnd=monthStart(yearNext)<end?monthStart(yearNext):end;
@@ -408,8 +474,10 @@ function drawTimeline(entries){
      if(!state.availability.has(av))continue;
      const subset=entries.filter(e=>e.company===code&&e.availability===av);
      if(!subset.length)continue;
-     const layout=layoutEvents(subset,px);
-     html+='<div class="track" style="width:'+(width+label)+'px;height:'+layout.height+'px"><div class="track-label"><span class="track-label-name" style="color:var(--'+av+')">'+(av==="open"?"Open":"Closed")+'</span><span class="track-count">'+(state.density==="models"?layout.cards.length:subset.length)+'</span></div><div class="track-grid" style="width:'+width+'px">'+grid+layout.cards.map(c=>{
+     const dots=state.density==="dots";
+     const layout=dots?layoutDots(subset,px):layoutEvents(subset,px);
+     const count=dots||state.density==="models"?layout.cards.length:subset.length;
+     html+='<div class="track'+(dots?' dot-track':'')+'" style="width:'+(width+label)+'px;height:'+layout.height+'px"><div class="track-label"><span class="track-label-name" style="color:var(--'+av+')">'+(av==="open"?"Open":"Closed")+'</span><span class="track-count">'+count+'</span></div><div class="track-grid" style="width:'+width+'px">'+grid+layout.cards.map(c=>{
        const key="g"+gIndex++;
        groupRecords.set(key,c.events);
        return c.html.replace(/data-group="[^"]*"/,'data-group="'+key+'"');
@@ -423,7 +491,7 @@ function drawTimeline(entries){
  range.title=state.fromMonth+" – "+state.toMonth;
  const today=new Date().toISOString().slice(0,10);
  if(today>=start&&today<end){
-  const line=document.createElement("i");line.className="today-line";line.style.left=(label+days(start,today)*px)+"px";line.style.top="57px";$("timelineCanvas").append(line);
+  const line=document.createElement("i");line.className="today-line";line.style.left=(label+timelineX(start,today,px))+"px";line.style.top="57px";$("timelineCanvas").append(line);
  }
 }
 function drawList(entries){
@@ -459,7 +527,7 @@ function scrollToDate(date,behavior="smooth"){
  if(!date||date.slice(0,7)<state.fromMonth||date.slice(0,7)>state.toMonth)return false;
  const px=(state.density==="overview"?1.07:2.08)*state.zoom;
  const scroller=$("timelineScroll");
- scroller.scrollTo({left:Math.max(0,LABEL_W()+days(monthStart(state.fromMonth),date)*px-scroller.clientWidth/2),behavior});
+ scroller.scrollTo({left:Math.max(0,LABEL_W()+timelineX(monthStart(state.fromMonth),date,px)-scroller.clientWidth/2),behavior});
  return true;
 }
 function jumpToToday(){
@@ -467,7 +535,7 @@ function jumpToToday(){
 }
 function applyZoom(value){
  state.zoom=Math.max(.4,Math.min(MAX_ZOOM,Math.round(value*10)/10));
- if(state.zoom>=MAX_ZOOM)state.density="models";
+ if(state.zoom>=MAX_ZOOM&&state.density!=="dots")state.density="models";
  draw();
 }
 function setCollapsed(collapsed){
@@ -488,6 +556,10 @@ function setExpanded(expanded){
  document.body.classList.toggle("workspace-expanded",expanded);
  draw();
 }
+function defaultFromMonth(){
+ const previousYear=(yearFromMonth(lastDataMonth)-1)+"-01";
+ return previousYear<firstDataMonth?firstDataMonth:previousYear;
+}
 function setupEvents(){
  $("searchInput").addEventListener("input",e=>{state.query=e.target.value;state.listLimit=120;draw();});
  $("companyFilters").addEventListener("change",e=>{const id=e.target.dataset.company;if(!id)return;e.target.checked?state.companies.add(id):state.companies.delete(id);draw();});
@@ -495,9 +567,9 @@ function setupEvents(){
  $("capabilityFilters").addEventListener("click",e=>{const id=e.target.closest("[data-cap]")?.dataset.cap;if(!id)return;state.capabilities.has(id)?state.capabilities.delete(id):state.capabilities.add(id);draw();});
  $("allCompanies").addEventListener("click",()=>{state.companies=new Set(COMPANY_ORDER);draw();});
  $("allCategories").addEventListener("click",()=>{state.capabilities=new Set(CAPS);draw();});
- $("resetBtn").addEventListener("click",()=>{state.query="";state.companies=new Set(COMPANY_ORDER);state.availability=new Set(["open","closed"]);state.capabilities=new Set(CAPS);state.fromMonth=Math.max(firstDataMonth,(yearFromMonth(lastDataMonth)-1)+"-01");state.toMonth=lastDataMonth;state.zoom=1.3;state.density="detail";state.listLimit=120;$("searchInput").value="";closeMonthPicker();draw({keepScroll:false});});
+ $("resetBtn").addEventListener("click",()=>{state.query="";state.companies=new Set(COMPANY_ORDER);state.availability=new Set(["open","closed"]);state.capabilities=new Set(CAPS);state.fromMonth=defaultFromMonth();state.toMonth=lastDataMonth;state.zoom=1.3;state.density="detail";state.listLimit=120;$("searchInput").value="";closeMonthPicker();draw({keepScroll:false});});
  for(const [id,value] of [["timelineTab","timeline"],["listTab","list"]])$(id).addEventListener("click",()=>{state.mode=value;draw();});
- for(const [id,value] of [["overviewBtn","overview"],["detailBtn","detail"],["modelsBtn","models"]])$(id).addEventListener("click",()=>{state.density=value;draw({keepScroll:false});});
+ for(const [density,{button}] of Object.entries(DENSITIES))$(button).addEventListener("click",()=>{state.density=density;draw({keepScroll:false});});
  $("zoomRange").addEventListener("input",e=>applyZoom(Number(e.target.value)));
  $("zoomOut").addEventListener("click",()=>applyZoom(state.zoom-.2));
  $("zoomIn").addEventListener("click",()=>applyZoom(state.zoom+.2));
@@ -510,13 +582,28 @@ function setupEvents(){
  document.addEventListener("pointerdown",e=>{if(activeMonthField&&!$("dateGroup").contains(e.target))closeMonthPicker();});
  $("filterToggle").addEventListener("click",()=>{setCollapsed(!state.filtersCollapsed);draw();});
  $("expandBtn").addEventListener("click",()=>setExpanded(!state.expanded));
- $("timelineCanvas").addEventListener("click",e=>{const btn=e.target.closest(".event-card");if(btn)openDetails(btn.dataset.id,btn.dataset.group,btn.dataset.model);});
+ const canvas=$("timelineCanvas");
+ canvas.addEventListener("click",e=>{
+  const button=e.target.closest(".event-card,.event-dot");
+  if(!button)return;
+  hideDotPreview();
+  openDetails(button.dataset.id,button.dataset.group,button.dataset.model);
+ });
+ canvas.addEventListener("pointerover",e=>{
+  const dot=e.target.closest(".event-dot");
+  if(dot&&e.pointerType!=="touch")showDotPreview(dot);
+ });
+ canvas.addEventListener("pointerout",e=>{if(e.target===activeDot&&document.activeElement!==activeDot)hideDotPreview();});
+ canvas.addEventListener("focusin",e=>{if(e.target.matches(".event-dot"))showDotPreview(e.target);});
+ canvas.addEventListener("focusout",e=>{if(e.target===activeDot)hideDotPreview();});
+ window.addEventListener("scroll",hideDotPreview,{capture:true,passive:true});
  $("listRows").addEventListener("click",e=>{const btn=e.target.closest("button[data-id]");if(btn)openDetails(btn.dataset.id);});
  $("showMore").addEventListener("click",()=>{state.listLimit+=150;draw();});
  $("closeDrawer").addEventListener("click",closeDetails);$("drawerOverlay").addEventListener("click",closeDetails);
  document.addEventListener("keydown",e=>{
   if(e.key==="Escape"&&activeMonthField){e.preventDefault();closeMonthPicker(true);return;}
   if(e.key==="Escape"&&$("detailDrawer").classList.contains("is-open")){closeDetails();return;}
+  if(e.key==="Escape"&&hideDotPreview())return;
   if(e.key==="Escape"&&state.expanded){setExpanded(false);return;}
   if(e.key==="/"&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName)&&!$("detailDrawer").classList.contains("is-open")){e.preventDefault();$("searchInput").focus();}
  });
@@ -538,8 +625,7 @@ async function init(){
  lastSelectableMonth=lastDataMonth>new Date().toISOString().slice(0,7)?lastDataMonth:new Date().toISOString().slice(0,7);
  if(!firstDataMonth)throw new Error("No release data");
  paramsRead();
- const previousYear=(yearFromMonth(lastDataMonth)-1)+"-01";
- state.fromMonth=previousYear<firstDataMonth?firstDataMonth:previousYear;
+ state.fromMonth=defaultFromMonth();
  state.toMonth=lastDataMonth;
  function parseMonthParam(v,from){if(validMonth(v))return v;if(/^\d{4}$/.test(v||""))return v+(from?"-01":"-12");return null;}
  const from=parseMonthParam(state._from,true),to=parseMonthParam(state._to,false);
