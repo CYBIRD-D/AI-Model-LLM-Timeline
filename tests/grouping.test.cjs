@@ -10,6 +10,29 @@ vm.runInContext(fs.readFileSync(path.join(root,'app.js'),'utf8').replace(/\ninit
 function run(code,args={}){Object.assign(context,args);return JSON.parse(JSON.stringify(vm.runInContext(code,context)));}
 const entry=(id,company,date,models,extra={})=>({id,company,date,models,title:models[0],availability:'open',capabilities:['General'],...extra});
 
+test('OpenAI families keep each launch date and retain their members on one card in every mode',()=>{
+ const entries=data.events.filter(e=>e.company==='oai');
+ const expected=[
+  ['2024-09-12','o1 Family',['o1-preview','o1-mini']],
+  ['2024-12-05','o1 Family',['OpenAI o1','o1 pro mode']],
+  ['2025-05-16','codex-1 Family',['codex-1','codex-mini-latest']],
+  ['2025-08-05','gpt-oss Family',['gpt-oss-120b','gpt-oss-20b']]
+ ];
+ for(const density of ['overview','detail','models'])for(const zoom of [.4,2.8]){
+  const cards=run('state.density=density;state.zoom=zoom;state.fromMonth="2022-11";layoutEvents(entries,2.08*zoom).cards',{entries,density,zoom});
+  for(const [date,name,models] of expected){
+   const matching=cards.filter(({events})=>events[0].date===date);
+   assert.equal(matching.length,1,`${density}/${zoom}: ${name} on ${date}`);
+   assert.deepEqual(matching[0].events.flatMap(e=>e.models),models);
+   assert.ok(matching[0].html.includes(`aria-label="${name} — ${date}"`));
+   assert.ok(matching[0].html.includes(`class="event-date" datetime="${date}">${date.slice(2)}</time>`));
+  }
+ }
+ const groups=run('groupSameDayFamilies(entries)',{entries});
+ assert.equal(groups.find(g=>g.date==='2025-03-19').name,'o1-pro');
+ assert.equal(groups.find(g=>g.date==='2025-04-16').family,undefined);
+});
+
 test('Qwen Next, Omni, VL, Coder and Math never collapse into a generic Qwen3 family',()=>{
  const releases=run('groupSameDayFamilies(entries)',{entries:data.events.filter(e=>e.company==='qwen')});
  for(const [date,name] of [['2025-09-11','Qwen3-Next Family'],['2025-09-21','Qwen3-Omni Family'],['2025-09-23','Qwen3-VL Family']]){
@@ -98,7 +121,10 @@ test('Timeline abbreviations preserve special series, checkpoint dates and full 
   ['Gemini 4 Carbon','goog','4 Carbon'],['Qwen3-Next Family','qwen','3-Next Family'],
   ['DeepSeek-V4.1-Flash-1017','deep','V4.1-Flash-1017'],['gpt-oss Family','oai','gpt-oss Family'],
   ['Gemma 3n Family','goog','Gemma 3n Family'],['QwQ-32B','qwen','QwQ-32B'],
-  ['CodeQwen1.5-7B','qwen','CodeQwen1.5-7B'],['Pixtral 12B','mis','Pixtral 12B']
+  ['CodeQwen1.5-7B','qwen','CodeQwen1.5-7B'],['Pixtral 12B','mis','Pixtral 12B'],
+  ['GPT-4V / GPT-4 with Vision','oai','4V'],['GPT-4o update (1120)','oai','4o (1120)'],
+  ['Gemini 2.0 Flash Experimental','goog','2.0 Flash Exp.'],
+  ['Qwen3-Coder-480B-A35B-Instruct','qwen','3-Coder-480B-A35B-Instr.']
  ])assert.equal(run('cardLabel(name,company)',{name,company}),expected);
  const event=data.events.find(e=>e.id==='qwen-2026-07-15-qwen3-7-flash');
  const html=run('state.density="models";state.fromMonth="2026-01";layoutEvents([event],2).cards[0].html',{event});
