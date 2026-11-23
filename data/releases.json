@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
-  "datasetUpdated": "2026-11-19",
-  "coverageThrough": "2026-11-18",
+  "datasetUpdated": "2026-11-23",
+  "coverageThrough": "2026-11-23",
   "notes": "Selective text-generating LLM history. Dates identify original public model launches or distinct dated checkpoint revisions. Later publication of the same weights is metadata and does not add another model release. Open/Closed classification follows availabilityPolicy, with announced schedules distinguished from confirmed weight publication. Legacy migrated records remain partly unverified. Excludes dedicated OCR-only, embedding-only, image-only and speech-only models. Qwen4-Max is a limited preview, distinct from a GA release; Tencent Hy4 is the formal model, distinct from Hy4 Preview.",
   "events": [
     {
@@ -5330,6 +5330,26 @@
       "weight_schedule_source": "https://www.tencent.com/tencent-launches-hy4-joining-the-ranks-of-the-worlds-leading-open-source-ai-models/"
     },
     {
+      "id": "anth-2026-11-09-claude-fable-mythos-5-2",
+      "company": "anth",
+      "date": "2026-11-09",
+      "title": "Claude Fable / Mythos 5.2",
+      "models": [
+        "Claude Fable 5.2",
+        "Claude Mythos 5.2"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+      "verification": "verified",
+      "event_type": "model_release",
+      "notes": "Anthropic announced both variants on November 9. Fable 5.2 launched on the Claude API and cloud partner platforms. Mythos 5.2 has restricted access."
+    },
+    {
       "company": "meta",
       "date": "2026-11-09",
       "title": "Muse Ember 1.0",
@@ -5465,6 +5485,25 @@
       "verification": "verified",
       "event_type": "general_availability",
       "notes": "Google announced the rollout in the Gemini API, Gemini for business, Google Antigravity and the Gemini app on November 18."
+    },
+    {
+      "id": "glm-2026-11-23-glm-5-4",
+      "company": "glm",
+      "date": "2026-11-23",
+      "title": "GLM-5.4",
+      "models": [
+        "GLM-5.4"
+      ],
+      "availability": "closed",
+      "capabilities": [
+        "Multimodal",
+        "Reasoning",
+        "Coding"
+      ],
+      "source": "https://z.ai/blog/glm-5.4",
+      "verification": "verified",
+      "event_type": "model_release",
+      "notes": "First available November 23 via GLM Coding Plan, ZCode and Z.ai Chat. Z.ai listed the general API as coming soon and plans to publish weights after safety hardening. Weight publication is unscheduled."
     }
   ],
   "availabilityPolicy": "Open includes published models and models with an explicit, sourced commitment to publish weights within a few months. An unspecified future open-source intention alone is insufficient. Model dates use the original public launch; later weight publication is metadata, never a duplicate launch."
