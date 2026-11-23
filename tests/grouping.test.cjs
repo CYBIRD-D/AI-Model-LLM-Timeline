@@ -10,7 +10,7 @@ vm.runInContext(fs.readFileSync(path.join(root,'app.js'),'utf8').replace(/\ninit
 function run(code,args={}){Object.assign(context,args);return JSON.parse(JSON.stringify(vm.runInContext(code,context)));}
 const entry=(id,company,date,models,extra={})=>({id,company,date,models,title:models[0],availability:'open',capabilities:['General'],...extra});
 
-test('OpenAI families keep each launch date and retain their members on one card in every mode',()=>{
+test('OpenAI families keep each launch date and retain their members in every card mode',()=>{
  const entries=data.events.filter(e=>e.company==='oai');
  const expected=[
   ['2024-09-12','o1 Family',['o1-preview','o1-mini']],
@@ -58,21 +58,68 @@ test('Mistral and Muse Wonder variants share cards only within the same family a
  assert.equal(entries.find(e=>e.title==='Devstral Small 1.1').availability,'open');
 });
 
-test('Dots collect a release day within a track, retain exact positions and survive maximum zoom',()=>{
+test('Dots group same-day models by tier and stagger crowded dates within their tier',()=>{
  const entries=[
-  entry('a','oai','2026-11-01',['GPT-6 Astra']),
-  entry('b','oai','2026-11-01',['GPT-6 Sol']),
-  entry('c','oai','2026-11-02',['GPT-6 Luna'])
+  entry('a','oai','2026-11-01',['GPT-6 Astra','GPT-6 Sol','GPT-6 Luna'],{title:'GPT-6 Family'}),
+  entry('b','oai','2026-11-01',['GPT-6.2 Astra']),
+  entry('c','oai','2026-11-02',['GPT-6.1 Astra']),
+  entry('d','oai','2026-11-12',['GPT-6.3 Astra'])
  ];
- const dots=run('state.fromMonth="2026-11";state.density="dots";layoutDots(entries,2).cards',{entries});
- assert.equal(dots.length,2);
- assert.deepEqual(dots[0].events.map(e=>e.id),['a','b']);
- assert.deepEqual(dots[1].events.map(e=>e.id),['c']);
- assert.match(dots[0].html,/class="event-dot".*style="left:0\.0px;top:8px;/);
- assert.match(dots[1].html,/class="event-dot".*style="left:2\.0px;top:35px;/);
- assert.ok(dots.every(d=>!d.html.includes('event-name')));
+ const {cards,bands}=run('state.fromMonth="2026-11";state.density="dots";layoutDots(entries,2)',{entries});
+ const positions=cards.map(({html,events})=>{
+  const [,left,top,width]=html.match(/left:([\d.]+)px;top:(\d+)px;width:([\d.]+)px/).map(Number);
+  return {x:left+width/2,y:top+12,tier:html.match(/data-tier="(\w+)"/)[1],models:events.flatMap(e=>e.models)};
+ });
+ assert.deepEqual(bands.map(b=>b.tier),['flagship','secondary','other']);
+ assert.deepEqual(positions,[
+  {x:12,y:bands[0].y,tier:'flagship',models:['GPT-6 Astra','GPT-6.2 Astra']},
+  {x:34,y:bands[0].y,tier:'flagship',models:['GPT-6.3 Astra']},
+  {x:14,y:60,tier:'flagship',models:['GPT-6.1 Astra']},
+  {x:12,y:bands[1].y,tier:'secondary',models:['GPT-6 Sol']},
+  {x:12,y:bands[2].y,tier:'other',models:['GPT-6 Luna']}
+ ]);
+ assert.ok(positions[2].y<bands[1].y);
+ assert.ok(cards.every(c=>!c.html.includes('event-name')));
+ assert.deepEqual(run('entries[0].models'),['GPT-6 Astra','GPT-6 Sol','GPT-6 Luna']);
  const density=run('paramsRead();state.density',{URL,location:{href:'https://example.test/?density=dots&zoom=2.8'}});
  assert.equal(density,'dots');
+});
+
+test('Dots preserve the dataset within each availability track and use launch-era tiers',()=>{
+ const examples={
+  'Claude 3.5 Sonnet (20240620)':'flagship','Claude Sonnet 4.5':'secondary',
+  'GPT-6.2 Astra':'flagship','GPT-6.2 Sol':'secondary','gpt-oss-120b':'flagship','gpt-oss-20b':'secondary',
+  'Gemma 4 31B':'flagship','Gemma 4 26B A4B':'secondary','Gemma 4 E2B':'other',
+  'Gemini 4 Carbon':'flagship','Gemini 4 Neon':'secondary',
+  'Muse Wonder Full':'flagship','Muse Wonder':'secondary',
+  'Mistral 7B 0.1':'flagship','Mistral Medium 3.5':'flagship','Mistral Small 4':'secondary',
+  'DeepSeek-V4-Pro':'flagship','DeepSeek-V4-Flash':'secondary',
+  'Qwen3-235B-A22B':'flagship','Qwen3-30B-A3B':'secondary','Qwen3.8-Flash-Next':'secondary',
+  'Grok 4 Heavy':'flagship','Grok 4':'secondary',
+  'ChatGLM-130B':'flagship','ChatGLM-6B':'secondary','GLM-5.3':'flagship','GLM-5.3-Flash':'secondary',
+  'Hy4':'flagship','Hy4 flash':'secondary',
+  'Kimi K3.1 Pro':'flagship','Kimi K2.7 Code':'secondary',
+  'MiniMax M3':'flagship','MiniMax-M3.1-Flash':'secondary'
+ };
+ const actual=new Map();
+ for(const company of new Set(data.events.map(e=>e.company)))for(const availability of ['open','closed']){
+  const entries=data.events.filter(e=>e.company===company&&e.availability===availability);
+  const cards=run('state.fromMonth="2022-11";state.density="dots";layoutDots(entries,2.08*2.8).cards',{entries});
+  const expected=run('entries.flatMap(e=>expandModelNames(e.models).map(m=>[e.id,e.date,m])).sort()');
+  const found=cards.flatMap(({html,events})=>{
+   const tier=html.match(/data-tier="(\w+)"/)[1];
+   return events.flatMap(e=>{
+    assert.equal(e.company,company);
+    assert.equal(e.availability,availability);
+    return e.models.map(model=>{
+     actual.set(model,tier);
+     return [e.id,e.date,model];
+    });
+   });
+  });
+  assert.deepEqual(found.sort(),expected);
+ }
+ for(const [model,tier] of Object.entries(examples))assert.equal(actual.get(model),tier,model);
 });
 
 test('Qwen Next, Omni, VL, Coder and Math never collapse into a generic Qwen3 family',()=>{

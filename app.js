@@ -16,11 +16,12 @@ const monthAfter=key=>{const [y,m]=key.split("-").map(Number);return iso(y,m+1).
 const yearFromMonth=key=>Number(key.slice(0,4));
 const MAX_ZOOM=2.8;
 const DOT_HIT_SIZE=24;
+const DOT_TIERS={flagship:"Flagship",secondary:"Secondary",other:"Other"};
 const DENSITIES={
  overview:{button:"overviewBtn",label:"Nearby releases grouped",note:"Click a group to inspect every release."},
  detail:{button:"detailBtn",label:"Same-day model families grouped",note:"Click a Family card to see its members."},
  models:{button:"modelsBtn",label:"Individual models · families kept together",note:"Click any card to see the full model names."},
- dots:{button:"dotsBtn",label:"One dot per release day",note:"Hover or focus a dot to preview models. Click or tap for details."}
+ dots:{button:"dotsBtn",label:"Model tiers at launch",note:"Hover or focus a dot to preview the models. Click or tap for details."}
 };
 const validMonth=value=>/^\d{4}-(0[1-9]|1[0-2])$/.test(value);
 const state={data:[],query:"",companies:new Set(COMPANY_ORDER),availability:new Set(["open","closed"]),capabilities:new Set(CAPS),fromMonth:"2025-01",toMonth:"2026-05",mode:"timeline",density:"detail",zoom:1.3,filtersCollapsed:false,expanded:false,drawer:null,listLimit:120};
@@ -392,27 +393,109 @@ function layoutEvents(entries,scale){
  return {height:Math.max(57,offset+3),cards:html};
 }
 const groupRecords=new Map();
+
+// Follow each provider's lineup at launch. A suffix such as Sonnet or Flash
+// has a different role across providers and generations. Unmatched models use Other.
+const DOT_TIER_RULES={
+ oai:{
+  flagship:[/^ChatGPT \/ GPT-3\.5 series$|^GPT-3\.5 Turbo$/i,/^GPT-4(?:V|o|\.1|\.5)?(?:$| (?!mini\b|nano\b))/i,/^GPT-5(?:\.[1-5])?(?:$| (?:Thinking|Pro)$)/i,/^GPT-(?:5\.6 Sol|6(?:\.\d+)? Astra)\b/i,/^(?:OpenAI )?o[13](?:$|-(?:preview|pro)$| pro mode$)/i,/^gpt-oss-120b$/i],
+  secondary:[/^GPT-3\.5 Turbo\b|^GPT-[45](?:\.\d+|o)? (?:mini|Instant)\b/i,/^GPT-(?:5\.6 Terra|6(?:\.\d+)? Sol)\b/i,/^o[134]-mini$|^gpt-oss-20b$/i,/^codex-1$|^GPT-5(?:\.\d+)?-Codex(?:-Max)?$/i]
+ },
+ anth:{
+  flagship:[/^Claude [12]\.\d+$|^Claude (?:Opus|Fable|Mythos)\b|^Claude \d+(?:\.\d+)? (?:Opus|Fable|Mythos)\b/i,/^Claude 3\.[57] Sonnet\b/i],
+  secondary:[/^Claude (?:Instant|Sonnet)\b|^Claude \d+(?:\.\d+)? Sonnet\b/i]
+ },
+ goog:{
+  flagship:[/^Gemini (?:1\.0 Ultra|Ultra 1\.0|(?:1\.5|[23](?:\.\d+)?) Pro|2\.5 Deep Think|4 (?:Argon|Carbon))\b/i,/^Gemma (?:1 7B|1\.1|2 27B|3 27B|4 31B)(?:$|\b)/i],
+  secondary:[/^Gemini (?:1\.0 Pro|4 Neon)\b|^Gemini \d+(?:\.\d+)? Flash(?:$| )/i,/^Gemma (?:1 2B|2 9B|3 12B|4 26B)\b/i]
+ },
+ meta:{
+  flagship:[/^LLaMA(?: [23](?:\.1)?| 3\.3\b.*| 4 Maverick)?$|^Muse (?:Spark(?: 1\.\d+)?|Wonder Full)$/i],
+  secondary:[/^Llama 3\.2\b|^Llama 4 Scout\b|^Muse Wonder$/i]
+ },
+ mis:{
+  flagship:[/^Mistral (?:7B 0\.1|Large \d|Medium (?:1\.0|3\.[015]))\b|^Mixtral 8x(?:7|22)B\b/i],
+  secondary:[/^Mistral (?:7B 0\.[23]|Small|NeMo)\b|^Pixtral Large\b|^Magistral Medium\b|^Devstral (?:2|Medium)\b/i]
+ },
+ deep:{
+  flagship:[/^DeepSeek-(?:LLM|V[23](?:\.\d+)?(?:$|-(?!Lite\b))|R1(?:$|-\d{4}$)|V4(?:\.\d+)?-Pro\b)/i],
+  secondary:[/^DeepSeek-(?:V2-Lite|R1-(?:Lite|Zero)|V4(?:\.\d+)?-Flash|Coder(?:-V2(?:-Instruct-\d{4})?)?$)\b/i]
+ },
+ qwen:{
+  flagship:[/^Qwen(?:-VL)?(?:\d+(?:\.\d+)?)?-Max\b/i,/^Qwen-(?:7|14|72)B$|^Qwen1\.5-(?:72|110)B\b|^Qwen2(?:\.5)?-72B\b|^Qwen3-235B\b|^Qwen3\.5-397B\b|^Qwen3\.8-2\.4T\b/i],
+  secondary:[/^Qwen(?:-VL)?(?:\d+(?:\.\d+)?)?-(?:Plus|Flash|Omni|Next)\b/i,/^Qwen(?:\d+(?:\.\d+)?)?-(?:VL|Coder)-(?:27|30|32|72|235|480)B\b|^Qwen-VL$|^Q(?:wQ|VQ)-/i,/^Qwen(?:\d+(?:\.\d+)?)-(?:14|27|30|32|35|57|122)B\b/i]
+ },
+ xai:{
+  flagship:[/^Grok(?:-1 Base)?$|^Grok[ -](?:[123](?:\.\d+)?(?:-1212)?|4(?: Heavy|\.20 Multi-agent|\.[13567](?: Beta)?))$|^grok-beta$/i],
+  secondary:[/^Grok[ -](?:1\.5V|2-vision-1212|4|4 Fast|4\.20 Beta)$|^grok-vision-beta$/i]
+ },
+ glm:{
+  flagship:[/^ChatGLM(?:-130B|[23]-6B)$|^GLM-4(?:$|-0520$|-Plus$|-9B(?:-Chat)?$|-32B(?:-Base)?-0414$)/i,/^GLM-(?:4\.[567]|5(?:\.\d+)?|Z1(?:-Rumination)?-32B-0414)$/i],
+  secondary:[/^ChatGLM-6B$|^GLM-(?:4-9B-(?:Chat-1M|0414)|4V-9B|Z1-9B-0414|(?:4\.\d|5\.\d)-(?:Air|Flash))$/i]
+ },
+ hy:{flagship:[/^Hy4$/i],secondary:[/^Hy4[ -]Flash$/i]},
+ moon:{
+  flagship:[/^moonshot-v1$|^(?:Kimi[ -])?k1(?:\.5)?$|^Moonlight-16B-A3B$/i,/^Kimi[ -]K(?:2(?:$|-0905$|-thinking$|\.[56]$)|3(?:$|\.1 Pro$))/i],
+  secondary:[/^moonshot-v1-auto$|^kimi-thinking-preview$|^Kimi[ -]K2\.(?:7 Code|8 Preview)$|^Kimi-(?:VL|Dev|Linear)\b/i]
+ },
+ mini:{
+  flagship:[/^abab6(?:-chat|\.5)?$|^MiniMax[ -](?:Text-01|M[123](?:\.\d+)?)$/i],
+  secondary:[/^abab6\.5s$|^MiniMax[ -]M\d(?:\.\d+)?-Flash$/i]
+ }
+};
+function dotModelTier(company,model){
+ const rules=DOT_TIER_RULES[company];
+ if(rules?.flagship.some(pattern=>pattern.test(model)))return "flagship";
+ if(rules?.secondary.some(pattern=>pattern.test(model)))return "secondary";
+ return "other";
+}
 function layoutDots(entries,scale){
- const byDate=new Map();
+ const byTier=new Map(Object.keys(DOT_TIERS).map(tier=>[tier,new Map()]));
  for(const event of entries){
-  if(!byDate.has(event.date))byDate.set(event.date,[]);
-  byDate.get(event.date).push(event);
+  const byModelTier=new Map();
+  for(const model of expandModelNames(event.models.length?event.models:[event.title])){
+   const tier=dotModelTier(event.company,model);
+   if(!byModelTier.has(tier))byModelTier.set(tier,[]);
+   byModelTier.get(tier).push(model);
+  }
+  for(const [tier,models] of byModelTier){
+   const byDate=byTier.get(tier);
+   if(!byDate.has(event.date))byDate.set(event.date,[]);
+   const title=byModelTier.size===1?event.title:models.join(" / ");
+   byDate.get(event.date).push({...event,title,models});
+  }
  }
- const start=monthStart(state.fromMonth),rowEnds=[],cards=[];
- const spacing=3,rowHeight=DOT_HIT_SIZE+spacing;
- for(const date of [...byDate.keys()].sort()){
-  const events=byDate.get(date),first=events[0];
-  const left=timelineX(start,date,scale)-DOT_HIT_SIZE/2;
-  let row=rowEnds.findIndex(end=>end+spacing<=left);
-  if(row<0)row=rowEnds.length;
-  rowEnds[row]=left+DOT_HIT_SIZE;
-  const name=events.length===1?first.title:events.length+" releases";
-  const label=escapeHTML(name+" — "+date);
-  const style='left:'+left.toFixed(1)+'px;top:'+(8+row*rowHeight)+'px;width:'+DOT_HIT_SIZE+'px;height:'+DOT_HIT_SIZE+'px;--dot-color:'+COMPANIES[first.company].color;
-  const html='<button type="button" class="event-dot" aria-label="'+label+'" data-id="'+escapeHTML(first.id)+'" data-group="" style="'+style+'"></button>';
-  cards.push({html,events});
+
+ const start=monthStart(state.fromMonth),bands=[],cards=[];
+ const minSpacing=14,rowHeight=DOT_HIT_SIZE+2,bandGap=4;
+ let top=22;
+ for(const [tier,byDate] of byTier){
+  if(!byDate.size)continue;
+  bands.push({tier,y:top+DOT_HIT_SIZE/2});
+  const rows=[];
+  for(const date of [...byDate.keys()].sort()){
+   const x=timelineX(start,date,scale);
+   let row=rows.find(items=>x-items.at(-1).x>=minSpacing);
+   if(!row){row=[];rows.push(row);}
+   row.push({date,x,events:byDate.get(date)});
+  }
+  for(const row of rows){
+   for(const [i,{date,x,events}] of row.entries()){
+    // Use narrower targets for neighbors on a dense row so both dots remain selectable.
+    const before=row[i-1],after=row[i+1];
+    const width=Math.min(DOT_HIT_SIZE,before?x-before.x:Infinity,after?after.x-x:Infinity);
+    const left=x-width/2,first=events[0];
+    const name=events.length===1?first.title:events.length+" releases";
+    const label=escapeHTML(name+" — "+date+" · "+DOT_TIERS[tier]);
+    const style='left:'+left.toFixed(2)+'px;top:'+top+'px;width:'+width.toFixed(2)+'px;height:'+DOT_HIT_SIZE+'px;--dot-color:'+COMPANIES[first.company].color;
+    const html='<button type="button" class="event-dot" aria-label="'+label+'" data-id="'+escapeHTML(first.id)+'" data-tier="'+tier+'" data-group="" style="'+style+'"></button>';
+    cards.push({html,events});
+   }
+   top+=rowHeight;
+  }
+  top+=bandGap;
  }
- return {height:Math.max(44,13+rowEnds.length*rowHeight),cards};
+ return {height:top,bands,cards};
 }
 
 function hideDotPreview(){
@@ -432,7 +515,7 @@ function showDotPreview(dot){
  const models=expandModelNames(entries.flatMap(e=>e.models.length?e.models:[e.title]));
  const shown=models.slice(0,10);
  const preview=$("dotPreview");
- preview.innerHTML='<strong>'+escapeHTML(fmt(first.date))+'</strong><div class="dot-preview-meta">'+escapeHTML(company.name)+' · '+(first.availability==="open"?"Open":"Closed")+'</div>'
+ preview.innerHTML='<strong>'+escapeHTML(fmt(first.date))+'</strong><div class="dot-preview-meta">'+escapeHTML(company.name)+' · '+(first.availability==="open"?"Open":"Closed")+' · '+DOT_TIERS[dot.dataset.tier]+'</div>'
   +'<ul>'+shown.map(model=>'<li>'+escapeHTML(model)+'</li>').join("")+'</ul>'
   +(shown.length<models.length?'<div class="dot-preview-meta">+'+(models.length-shown.length)+' more in Details</div>':'');
  preview.style.setProperty("--dot-color",company.color);
@@ -477,7 +560,9 @@ function drawTimeline(entries){
      const dots=state.density==="dots";
      const layout=dots?layoutDots(subset,px):layoutEvents(subset,px);
      const count=dots||state.density==="models"?layout.cards.length:subset.length;
-     html+='<div class="track'+(dots?' dot-track':'')+'" style="width:'+(width+label)+'px;height:'+layout.height+'px"><div class="track-label"><span class="track-label-name" style="color:var(--'+av+')">'+(av==="open"?"Open":"Closed")+'</span><span class="track-count">'+count+'</span></div><div class="track-grid" style="width:'+width+'px">'+grid+layout.cards.map(c=>{
+     const tierLabels=dots?layout.bands.map(({tier,y})=>'<span class="dot-tier-label" style="top:'+y+'px">'+DOT_TIERS[tier]+'</span>').join(""):"";
+     const tierGuides=dots?layout.bands.map(({y})=>'<i aria-hidden="true" class="dot-tier-guide" style="top:'+y+'px"></i>').join(""):"";
+     html+='<div class="track'+(dots?' dot-track':'')+'" style="width:'+(width+label)+'px;height:'+layout.height+'px"><div class="track-label"><span class="track-label-name" style="color:var(--'+av+')">'+(av==="open"?"Open":"Closed")+'</span><span class="track-count">'+count+'</span>'+tierLabels+'</div><div class="track-grid" style="width:'+width+'px">'+grid+tierGuides+layout.cards.map(c=>{
        const key="g"+gIndex++;
        groupRecords.set(key,c.events);
        return c.html.replace(/data-group="[^"]*"/,'data-group="'+key+'"');
