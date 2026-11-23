@@ -58,12 +58,14 @@ test('Mistral and Muse Wonder variants share cards only within the same family a
  assert.equal(entries.find(e=>e.title==='Devstral Small 1.1').availability,'open');
 });
 
-test('Dots group same-day models by tier and stagger crowded dates within their tier',()=>{
+test('Dots place whole families at their highest tier and stagger crowded dates within each tier',()=>{
  const entries=[
   entry('a','oai','2026-11-01',['GPT-6 Astra','GPT-6 Sol','GPT-6 Luna'],{title:'GPT-6 Family'}),
-  entry('b','oai','2026-11-01',['GPT-6.2 Astra']),
+  entry('b','oai','2026-11-01',['GPT-6.2 Sol']),
   entry('c','oai','2026-11-02',['GPT-6.1 Astra']),
-  entry('d','oai','2026-11-12',['GPT-6.3 Astra'])
+  entry('d','oai','2026-11-12',['GPT-6.3 Astra']),
+  entry('e','oai','2026-11-01',['GPT-6.3 Sol']),
+  entry('f','oai','2026-11-01',['GPT-6.4 Luna'])
  ];
  const {cards,bands}=run('state.fromMonth="2026-11";state.density="dots";layoutDots(entries,2)',{entries});
  const positions=cards.map(({html,events})=>{
@@ -72,31 +74,58 @@ test('Dots group same-day models by tier and stagger crowded dates within their 
  });
  assert.deepEqual(bands.map(b=>b.tier),['flagship','secondary','other']);
  assert.deepEqual(positions,[
-  {x:12,y:bands[0].y,tier:'flagship',models:['GPT-6 Astra','GPT-6.2 Astra']},
+  {x:12,y:bands[0].y,tier:'flagship',models:['GPT-6 Astra','GPT-6 Sol','GPT-6 Luna']},
   {x:34,y:bands[0].y,tier:'flagship',models:['GPT-6.3 Astra']},
   {x:14,y:60,tier:'flagship',models:['GPT-6.1 Astra']},
-  {x:12,y:bands[1].y,tier:'secondary',models:['GPT-6 Sol']},
-  {x:12,y:bands[2].y,tier:'other',models:['GPT-6 Luna']}
+  {x:12,y:bands[1].y,tier:'secondary',models:['GPT-6.2 Sol','GPT-6.3 Sol']},
+  {x:12,y:bands[2].y,tier:'other',models:['GPT-6.4 Luna']}
  ]);
  assert.ok(positions[2].y<bands[1].y);
+ assert.match(cards[0].html,/aria-label="GPT-6 Family — 2026-11-01 · Flagship"/);
  assert.ok(cards.every(c=>!c.html.includes('event-name')));
  assert.deepEqual(run('entries[0].models'),['GPT-6 Astra','GPT-6 Sol','GPT-6 Luna']);
  const density=run('paramsRead();state.density',{URL,location:{href:'https://example.test/?density=dots&zoom=2.8'}});
  assert.equal(density,'dots');
 });
 
-test('Dots preserve the dataset within each availability track and use launch-era tiers',()=>{
+test('Dots preserve both named and inferred families, including those spanning multiple records',()=>{
+ const families=[
+  ['oai','closed','2024-09-12','o1 Family',['o1-preview','o1-mini']],
+  ['oai','closed','2026-11-17','GPT-6.2 Family',['GPT-6.2 Astra','GPT-6.2 Sol']],
+  ['meta','closed','2026-10-12','Muse Wonder Family',['Muse Wonder','Muse Wonder Full']],
+  ['goog','open','2026-03-31','Gemma 4 Family',['Gemma 4 E2B','Gemma 4 E4B','Gemma 4 31B','Gemma 4 26B A4B']]
+ ];
+ for(const [company,availability,date,name,models] of families){
+  const entries=data.events.filter(e=>e.company===company&&e.availability===availability&&e.date===date);
+  for(const zoom of [.4,2.8]){
+   const cards=run('state.fromMonth="2022-11";state.density="dots";layoutDots(entries,2.08*zoom).cards',{entries,zoom});
+   const matching=cards.filter(c=>c.html.includes(`aria-label="${name} — ${date} · Flagship"`));
+   assert.equal(matching.length,1,`${zoom}: ${name}`);
+   assert.deepEqual(run('expandModelNames(names)',{names:matching[0].events.flatMap(e=>e.models)}),models);
+  }
+ }
+ const entries=[
+  entry('main','glm','2025-04-14',['GLM-4-32B-0414']),
+  entry('small','glm','2025-04-14',['GLM-4-9B-0414'])
+ ];
+ const cards=run('layoutDots(entries,2).cards',{entries});
+ assert.equal(cards.length,1);
+ assert.match(cards[0].html,/data-model="GLM-4-0414 Family"/);
+ assert.deepEqual(cards[0].events.map(e=>e.id),['main','small']);
+});
+
+test('Dots preserve the dataset within each availability track and rank each release group',()=>{
  const examples={
   'Claude 3.5 Sonnet (20240620)':'flagship','Claude Sonnet 4.5':'secondary',
-  'GPT-6.2 Astra':'flagship','GPT-6.2 Sol':'secondary','gpt-oss-120b':'flagship','gpt-oss-20b':'secondary',
-  'Gemma 4 31B':'flagship','Gemma 4 26B A4B':'secondary','Gemma 4 E2B':'other',
+  'GPT-6.2 Astra':'flagship','GPT-6.2 Sol':'flagship','gpt-oss-120b':'flagship','gpt-oss-20b':'flagship',
+  'Gemma 4 31B':'flagship','Gemma 4 26B A4B':'flagship','Gemma 4 E2B':'flagship',
   'Gemini 4 Carbon':'flagship','Gemini 4 Neon':'secondary',
-  'Muse Wonder Full':'flagship','Muse Wonder':'secondary',
+  'Muse Wonder Full':'flagship','Muse Wonder':'flagship',
   'Mistral 7B 0.1':'flagship','Mistral Medium 3.5':'flagship','Mistral Small 4':'secondary',
-  'DeepSeek-V4-Pro':'flagship','DeepSeek-V4-Flash':'secondary',
-  'Qwen3-235B-A22B':'flagship','Qwen3-30B-A3B':'secondary','Qwen3.8-Flash-Next':'secondary',
-  'Grok 4 Heavy':'flagship','Grok 4':'secondary',
-  'ChatGLM-130B':'flagship','ChatGLM-6B':'secondary','GLM-5.3':'flagship','GLM-5.3-Flash':'secondary',
+  'DeepSeek-V4-Pro':'flagship','DeepSeek-V4-Flash':'flagship','DeepSeek-V4-Flash-0731':'secondary',
+  'Qwen3-235B-A22B':'flagship','Qwen3-30B-A3B':'flagship','Qwen3.8-Flash-Next':'secondary',
+  'Grok 4 Heavy':'flagship','Grok 4':'flagship',
+  'ChatGLM-130B':'flagship','ChatGLM-6B':'flagship','GLM-5.3':'flagship','GLM-5.3-Flash':'secondary',
   'Hy4':'flagship','Hy4 flash':'secondary',
   'Kimi K3.1 Pro':'flagship','Kimi K2.7 Code':'secondary',
   'MiniMax M3':'flagship','MiniMax-M3.1-Flash':'secondary'
@@ -111,7 +140,7 @@ test('Dots preserve the dataset within each availability track and use launch-er
    return events.flatMap(e=>{
     assert.equal(e.company,company);
     assert.equal(e.availability,availability);
-    return e.models.map(model=>{
+    return run('expandModelNames(names)',{names:e.models}).map(model=>{
      actual.set(model,tier);
      return [e.id,e.date,model];
     });

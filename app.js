@@ -450,20 +450,16 @@ function dotModelTier(company,model){
  return "other";
 }
 function layoutDots(entries,scale){
- const byTier=new Map(Object.keys(DOT_TIERS).map(tier=>[tier,new Map()]));
- for(const event of entries){
-  const byModelTier=new Map();
-  for(const model of expandModelNames(event.models.length?event.models:[event.title])){
-   const tier=dotModelTier(event.company,model);
-   if(!byModelTier.has(tier))byModelTier.set(tier,[]);
-   byModelTier.get(tier).push(model);
-  }
-  for(const [tier,models] of byModelTier){
-   const byDate=byTier.get(tier);
-   if(!byDate.has(event.date))byDate.set(event.date,[]);
-   const title=byModelTier.size===1?event.title:models.join(" / ");
-   byDate.get(event.date).push({...event,title,models});
-  }
+ const tiers=Object.keys(DOT_TIERS),byTier=new Map(tiers.map(tier=>[tier,new Map()]));
+ // Use the same release groups as the card views and place each at its highest member tier.
+ for(const release of groupSameDayFamilies(entries)){
+  const memberTiers=new Set(release.events.flatMap(event=>
+   expandModelNames(event.models.length?event.models:[event.title]).map(model=>dotModelTier(event.company,model))
+  ));
+  const tier=tiers.find(tier=>memberTiers.has(tier))||"other";
+  const byDate=byTier.get(tier);
+  if(!byDate.has(release.date))byDate.set(release.date,[]);
+  byDate.get(release.date).push(release);
  }
 
  const start=monthStart(state.fromMonth),bands=[],cards=[];
@@ -477,18 +473,19 @@ function layoutDots(entries,scale){
    const x=timelineX(start,date,scale);
    let row=rows.find(items=>x-items.at(-1).x>=minSpacing);
    if(!row){row=[];rows.push(row);}
-   row.push({date,x,events:byDate.get(date)});
+   row.push({date,x,releases:byDate.get(date)});
   }
   for(const row of rows){
-   for(const [i,{date,x,events}] of row.entries()){
+   for(const [i,{date,x,releases}] of row.entries()){
     // Use narrower targets for neighbors on a dense row so both dots remain selectable.
     const before=row[i-1],after=row[i+1];
     const width=Math.min(DOT_HIT_SIZE,before?x-before.x:Infinity,after?after.x-x:Infinity);
+    const events=releases.flatMap(release=>release.events);
     const left=x-width/2,first=events[0];
-    const name=events.length===1?first.title:events.length+" releases";
-    const label=escapeHTML(name+" — "+date+" · "+DOT_TIERS[tier]);
+    const releaseName=releases.length===1?releases[0].name:"";
+    const label=escapeHTML((releaseName||releases.length+" releases")+" — "+date+" · "+DOT_TIERS[tier]);
     const style='left:'+left.toFixed(2)+'px;top:'+top+'px;width:'+width.toFixed(2)+'px;height:'+DOT_HIT_SIZE+'px;--dot-color:'+COMPANIES[first.company].color;
-    const html='<button type="button" class="event-dot" aria-label="'+label+'" data-id="'+escapeHTML(first.id)+'" data-tier="'+tier+'" data-group="" style="'+style+'"></button>';
+    const html='<button type="button" class="event-dot" aria-label="'+label+'" data-id="'+escapeHTML(first.id)+'" data-tier="'+tier+'" data-model="'+escapeHTML(releaseName)+'" data-group="" style="'+style+'"></button>';
     cards.push({html,events});
    }
    top+=rowHeight;
@@ -602,8 +599,9 @@ function openDetails(id,groupKey,modelName=""){
  const first=entries[0],comp=COMPANIES[first.company];
  const uniqueModels=[...new Set(entries.flatMap(e=>expandModelNames(e.models)))];
  const grouped=entries.length>1;
+ const title=modelName||(grouped?entries.length+" grouped releases":first.title);
  const eventLabels={weights_release:"Weights published",api_release:"API launch",api_snapshot:"API snapshot",model_update:"Model revision",general_availability:"General availability",limited_preview:"Limited preview",model_release:"Model release"};
- $("drawerContent").innerHTML='<div class="drawer-company"><span class="company-color" style="background:'+comp.color+'"></span>'+escapeHTML(comp.name)+'</div><h2 class="drawer-title" id="drawerTitle">'+escapeHTML(grouped?entries.length+" grouped releases":(modelName||first.title))+'</h2><div class="drawer-info"><div><span class="detail-key">'+(grouped?"Earliest release":"Release date")+'</span><span class="detail-value">'+escapeHTML(fmt(first.date))+'</span></div><div><span class="detail-key">Availability</span><span class="detail-value">'+(first.availability==="open"?"Open":"Closed")+'</span></div><div><span class="detail-key">'+(grouped?"Release groups":"Event type")+'</span><span class="detail-value">'+(grouped?entries.length:escapeHTML(eventLabels[first.event_type]||"Model release"))+'</span></div><div><span class="detail-key">Capabilities</span><span class="detail-value">'+escapeHTML([...new Set(entries.flatMap(e=>e.capabilities))].join(", "))+'</span></div></div>'+weightDetails(entries)+(grouped?'<section class="drawer-section"><h3>RELEASE DATES</h3><ul class="drawer-models">'+entries.map(e=>'<li>'+escapeHTML(e.date)+' · '+escapeHTML(e.title)+'</li>').join("")+'</ul></section>':'')+'<section class="drawer-section"><h3>MODELS IN THIS RELEASE</h3><ul class="drawer-models">'+uniqueModels.map(m=>'<li>'+escapeHTML(m)+'</li>').join("")+'</ul></section><section class="drawer-section"><h3>DATA & SOURCES</h3>'+(first.source?'<a class="drawer-link" href="'+escapeHTML(first.source)+'" target="_blank" rel="noopener noreferrer">Official release reference ↗</a>':'<div class="drawer-note">Source not yet recorded in the migrated dataset. This historical entry has not been independently verified. Help improve its accuracy on GitHub.</div>')+(first.weight_source&&!first.weight_status?'<p><a class="drawer-link" href="'+escapeHTML(first.weight_source)+'" target="_blank" rel="noopener noreferrer">Official model weights ↗</a></p>':'')+(first.notes?'<p class="drawer-note">'+escapeHTML(first.notes)+'</p>':'')+'<p><a class="drawer-link" href="https://github.com/CYBIRD-D/AI-Model-LLM-Timeline/issues/new" target="_blank" rel="noopener noreferrer">Suggest a correction ↗</a></p></section>';
+ $("drawerContent").innerHTML='<div class="drawer-company"><span class="company-color" style="background:'+comp.color+'"></span>'+escapeHTML(comp.name)+'</div><h2 class="drawer-title" id="drawerTitle">'+escapeHTML(title)+'</h2><div class="drawer-info"><div><span class="detail-key">'+(grouped?"Earliest release":"Release date")+'</span><span class="detail-value">'+escapeHTML(fmt(first.date))+'</span></div><div><span class="detail-key">Availability</span><span class="detail-value">'+(first.availability==="open"?"Open":"Closed")+'</span></div><div><span class="detail-key">'+(grouped?"Release groups":"Event type")+'</span><span class="detail-value">'+(grouped?entries.length:escapeHTML(eventLabels[first.event_type]||"Model release"))+'</span></div><div><span class="detail-key">Capabilities</span><span class="detail-value">'+escapeHTML([...new Set(entries.flatMap(e=>e.capabilities))].join(", "))+'</span></div></div>'+weightDetails(entries)+(grouped?'<section class="drawer-section"><h3>RELEASE DATES</h3><ul class="drawer-models">'+entries.map(e=>'<li>'+escapeHTML(e.date)+' · '+escapeHTML(e.title)+'</li>').join("")+'</ul></section>':'')+'<section class="drawer-section"><h3>MODELS IN THIS RELEASE</h3><ul class="drawer-models">'+uniqueModels.map(m=>'<li>'+escapeHTML(m)+'</li>').join("")+'</ul></section><section class="drawer-section"><h3>DATA & SOURCES</h3>'+(first.source?'<a class="drawer-link" href="'+escapeHTML(first.source)+'" target="_blank" rel="noopener noreferrer">Official release reference ↗</a>':'<div class="drawer-note">Source not yet recorded in the migrated dataset. This historical entry has not been independently verified. Help improve its accuracy on GitHub.</div>')+(first.weight_source&&!first.weight_status?'<p><a class="drawer-link" href="'+escapeHTML(first.weight_source)+'" target="_blank" rel="noopener noreferrer">Official model weights ↗</a></p>':'')+(first.notes?'<p class="drawer-note">'+escapeHTML(first.notes)+'</p>':'')+'<p><a class="drawer-link" href="https://github.com/CYBIRD-D/AI-Model-LLM-Timeline/issues/new" target="_blank" rel="noopener noreferrer">Suggest a correction ↗</a></p></section>';
  $("drawerOverlay").hidden=false;$("detailDrawer").classList.add("is-open");$("detailDrawer").setAttribute("aria-hidden","false");document.body.style.overflow="hidden";$("closeDrawer").focus();
 }
 function closeDetails(){$("detailDrawer").classList.remove("is-open");$("detailDrawer").setAttribute("aria-hidden","true");$("drawerOverlay").hidden=true;document.body.style.overflow="";if(previousFocus?.isConnected)previousFocus.focus();}
