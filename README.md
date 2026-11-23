@@ -24,9 +24,9 @@ An interactive release-history explorer for text-generating AI models, hosted on
 
 The timeline "Named models" counter counts expanded display labels derived from explicitly specified variants. Because some legacy source labels are ambiguous, it is not a definitive count of all published models.
 
-The site loads its release records from [`data/releases.json`](./data/releases.json). This file currently contains **344 release entries**. Four duplicate weight-publication events have been merged into their original model launches. Entries migrated from the previous HTML version are **not automatically validated**; newly added entries carry source URLs and verification status.
+The site loads its release records from [`data/releases.json`](./data/releases.json). This file currently contains **346 release entries**. Four duplicate weight-publication events have been merged into their original model launches. Entries migrated from the previous HTML version are **not automatically validated**; newly added entries carry source URLs and verification status.
 
-**Coverage:** The latest documented release in this dataset is **November 18, 2026** (Gemini 4 Neon). The dataset update date is **November 19, 2026**. Coverage of releases before and after May 2026 is selective, **not an exhaustive census**. Historical entries without primary sources remain unverified; the page exposes missing references rather than inventing them.
+**Coverage:** The latest documented release in this dataset is **November 23, 2026** (GLM-5.4). The dataset update date is **November 23, 2026**. Coverage of releases before and after May 2026 is selective, **not an exhaustive census**. Historical entries without primary sources remain unverified; the page exposes missing references rather than inventing them.
 
 A data entry has the following structure:
 
